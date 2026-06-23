@@ -9584,7 +9584,7 @@ export class QuestEngine {
           
           if (baseKey.includes('garrosh')) { questRequirement = { itemId: 'iron_ore', amount: 3 }; xpReward = 100; rewardItem = 'sword'; }
           else if (baseKey.includes('alkuin')) { questRequirement = { itemId: 'mushrooms', amount: 3 }; xpReward = 100; rewardItem = 'healing_potion'; }
-          else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'coins'; }
+          else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'copper_coins'; }
           else if (baseKey.includes('beggar')) { questRequirement = { itemId: 'bread', amount: 1 }; xpReward = 50; }
           else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 }; xpReward = 75; rewardItem = 'coffee'; }
           else if (baseKey.includes('trader')) { questRequirement = { itemId: 'copper_coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
@@ -9816,7 +9816,7 @@ export class QuestEngine {
 
               if (baseKey.includes('garrosh')) { questRequirement = { itemId: 'iron_ore', amount: 3 }; xpReward = 100; rewardItem = 'sword'; }
               else if (baseKey.includes('alkuin')) { questRequirement = { itemId: 'mushrooms', amount: 3 }; xpReward = 100; rewardItem = 'healing_potion'; }
-              else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'coins'; }
+              else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'copper_coins'; }
               else if (baseKey.includes('beggar')) { questRequirement = { itemId: 'bread', amount: 1 }; xpReward = 50; }
               else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 }; xpReward = 75; rewardItem = 'coffee'; }
               else if (baseKey.includes('trader')) { questRequirement = { itemId: 'copper_coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
