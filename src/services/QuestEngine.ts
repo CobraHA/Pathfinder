@@ -45,7 +45,7 @@ const MOCK_DB = [
           "action": "trade_iron",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.garrosh.opt_farewell",
               "next": "end"
             }
           ]
@@ -101,7 +101,7 @@ const MOCK_DB = [
           },
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.alkuin.opt_farewell",
               "next": "end"
             }
           ]
@@ -133,7 +133,7 @@ const MOCK_DB = [
           "text": "map.dialogs.alkuin.quest_already_completed",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.alkuin.opt_farewell",
               "next": "end"
             }
           ]
@@ -189,7 +189,7 @@ const MOCK_DB = [
           },
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.leif.opt_farewell",
               "next": "end"
             }
           ]
@@ -221,7 +221,7 @@ const MOCK_DB = [
           "text": "map.dialogs.leif.quest_already_completed",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.leif.opt_farewell",
               "next": "end"
             }
           ]
@@ -528,7 +528,7 @@ const MOCK_DB = [
           "action": "trade_bread",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -843,7 +843,7 @@ const MOCK_DB = [
           "action": "trade_bread",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -998,7 +998,7 @@ const MOCK_DB = [
           "action": "trade_bread",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -1093,7 +1093,7 @@ const MOCK_DB = [
           "action": "trade_bread",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -1428,7 +1428,7 @@ const MOCK_DB = [
           "action": "trade_bread",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -1479,7 +1479,7 @@ const MOCK_DB = [
           "action": "trade_bread",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -1982,7 +1982,7 @@ const MOCK_DB = [
           "action": "trade_bread",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -2085,7 +2085,7 @@ const MOCK_DB = [
           "action": "trade_bread",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -2188,7 +2188,7 @@ const MOCK_DB = [
           "action": "trade_bread",
           "options": [
             {
-              "label": "map.dialogs.common.see_you",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -5240,37 +5240,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -5472,37 +5472,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -5554,37 +5554,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -5643,37 +5643,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -6166,37 +6166,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -6293,37 +6293,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -6456,37 +6456,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -6526,37 +6526,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -7257,37 +7257,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -7865,37 +7865,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -7928,37 +7928,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -8010,37 +8010,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -8099,37 +8099,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -8219,37 +8219,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -8282,37 +8282,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -8364,37 +8364,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -9005,37 +9005,37 @@ const MOCK_DB = [
     "data": {
       "dialog": {
         "start": {
-          "text": "Hast du etwas Brot oder Salz für mich?",
+          "text": "map.dialogs.beggar.start",
           "options": [
             {
-              "label": "Erzähl mir mehr.",
+              "label": "map.dialogs.beggar.opt_tell_more",
               "next": "ask_trade"
             },
             {
-              "label": "Keine Zeit.",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
         },
         "ask_trade": {
-          "text": "Ich verhungere fast.",
+          "text": "map.dialogs.beggar.ask_trade",
           "options": [
             {
-              "label": "Ich helfe dir. (Quest)",
+              "label": "map.dialogs.beggar.opt_help",
               "next": "accept_quest"
             },
             {
-              "label": "Nein danke.",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
         },
         "accept_quest": {
-          "text": "Danke für deine Güte.",
+          "text": "map.dialogs.beggar.accept_quest",
           "action": "trade_bread",
           "options": [
             {
-              "label": "Bis bald.",
+              "label": "map.dialogs.beggar.opt_farewell",
               "next": "end"
             }
           ]
@@ -9596,7 +9596,7 @@ export class QuestEngine {
               accept_quest: {
                 text: `${baseKey}.accept_quest`,
                 action: "generic_osm_quest",
-                options: [{ label: "map.dialogs.common.see_you", next: "end" }]
+                options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
               }
             } 
           };
@@ -9784,7 +9784,7 @@ export class QuestEngine {
               accept_quest: {
                 text: `${baseKey}.accept_quest`,
                 action: "generic_osm_quest",
-                options: [{ label: "map.dialogs.common.see_you", next: "end" }]
+                options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
               }
             };
           }

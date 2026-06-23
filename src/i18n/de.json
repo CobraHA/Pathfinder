@@ -25,7 +25,8 @@
         "opt_tell_more": "Was genau brauchst du für die Schmiede?",
         "opt_help": "Ich werde dir das Eisenerz besorgen.",
         "opt_no_time": "Ich habe gerade keine Zeit für Schmiedearbeiten.",
-        "opt_no_thanks": "Tut mir leid, die Minen sind mir zu gefährlich."
+        "opt_no_thanks": "Tut mir leid, die Minen sind mir zu gefährlich.",
+        "opt_farewell": "Ich werde mich beeilen."
       },
       "common": {
         "tell_more": "Erzähl mir mehr.",
@@ -50,7 +51,8 @@
         "opt_tell_more": "Was für Kräuter suchst du?",
         "opt_help": "Ich suche dir die Heilwurzeln im Wald.",
         "opt_no_time": "Ich muss weiter, viel Glück.",
-        "opt_no_thanks": "Ich kenne mich mit Kräutern leider nicht aus."
+        "opt_no_thanks": "Ich kenne mich mit Kräutern leider nicht aus.",
+        "opt_farewell": "Möge das Licht mit dir sein."
       },
       "leif": {
         "start": "In letzter Zeit treiben sich Banditen vor den Toren herum.",
@@ -63,7 +65,8 @@
         "opt_tell_more": "Gibt es Probleme mit Banditen?",
         "opt_help": "Ich besorge das Holz für die Barrikaden.",
         "opt_no_time": "Ich halte mich aus euren Problemen raus.",
-        "opt_no_thanks": "Dafür riskiere ich nicht mein Leben."
+        "opt_no_thanks": "Dafür riskiere ich nicht mein Leben.",
+        "opt_farewell": "Ich passe auf mich auf."
       },
       "beggar": {
         "start": "Hast du etwas Brot oder Salz für mich?",
@@ -73,7 +76,8 @@
         "opt_tell_more": "Wie kann ich dir helfen?",
         "opt_help": "Ich werde versuchen, etwas Essen zu finden.",
         "opt_no_time": "Lass mich in Ruhe.",
-        "opt_no_thanks": "Ich habe selbst kaum genug zum Überleben."
+        "opt_no_thanks": "Ich habe selbst kaum genug zum Überleben.",
+        "opt_farewell": "Viel Glück da draußen."
       },
       "barista": {
         "start": "Hey! Hast du sauberes Wasser dabei?",
@@ -83,7 +87,8 @@
         "opt_tell_more": "Was willst du im Tausch?",
         "opt_help": "Deal, ich bringe dir das Wasser.",
         "opt_no_time": "Nein, mein Wasser brauche ich selbst.",
-        "opt_no_thanks": "Ich trinke lieber mein Wasser, als es für Kaffee wegzugeben."
+        "opt_no_thanks": "Ich trinke lieber mein Wasser, als es für Kaffee wegzugeben.",
+        "opt_farewell": "Mach den Kaffee schon mal warm!"
       },
       "trader": {
         "start": "Sei gegrüßt. Suchst du nach nützlichen Vorräten?",
@@ -93,7 +98,8 @@
         "opt_tell_more": "Was hast du im Angebot?",
         "opt_help": "Lass uns handeln.",
         "opt_no_time": "Nein, ich bin wunschlos glücklich.",
-        "opt_no_thanks": "Ich behalte meine Münzen lieber."
+        "opt_no_thanks": "Ich behalte meine Münzen lieber.",
+        "opt_farewell": "Bis zum nächsten Geschäft."
       },
       "informant": {
         "start": "Hehehe... du siehst aus, als könntest du einen guten Tipp gebrauchen.",
@@ -103,7 +109,8 @@
         "opt_tell_more": "Was für Geheimnisse kennst du?",
         "opt_help": "Hier sind die Münzen, lass hören.",
         "opt_no_time": "Verschwinde, ich brauche keine zwielichtigen Tipps.",
-        "opt_no_thanks": "Meine Münzen sind mir zu schade für Gerüchte."
+        "opt_no_thanks": "Meine Münzen sind mir zu schade für Gerüchte.",
+        "opt_farewell": "Ich werde die Augen offen halten."
       }
     },
     "markers": {
