@@ -26,16 +26,16 @@
     "enterShop": "Enter Shop",
     "dialogs": {
       "garrosh": {
-        "start": "Ah, ein Reisender! Mein Feuer erlischt fast und mir geht das Eisen aus.",
-        "ask_trade": "Bringe mir Eisenerz aus den Minen.",
-        "accept_quest": "Kehre zurück, wenn du das Erz hast."
+        "start": "Ah, a traveler! My fire is almost out and I am running low on iron.",
+        "ask_trade": "Bring me iron ore from the mines.",
+        "accept_quest": "Return when you have the ore."
       },
       "common": {
-        "tell_more": "Erzähl mir mehr.",
-        "no_time": "Keine Zeit.",
-        "help_quest": "Ich helfe dir. (Quest)",
-        "no_thanks": "Nein danke.",
-        "see_you": "Bis bald.",
+        "tell_more": "Tell me more.",
+        "no_time": "No time.",
+        "help_quest": "I will help you. (Quest)",
+        "no_thanks": "No thanks.",
+        "see_you": "See you soon.",
         "give_items": "Here, I have everything (Give)",
         "not_yet": "Not quite yet... (Leave)",
         "you_are_welcome": "You're welcome!",
@@ -43,25 +43,25 @@
         "partial_turn_in": "Thanks for %{amount}x %{item}, but I still need %{remaining}!"
       },
       "alkuin": {
-        "start": "Die Pestilenz greift um sich, wir benötigen dringend Kräuter.",
-        "ask_trade": "Finde Heilwurzeln in den Wäldern.",
-        "accept_quest": "Der Segen sei mit dir.",
+        "start": "The pestilence is spreading, we urgently need herbs.",
+        "ask_trade": "Find healing roots in the woods.",
+        "accept_quest": "May blessings be with you.",
         "check_quest_progress": "Ah, my friend! Have you gathered the mushrooms for me?",
         "complete_quest": "Wonderful! These mushrooms will greatly assist my studies. Take these coins as thanks.",
         "quest_already_completed": "Thank you again for your help with the mushrooms. My research is making good progress!"
       },
       "leif": {
-        "start": "In letzter Zeit treiben sich Banditen vor den Toren herum.",
-        "ask_trade": "Der Hauptmann zahlt Gold für das Amulett des Anführers.",
-        "accept_quest": "Pass auf deinen Rücken auf.",
+        "start": "Lately, bandits have been roaming outside the gates.",
+        "ask_trade": "The captain pays gold for the leader's amulet.",
+        "accept_quest": "Watch your back.",
         "check_quest_progress": "Halt! Do you have the wood we need for the barricade?",
         "complete_quest": "Excellent. With this we can make the road a bit safer. Here is your reward.",
         "quest_already_completed": "The barricade holds. Thanks again for the wood!"
       },
       "beggar": {
-        "start": "Hast du etwas Brot oder Salz für mich?",
-        "ask_trade": "Ich verhungere fast.",
-        "accept_quest": "Danke für deine Güte."
+        "start": "Do you have any bread or salt for me?",
+        "ask_trade": "I am almost starving.",
+        "accept_quest": "Thank you for your kindness."
       },
       "barista": {
         "start": "Welcome to the cafe! Need some caffeine?",
