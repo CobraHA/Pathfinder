@@ -323,8 +323,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   inventorySlot: {
-    width: 75,
-    height: 75,
+    width: '21%',
+    aspectRatio: 1,
+    margin: '2%',
     backgroundColor: 'rgba(20, 10, 5, 0.9)',
     borderWidth: 2,
     borderColor: '#4A2511',
