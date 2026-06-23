@@ -21,7 +21,14 @@ export class QuestLogEngine {
     try {
       const data = await AsyncStorage.getItem(QUEST_LOG_KEY);
       if (data) {
-        return JSON.parse(data);
+        const parsed = JSON.parse(data);
+        // Backward compatibility: migrate 'coins' to 'copper_coins'
+        return parsed.map((q: Quest) => {
+          if (q.requirement && q.requirement.itemId === 'coins') {
+            q.requirement.itemId = 'copper_coins';
+          }
+          return q;
+        });
       }
     } catch (e) {
       console.error('Error reading QuestLog', e);
