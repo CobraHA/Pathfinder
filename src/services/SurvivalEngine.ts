@@ -71,6 +71,7 @@ export class SurvivalEngine {
     'roasted_meat': { hunger: 40, thirst: -5, msg: "survival.eat_roasted_meat" },
     'bread': { hunger: 50, thirst: -5, msg: "survival.eat_bread" },
     'stale_bread': { hunger: 30, thirst: -10, msg: "survival.eat_stale_bread", sideEffect: "Trocken und zäh" },
+    'moldy_bread': { hunger: 10, thirst: -10, msg: "survival.eat_moldy_bread", sideEffect: "50% Risiko für Vergiftung" },
     'canned_food': { hunger: 50, thirst: 10, msg: "survival.eat_canned_food" },
     'herbal_tea': { hunger: 5, thirst: 40, msg: "survival.drink_herbal_tea" },
     'healing_potion': { hunger: 0, thirst: 10, msg: "survival.drink_healing_potion" },
