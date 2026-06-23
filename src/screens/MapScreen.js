@@ -694,8 +694,8 @@ export default function MapScreen() {
         const added = await QuestLogEngine.addQuest({
           id: questId,
           npcId: activeNPC?.id || 'unknown',
-          titleKey: `quest_title_${activeNPC?.id}`,
-          descKey: `quest_desc_${activeNPC?.id}`,
+          titleKey: nextNode?.questTitle || `quest_title_${activeNPC?.id}`,
+          descKey: nextNode?.questDesc || `quest_desc_${activeNPC?.id}`,
           requirement: nextNode?.questRequirement
         });
         if (added) {

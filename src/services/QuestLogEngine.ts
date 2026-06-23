@@ -22,10 +22,21 @@ export class QuestLogEngine {
       const data = await AsyncStorage.getItem(QUEST_LOG_KEY);
       if (data) {
         const parsed = JSON.parse(data);
-        // Backward compatibility: migrate 'coins' to 'copper_coins'
+        // Backward compatibility: migrate 'coins' to 'copper_coins' and fix broken titles
         return parsed.map((q: Quest) => {
           if (q.requirement && q.requirement.itemId === 'coins') {
             q.requirement.itemId = 'copper_coins';
+          }
+          if (q.titleKey && q.titleKey.startsWith('quest_title_')) {
+            const req = q.requirement?.itemId;
+            const amt = q.requirement?.amount || 0;
+            if (req === 'iron_ore') { q.titleKey = 'map.dialogs.garrosh.quest_title'; q.descKey = 'map.dialogs.garrosh.quest_desc'; }
+            else if (req === 'mushrooms') { q.titleKey = 'map.dialogs.alkuin.quest_title'; q.descKey = 'map.dialogs.alkuin.quest_desc'; }
+            else if (req === 'wood_log') { q.titleKey = 'map.dialogs.leif.quest_title'; q.descKey = 'map.dialogs.leif.quest_desc'; }
+            else if (req === 'bread') { q.titleKey = 'map.dialogs.beggar.quest_title'; q.descKey = 'map.dialogs.beggar.quest_desc'; }
+            else if (req === 'clean_water') { q.titleKey = 'map.dialogs.barista.quest_title'; q.descKey = 'map.dialogs.barista.quest_desc'; }
+            else if (req === 'copper_coins' && amt === 10) { q.titleKey = 'map.dialogs.trader.quest_title'; q.descKey = 'map.dialogs.trader.quest_desc'; }
+            else if (req === 'copper_coins' && amt === 15) { q.titleKey = 'map.dialogs.informant.quest_title'; q.descKey = 'map.dialogs.informant.quest_desc'; }
           }
           return q;
         });
