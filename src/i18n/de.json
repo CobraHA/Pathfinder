@@ -21,7 +21,9 @@
         "start": "Ah, ein Reisender! Mein Feuer erlischt fast und mir geht das Eisen aus.",
         "ask_trade": "Bringe mir Eisenerz aus den Minen.",
         "accept_quest": "Kehre zurück, wenn du das Erz hast.",
-        "info": "Garrosh bittet dich, ihm Eisenerz zu bringen, damit er seine Esse befeuern und Ausrüstung für dich schmieden kann."
+        "info": "Ich bin Schmied Garrosh. Bring mir Eisenerz, damit ich meine Esse befeuern und dir eine vernünftige Ausrüstung schmieden kann.",
+        "opt_tell_more": "Was genau brauchst du für die Schmiede?",
+        "opt_help": "Ich werde dir das Eisenerz besorgen."
       },
       "common": {
         "tell_more": "Erzähl mir mehr.",
@@ -42,7 +44,9 @@
         "check_quest_progress": "Ah, mein Freund! Hast du die Pilze für mich gesammelt?",
         "complete_quest": "Wunderbar! Diese Pilze werden mir bei meinen Studien sehr helfen. Nimm diese Münzen als Dank.",
         "quest_already_completed": "Vielen Dank nochmal für deine Hilfe bei den Pilzen. Meine Forschungen machen gute Fortschritte!",
-        "info": "Mönch Alkuin benötigt dringend Pilze und Heilwurzeln aus dem Wald, um ein Heilmittel gegen die Pestilenz herzustellen."
+        "info": "Ich bin Mönch Alkuin. Ich brauche dringend Pilze und Heilwurzeln aus dem Wald, um ein Heilmittel gegen diese schreckliche Pestilenz herzustellen.",
+        "opt_tell_more": "Was für Kräuter suchst du?",
+        "opt_help": "Ich suche dir die Heilwurzeln im Wald."
       },
       "leif": {
         "start": "In letzter Zeit treiben sich Banditen vor den Toren herum.",
@@ -51,31 +55,41 @@
         "check_quest_progress": "Halt! Hast du das Holz dabei, das wir für die Barrikade brauchen?",
         "complete_quest": "Ausgezeichnet. Damit können wir die Straße ein Stück sicherer machen. Hier ist dein Lohn.",
         "quest_already_completed": "Die Barrikade hält. Danke nochmal für das Holz!",
-        "info": "Wache Leif sucht nach mutigen Helfern, die Holz für die Barrikaden sammeln oder die Banditen vor den Toren bekämpfen."
+        "info": "Hier spricht Wache Leif. Ich suche nach Freiwilligen, die mir Holz für die Barrikaden besorgen oder helfen, die Banditen vor den Toren zu bekämpfen.",
+        "opt_tell_more": "Gibt es Probleme mit Banditen?",
+        "opt_help": "Ich besorge das Holz für die Barrikaden."
       },
       "beggar": {
         "start": "Hast du etwas Brot oder Salz für mich?",
         "ask_trade": "Ich verhungere fast.",
         "accept_quest": "Danke für deine Güte.",
-        "info": "Dieser ausgehungerte Überlebende fleht dich um ein Stück Brot oder etwas Salz an, um einen weiteren Tag zu überstehen."
+        "info": "Bitte... Ich bin am Verhungern. Hast du vielleicht ein Stück Brot oder etwas Salz für mich?",
+        "opt_tell_more": "Wie kann ich dir helfen?",
+        "opt_help": "Ich werde versuchen, etwas Essen zu finden."
       },
       "barista": {
         "start": "Willkommen im Café! Brauchst du etwas Koffein?",
         "ask_trade": "Ich tausche Wasser gegen Kaffee.",
         "accept_quest": "Vielen Dank!",
-        "info": "Der Barista bietet dir an, dein überschüssiges Wasser gegen eine aufputschende Tasse Kaffee einzutauschen."
+        "info": "Hey, ich bin der Barista. Wenn du mir dein überschüssiges Wasser überlässt, brühe ich dir einen heißen, aufputschenden Kaffee.",
+        "opt_tell_more": "Kaffee? Was willst du im Tausch?",
+        "opt_help": "Deal, ich bringe dir das Wasser."
       },
       "trader": {
         "start": "Brauchst du Vorräte? Ich habe alles, was du brauchst.",
         "ask_trade": "Zeig mir deine Waren.",
         "accept_quest": "Gute Wahl.",
-        "info": "Dieser Händler bietet dir wertvolle Vorräte und seltene Gegenstände im Tausch gegen deine gesammelten Münzen an."
+        "info": "Ich bin Händler. Wenn du die nötigen Münzen hast, biete ich dir im Tausch meine besten Vorräte an.",
+        "opt_tell_more": "Was hast du im Angebot?",
+        "opt_help": "Lass uns handeln."
       },
       "informant": {
         "start": "Psst! Ich weiß Dinge... für den richtigen Preis.",
         "ask_trade": "Gib mir Münzen, dann rede ich.",
         "accept_quest": "Hör gut zu...",
-        "info": "Gegen eine großzügige Bezahlung mit Kupfermünzen verrät dir der Informant nützliche Geheimnisse und versteckte Orte."
+        "info": "Psst... ich weiß Dinge, die sonst niemand weiß. Für ein paar Kupfermünzen teile ich meine Geheimnisse mit dir.",
+        "opt_tell_more": "Was für Geheimnisse kennst du?",
+        "opt_help": "Hier sind die Münzen, lass hören."
       }
     },
     "markers": {
