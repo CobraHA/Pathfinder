@@ -9790,10 +9790,19 @@ export class QuestEngine {
           }
         }
 
+        // Backward compatibility for NPC names saved as "Unbekannter Ort"
+        let finalTitle = injectedQ.title || injectedQ.data?.title || injectedQ.data?.name || "Unbekannter Ort";
+        if (injectedQ.type === 'npc' && finalTitle === 'Unbekannter Ort') {
+          const startText = injectedQ.data?.dialog?.start?.text;
+          if (startText?.includes('barista')) finalTitle = 'map.markers.survivor_barista';
+          else if (startText?.includes('trader')) finalTitle = 'map.markers.trader_bot';
+          else if (startText?.includes('informant')) finalTitle = 'map.markers.drunk_informant';
+        }
+
         return {
           ...injectedQ,
           location: qLoc, // <- OVERRIDE with parsed location
-          title: injectedQ.title || injectedQ.data?.title || injectedQ.data?.name || "Unbekannter Ort",
+          title: finalTitle,
           distance_meters: (qLat !== undefined && qLon !== undefined)
             ? getDistance(latitude, longitude, qLat, qLon)
             : 9999
