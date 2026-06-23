@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "Pathfinder",
+    "slug": "pathfinder",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#121212"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Pathfinder benötigt deinen Standort für Quests in deiner Nähe.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Pathfinder benötigt deinen Standort für das Anti-Cheat und Fog of War System im Hintergrund."
+      },
+      "bundleIdentifier": "com.mint2k.pathfinder"
+    },
+    "android": {
+      "package": "com.mint2k.pathfinder",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#121212"
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Erlaube $(PRODUCT_NAME) deinen Standort zu verwenden."
+        }
+      ],
+      "expo-localization"
+    ]
+  }
+}
