@@ -127,7 +127,7 @@
       },
       "informant": {
         "start": "Hehehe... du siehst aus, als könntest du einen guten Tipp gebrauchen.",
-        "ask_trade": "Oh, ich weiß wo man verborgene Schätze und seltene Materialien findet. Für ein paar glänzende Münzen verrate ich dir die genauen Koordinaten.",
+        "ask_trade": "Oh, ich weiß, wo man verborgene Schätze und seltene Materialien findet. Für 15 Kupfermünzen verrate ich dir die genauen Koordinaten.",
         "accept_quest": "Hör gut zu...",
         "info": "Oh, ich weiß wo man verborgene Schätze und seltene Materialien findet. Für ein paar glänzende Münzen verrate ich dir die genauen Koordinaten.",
         "opt_tell_more": "Was für Geheimnisse kennst du?",
@@ -135,11 +135,11 @@
         "opt_no_time": "Verschwinde, ich brauche keine zwielichtigen Tipps.",
         "opt_no_thanks": "Meine Münzen sind mir zu schade für Gerüchte.",
         "opt_farewell": "Ich werde die Augen offen halten.",
-        "check_quest_progress": "Hast du die Bezahlung für meine Geheimnisse?",
+        "check_quest_progress": "Hast du die 15 Kupfermünzen für meine Geheimnisse?",
         "complete_quest": "Gut... hier sind die Koordinaten. Aber psst, verrate niemandem, woher du sie hast.",
         "quest_already_completed": "Du hast alle meine Tipps bereits erhalten.",
         "quest_title": "Erkaufte Geheimnisse",
-        "quest_desc": "Der Informant verkauft Geheimnisse für Kupfermünzen."
+        "quest_desc": "Der Informant verkauft Geheimnisse für 15 Kupfermünzen."
       }
     },
     "markers": {

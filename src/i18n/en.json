@@ -135,7 +135,7 @@
       },
       "informant": {
         "start": "Hehehe... you look like you could use a good tip.",
-        "ask_trade": "Oh, I know where to find hidden treasures and rare materials. For a few shiny coins, I'll share the exact coordinates with you.",
+        "ask_trade": "Oh, I know where to find hidden treasures and rare materials. For 15 copper coins, I'll share the exact coordinates with you.",
         "accept_quest": "Listen closely...",
         "info": "Oh, I know where to find hidden treasures and rare materials. For a few shiny coins, I'll share the exact coordinates with you.",
         "opt_tell_more": "What kind of secrets do you know?",
@@ -143,11 +143,11 @@
         "opt_no_time": "Get lost, I don't need shady tips.",
         "opt_no_thanks": "My coins are too precious for rumors.",
         "opt_farewell": "I'll keep my eyes open.",
-        "check_quest_progress": "Do you have the payment for my secrets?",
+        "check_quest_progress": "Do you have the 15 copper coins for my secrets?",
         "complete_quest": "Good... here are the coordinates. But shush, don't tell anyone where you got them.",
         "quest_already_completed": "You already received all my tips.",
         "quest_title": "Purchased Secrets",
-        "quest_desc": "The informant sells secrets for copper coins."
+        "quest_desc": "The informant sells secrets for 15 copper coins."
       }
     },
     "markers": {
