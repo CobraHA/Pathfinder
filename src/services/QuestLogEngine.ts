@@ -27,16 +27,22 @@ export class QuestLogEngine {
           if (q.requirement && q.requirement.itemId === 'coins') {
             q.requirement.itemId = 'copper_coins';
           }
-          if (q.titleKey && q.titleKey.startsWith('quest_title_')) {
+          if ((q.titleKey && q.titleKey.startsWith('quest_title_')) || (q.descKey && q.descKey.startsWith('quest_desc_'))) {
             const req = q.requirement?.itemId;
-            const amt = q.requirement?.amount || 0;
             if (req === 'iron_ore') { q.titleKey = 'map.dialogs.garrosh.quest_title'; q.descKey = 'map.dialogs.garrosh.quest_desc'; }
             else if (req === 'mushrooms') { q.titleKey = 'map.dialogs.alkuin.quest_title'; q.descKey = 'map.dialogs.alkuin.quest_desc'; }
             else if (req === 'wood_log') { q.titleKey = 'map.dialogs.leif.quest_title'; q.descKey = 'map.dialogs.leif.quest_desc'; }
             else if (req === 'bread') { q.titleKey = 'map.dialogs.beggar.quest_title'; q.descKey = 'map.dialogs.beggar.quest_desc'; }
             else if (req === 'clean_water') { q.titleKey = 'map.dialogs.barista.quest_title'; q.descKey = 'map.dialogs.barista.quest_desc'; }
-            else if (req === 'copper_coins' && amt === 10) { q.titleKey = 'map.dialogs.trader.quest_title'; q.descKey = 'map.dialogs.trader.quest_desc'; }
-            else if (req === 'copper_coins' && amt === 15) { q.titleKey = 'map.dialogs.informant.quest_title'; q.descKey = 'map.dialogs.informant.quest_desc'; }
+            else if (req === 'copper_coins') { 
+              // Either trader (10) or informant (15 or historically 5). 
+              // We'll guess based on amount if possible, but fallback to informant.
+              if (q.requirement?.amount === 10) {
+                q.titleKey = 'map.dialogs.trader.quest_title'; q.descKey = 'map.dialogs.trader.quest_desc';
+              } else {
+                q.titleKey = 'map.dialogs.informant.quest_title'; q.descKey = 'map.dialogs.informant.quest_desc';
+              }
+            }
           }
           return q;
         });
