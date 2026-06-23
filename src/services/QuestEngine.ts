@@ -9576,12 +9576,28 @@ export class QuestEngine {
             } 
           };
         } else if (matchedMapping.type === 'npc') {
+          const baseKey = matchedMapping.dialogStart || "map.dialogs.trader";
           formattedData = { 
             dialog: { 
               start: { 
-                text: matchedMapping.dialogStart || "map.dialogs.trader.start", 
-                options: [{ label: "map.dialogs.common.no_time", next: "end" }] 
-              } 
+                text: `${baseKey}.start`, 
+                options: [
+                  { label: "map.dialogs.common.tell_more", next: "ask_trade" },
+                  { label: "map.dialogs.common.no_time", next: "end" }
+                ] 
+              },
+              ask_trade: {
+                text: `${baseKey}.ask_trade`,
+                options: [
+                  { label: "map.dialogs.common.help_quest", next: "accept_quest" },
+                  { label: "map.dialogs.common.no_thanks", next: "end" }
+                ]
+              },
+              accept_quest: {
+                text: `${baseKey}.accept_quest`,
+                action: "generic_osm_quest",
+                options: [{ label: "map.dialogs.common.see_you", next: "end" }]
+              }
             } 
           };
         } else if (matchedMapping.type === 'chest') {
@@ -9744,6 +9760,36 @@ export class QuestEngine {
         }
         
         const injectedQ = this.injectDefaultGathers(q);
+
+        // Backward compatibility fix for cached NPCs
+        if (injectedQ.type === 'npc' && injectedQ.data?.dialog?.start?.text) {
+          const startText = injectedQ.data.dialog.start.text;
+          if (startText === 'map.dialogs.barista' || startText === 'map.dialogs.trader' || startText === 'map.dialogs.informant') {
+            const baseKey = startText;
+            injectedQ.data.dialog = {
+              start: { 
+                text: `${baseKey}.start`, 
+                options: [
+                  { label: "map.dialogs.common.tell_more", next: "ask_trade" },
+                  { label: "map.dialogs.common.no_time", next: "end" }
+                ] 
+              },
+              ask_trade: {
+                text: `${baseKey}.ask_trade`,
+                options: [
+                  { label: "map.dialogs.common.help_quest", next: "accept_quest" },
+                  { label: "map.dialogs.common.no_thanks", next: "end" }
+                ]
+              },
+              accept_quest: {
+                text: `${baseKey}.accept_quest`,
+                action: "generic_osm_quest",
+                options: [{ label: "map.dialogs.common.see_you", next: "end" }]
+              }
+            };
+          }
+        }
+
         return {
           ...injectedQ,
           location: qLoc, // <- OVERRIDE with parsed location
