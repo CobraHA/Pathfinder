@@ -26,7 +26,12 @@
         "opt_help": "Ich werde dir das Eisenerz besorgen.",
         "opt_no_time": "Ich habe gerade keine Zeit für Schmiedearbeiten.",
         "opt_no_thanks": "Tut mir leid, die Minen sind mir zu gefährlich.",
-        "opt_farewell": "Ich werde mich beeilen."
+        "opt_farewell": "Ich werde mich beeilen.",
+        "check_quest_progress": "Hast du das Eisenerz aus den Minen besorgt?",
+        "complete_quest": "Hervorragend! Mit diesem Erz brennt meine Esse wieder heiß. Nimm diese Waffe als Zeichen meines Danks.",
+        "quest_already_completed": "Danke nochmals für das Eisenerz. Meine Schmiede läuft auf Hochtouren!",
+        "quest_title": "Erzbeschaffung für Garrosh",
+        "quest_desc": "Garrosh der Schmied benötigt dringend Eisenerz aus den Minen, um seine Esse anzuheizen."
       },
       "common": {
         "tell_more": "Erzähl mir mehr.",
@@ -52,21 +57,25 @@
         "opt_help": "Ich suche dir die Heilwurzeln im Wald.",
         "opt_no_time": "Ich muss weiter, viel Glück.",
         "opt_no_thanks": "Ich kenne mich mit Kräutern leider nicht aus.",
-        "opt_farewell": "Möge das Licht mit dir sein."
+        "opt_farewell": "Möge das Licht mit dir sein.",
+        "quest_title": "Heilkräuter für die Kranken",
+        "quest_desc": "Mönch Alkuin benötigt spezielle Pilze aus dem Wald, um eine Medizin gegen die Pestilenz zu brauen."
       },
       "leif": {
         "start": "In letzter Zeit treiben sich Banditen vor den Toren herum.",
         "ask_trade": "Ja, sie werden immer dreister. Wir müssen unsere Barrikaden verstärken. Wenn du mir Holz besorgst, zahle ich dir eine gute Belohnung.",
         "accept_quest": "Pass auf deinen Rücken auf.",
         "check_quest_progress": "Halt! Hast du das Holz dabei, das wir für die Barrikade brauchen?",
-        "complete_quest": "Ausgezeichnet. Damit können wir die Straße ein Stück sicherer machen. Hier ist dein Lohn.",
-        "quest_already_completed": "Die Barrikade hält. Danke nochmal für das Holz!",
+        "complete_quest": "Exzellent. Damit können wir den Weg etwas sicherer machen. Hier ist deine Belohnung.",
+        "quest_already_completed": "Die Barrikade hält. Danke nochmals für das Holz!",
         "info": "Ja, sie werden immer dreister. Wir müssen unsere Barrikaden verstärken. Wenn du mir Holz besorgst, zahle ich dir eine gute Belohnung.",
         "opt_tell_more": "Gibt es Probleme mit Banditen?",
         "opt_help": "Ich besorge das Holz für die Barrikaden.",
         "opt_no_time": "Ich halte mich aus euren Problemen raus.",
         "opt_no_thanks": "Dafür riskiere ich nicht mein Leben.",
-        "opt_farewell": "Ich passe auf mich auf."
+        "opt_farewell": "Ich passe auf mich auf.",
+        "quest_title": "Verstärkung der Barrikaden",
+        "quest_desc": "Wache Leif benötigt Holz, um die Barrikaden gegen die Banditen zu verstärken."
       },
       "beggar": {
         "start": "Hast du etwas Brot oder Salz für mich?",
@@ -77,7 +86,12 @@
         "opt_help": "Ich werde versuchen, etwas Essen zu finden.",
         "opt_no_time": "Lass mich in Ruhe.",
         "opt_no_thanks": "Ich habe selbst kaum genug zum Überleben.",
-        "opt_farewell": "Viel Glück da draußen."
+        "opt_farewell": "Viel Glück da draußen.",
+        "check_quest_progress": "Bitte... hast du etwas zu essen für mich gefunden?",
+        "complete_quest": "Oh, danke! Du hast mir das Leben gerettet. Ich habe zwar nicht viel, aber nimm dies.",
+        "quest_already_completed": "Ich werde deine Güte nie vergessen.",
+        "quest_title": "Eine milde Gabe",
+        "quest_desc": "Ein Bettler hungert. Bringe ihm eine Portion Brot, um ihm zu helfen."
       },
       "barista": {
         "start": "Hey! Hast du sauberes Wasser dabei?",
@@ -88,7 +102,12 @@
         "opt_help": "Deal, ich bringe dir das Wasser.",
         "opt_no_time": "Nein, mein Wasser brauche ich selbst.",
         "opt_no_thanks": "Ich trinke lieber mein Wasser, als es für Kaffee wegzugeben.",
-        "opt_farewell": "Mach den Kaffee schon mal warm!"
+        "opt_farewell": "Mach den Kaffee schon mal warm!",
+        "check_quest_progress": "Und, hast du das frische Wasser für mich aufgetrieben?",
+        "complete_quest": "Perfekt! Hier ist der extra starke Kaffee, den ich dir versprochen habe.",
+        "quest_already_completed": "Der Kaffee läuft! Wenn ich wieder Bohnen habe, sag ich Bescheid.",
+        "quest_title": "Kaffeepause",
+        "quest_desc": "Der Barista benötigt sauberes Wasser, um frischen Kaffee zu brühen."
       },
       "trader": {
         "start": "Sei gegrüßt. Suchst du nach nützlichen Vorräten?",
@@ -99,7 +118,12 @@
         "opt_help": "Lass uns handeln.",
         "opt_no_time": "Nein, ich bin wunschlos glücklich.",
         "opt_no_thanks": "Ich behalte meine Münzen lieber.",
-        "opt_farewell": "Bis zum nächsten Geschäft."
+        "opt_farewell": "Bis zum nächsten Geschäft.",
+        "check_quest_progress": "Hast du die Münzen für unser Geschäft zusammen?",
+        "complete_quest": "Ein Vergnügen, Geschäfte mit dir zu machen. Hier sind deine Vorräte.",
+        "quest_already_completed": "Wenn ich neue Waren habe, bist du der Erste, der es erfährt.",
+        "quest_title": "Handelswaren",
+        "quest_desc": "Der Händler bietet Vorräte im Austausch für Kupfermünzen."
       },
       "informant": {
         "start": "Hehehe... du siehst aus, als könntest du einen guten Tipp gebrauchen.",
@@ -110,7 +134,12 @@
         "opt_help": "Hier sind die Münzen, lass hören.",
         "opt_no_time": "Verschwinde, ich brauche keine zwielichtigen Tipps.",
         "opt_no_thanks": "Meine Münzen sind mir zu schade für Gerüchte.",
-        "opt_farewell": "Ich werde die Augen offen halten."
+        "opt_farewell": "Ich werde die Augen offen halten.",
+        "check_quest_progress": "Hast du die Bezahlung für meine Geheimnisse?",
+        "complete_quest": "Gut... hier sind die Koordinaten. Aber psst, verrate niemandem, woher du sie hast.",
+        "quest_already_completed": "Du hast alle meine Tipps bereits erhalten.",
+        "quest_title": "Erkaufte Geheimnisse",
+        "quest_desc": "Der Informant verkauft Geheimnisse für Kupfermünzen."
       }
     },
     "markers": {

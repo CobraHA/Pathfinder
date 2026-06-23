@@ -769,9 +769,11 @@ export default function MapScreen() {
             return;
           }
 
-          await InventoryEngine.addItem({ id: 'copper_coins', name: 'Kupfermünzen', type: 'currency' }, 20);
+          const itemRewardId = nextNode?.rewardItem || 'copper_coins';
+          const xpGained = nextNode?.xpReward || 50;
+          await InventoryEngine.addItem({ id: itemRewardId, name: itemRewardId, type: 'quest_reward' }, 1);
           await QuestLogEngine.completeQuest(questId);
-          handleGainXP(50, 'quest');
+          handleGainXP(xpGained, 'quest');
         }
       }
     }

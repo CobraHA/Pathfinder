@@ -34,7 +34,12 @@
         "opt_help": "I will get the iron ore for you.",
         "opt_no_time": "I don't have time for blacksmithing right now.",
         "opt_no_thanks": "Sorry, the mines are too dangerous for me.",
-        "opt_farewell": "I will hurry."
+        "opt_farewell": "I will hurry.",
+        "check_quest_progress": "Did you get the iron ore from the mines?",
+        "complete_quest": "Excellent! With this ore my forge burns hot again. Take this weapon as a token of my gratitude.",
+        "quest_already_completed": "Thanks again for the iron ore. My forge is running at full capacity!",
+        "quest_title": "Ore for Garrosh",
+        "quest_desc": "Garrosh the blacksmith urgently needs iron ore from the mines to heat up his forge."
       },
       "common": {
         "tell_more": "Tell me more.",
@@ -60,7 +65,9 @@
         "opt_help": "I'll find the healing roots in the forest.",
         "opt_no_time": "I must move on, good luck.",
         "opt_no_thanks": "I'm afraid I don't know much about herbs.",
-        "opt_farewell": "May the light be with you."
+        "opt_farewell": "May the light be with you.",
+        "quest_title": "Healing Herbs",
+        "quest_desc": "Monk Alkuin needs special mushrooms from the forest to brew a cure for the pestilence."
       },
       "leif": {
         "start": "Lately, bandits have been roaming outside the gates.",
@@ -74,7 +81,9 @@
         "opt_help": "I'll get the wood for the barricades.",
         "opt_no_time": "I'm staying out of your problems.",
         "opt_no_thanks": "I won't risk my life for that.",
-        "opt_farewell": "I'll be careful."
+        "opt_farewell": "I'll be careful.",
+        "quest_title": "Reinforcing the Barricades",
+        "quest_desc": "Guard Leif needs wood to reinforce the barricades against the bandits."
       },
       "beggar": {
         "start": "Do you have any bread or salt for me?",
@@ -85,7 +94,12 @@
         "opt_help": "I will try to find some food.",
         "opt_no_time": "Leave me alone.",
         "opt_no_thanks": "I barely have enough to survive myself.",
-        "opt_farewell": "Good luck out there."
+        "opt_farewell": "Good luck out there.",
+        "check_quest_progress": "Please... did you find something to eat for me?",
+        "complete_quest": "Oh, thank you! You saved my life. I don't have much, but take this.",
+        "quest_already_completed": "I will never forget your kindness.",
+        "quest_title": "An Act of Kindness",
+        "quest_desc": "A beggar is starving. Bring him a portion of bread to help him."
       },
       "barista": {
         "start": "Hey! Do you have any clean water?",
@@ -96,7 +110,12 @@
         "opt_help": "Deal, I'll bring you the water.",
         "opt_no_time": "No, I need my water for myself.",
         "opt_no_thanks": "I prefer keeping my water over a cup of coffee.",
-        "opt_farewell": "Keep the coffee warm!"
+        "opt_farewell": "Keep the coffee warm!",
+        "check_quest_progress": "So, did you find the fresh water for me?",
+        "complete_quest": "Perfect! Here is the extra strong coffee I promised you.",
+        "quest_already_completed": "The coffee is brewing! I'll let you know when I have more beans.",
+        "quest_title": "Coffee Break",
+        "quest_desc": "The barista needs clean water to brew fresh coffee."
       },
       "trader": {
         "start": "Greetings. Are you looking for useful supplies?",
@@ -107,7 +126,12 @@
         "opt_help": "Let's trade.",
         "opt_no_time": "No, I have everything I need.",
         "opt_no_thanks": "I'd rather keep my coins.",
-        "opt_farewell": "Until our next deal."
+        "opt_farewell": "Until our next deal.",
+        "check_quest_progress": "Do you have the coins for our deal?",
+        "complete_quest": "A pleasure doing business with you. Here are your supplies.",
+        "quest_already_completed": "When I get new goods, you'll be the first to know.",
+        "quest_title": "Trade Goods",
+        "quest_desc": "The trader offers supplies in exchange for copper coins."
       },
       "informant": {
         "start": "Hehehe... you look like you could use a good tip.",
@@ -118,7 +142,12 @@
         "opt_help": "Here are the coins, let's hear it.",
         "opt_no_time": "Get lost, I don't need shady tips.",
         "opt_no_thanks": "My coins are too precious for rumors.",
-        "opt_farewell": "I'll keep my eyes open."
+        "opt_farewell": "I'll keep my eyes open.",
+        "check_quest_progress": "Do you have the payment for my secrets?",
+        "complete_quest": "Good... here are the coordinates. But shush, don't tell anyone where you got them.",
+        "quest_already_completed": "You already received all my tips.",
+        "quest_title": "Purchased Secrets",
+        "quest_desc": "The informant sells secrets for copper coins."
       }
     },
     "markers": {

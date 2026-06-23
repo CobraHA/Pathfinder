@@ -9577,6 +9577,19 @@ export class QuestEngine {
           };
         } else if (matchedMapping.type === 'npc') {
           const baseKey = matchedMapping.dialogStart || "map.dialogs.trader";
+          
+          let questRequirement = { itemId: 'coins', amount: 5 };
+          let xpReward = 50;
+          let rewardItem = null;
+          
+          if (baseKey.includes('garrosh')) { questRequirement = { itemId: 'iron_ore', amount: 3 }; xpReward = 100; rewardItem = 'sword'; }
+          else if (baseKey.includes('alkuin')) { questRequirement = { itemId: 'mushrooms', amount: 3 }; xpReward = 100; rewardItem = 'healing_potion'; }
+          else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'coins'; }
+          else if (baseKey.includes('beggar')) { questRequirement = { itemId: 'bread', amount: 1 }; xpReward = 50; }
+          else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 }; xpReward = 75; rewardItem = 'coffee'; }
+          else if (baseKey.includes('trader')) { questRequirement = { itemId: 'coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
+          else if (baseKey.includes('informant')) { questRequirement = { itemId: 'coins', amount: 5 }; xpReward = 50; rewardItem = 'treasure_map'; }
+
           formattedData = { 
             dialog: { 
               start: { 
@@ -9595,7 +9608,31 @@ export class QuestEngine {
               },
               accept_quest: {
                 text: `${baseKey}.accept_quest`,
-                action: "generic_osm_quest",
+                action: "give_quest",
+                questRequirement,
+                xpReward,
+                rewardItem,
+                questTitle: `${baseKey}.quest_title`,
+                questDesc: `${baseKey}.quest_desc`,
+                options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
+              },
+              check_quest_progress: {
+                text: `${baseKey}.check_quest_progress`,
+                options: [
+                  { label: "map.dialogs.common.give_items", next: "complete_quest" },
+                  { label: "map.dialogs.common.not_yet", next: "end" }
+                ]
+              },
+              complete_quest: {
+                text: `${baseKey}.complete_quest`,
+                action: "finish_quest",
+                questRequirement,
+                xpReward,
+                rewardItem,
+                options: [{ label: "map.dialogs.common.you_are_welcome", next: "end" }]
+              },
+              quest_already_completed: {
+                text: `${baseKey}.quest_already_completed`,
                 options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
               }
             } 
@@ -9761,54 +9798,74 @@ export class QuestEngine {
         
         const injectedQ = this.injectDefaultGathers(q);
 
-        // Backward compatibility fix for cached NPCs
-        if (injectedQ.type === 'npc' && injectedQ.data?.dialog?.start?.text) {
-          let startText = injectedQ.data.dialog.start.text;
-          
-          if (startText === 'map.dialogs.barista' || startText === 'map.dialogs.trader' || startText === 'map.dialogs.informant') {
-            const baseKey = startText;
-            injectedQ.data.dialog = {
-              start: { 
-                text: `${baseKey}.start`, 
-                options: [
-                  { label: `${baseKey}.opt_tell_more`, next: "ask_trade" },
-                  { label: `${baseKey}.opt_no_time`, next: "end" }
-                ] 
-              },
-              ask_trade: {
-                text: `${baseKey}.ask_trade`,
-                options: [
-                  { label: `${baseKey}.opt_help`, next: "accept_quest" },
-                  { label: `${baseKey}.opt_no_thanks`, next: "end" }
-                ]
-              },
-              accept_quest: {
-                text: `${baseKey}.accept_quest`,
-                action: "generic_osm_quest",
-                options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
-              }
-            };
-            startText = injectedQ.data.dialog.start.text;
-          }
+        // Dynamic generation of quest lifecycle for all loaded NPCs (cached or mock)
+        if (injectedQ.type === 'npc') {
+          let startText = injectedQ.data?.dialog?.start?.text || injectedQ.data?.dialog?.text;
+          if (startText) {
+            // Some old caches just had 'map.dialogs.barista'
+            if (!startText.endsWith('.start') && startText.startsWith('map.dialogs.')) {
+              startText += '.start';
+            }
+            const baseKeyMatch = startText.match(/^(map\.dialogs\.[^.]+)/);
+            if (baseKeyMatch) {
+              const baseKey = baseKeyMatch[1];
 
-          const baseKeyMatch = startText.match(/^(map\.dialogs\.[^.]+)/);
-          if (baseKeyMatch) {
-            const baseKey = baseKeyMatch[1];
-            
-            const fixOptions = (options: any[]) => {
-              if (!options || !Array.isArray(options)) return;
-              options.forEach(opt => {
-                if (opt.label === 'map.dialogs.common.tell_more' || opt.label === 'Erzähl mir mehr.') opt.label = `${baseKey}.opt_tell_more`;
-                if (opt.label === 'map.dialogs.common.no_time' || opt.label === 'Keine Zeit.') opt.label = `${baseKey}.opt_no_time`;
-                if (opt.label === 'map.dialogs.common.help_quest' || opt.label === 'Ich helfe dir. (Quest)') opt.label = `${baseKey}.opt_help`;
-                if (opt.label === 'map.dialogs.common.no_thanks' || opt.label === 'Nein danke.') opt.label = `${baseKey}.opt_no_thanks`;
-                if (opt.label === 'map.dialogs.common.see_you' || opt.label === 'Bis bald.') opt.label = `${baseKey}.opt_farewell`;
-              });
-            };
+              let questRequirement = { itemId: 'coins', amount: 5 };
+              let xpReward = 50;
+              let rewardItem = null;
 
-            if (injectedQ.data.dialog.start) fixOptions(injectedQ.data.dialog.start.options);
-            if (injectedQ.data.dialog.ask_trade) fixOptions(injectedQ.data.dialog.ask_trade.options);
-            if (injectedQ.data.dialog.accept_quest) fixOptions(injectedQ.data.dialog.accept_quest.options);
+              if (baseKey.includes('garrosh')) { questRequirement = { itemId: 'iron_ore', amount: 3 }; xpReward = 100; rewardItem = 'sword'; }
+              else if (baseKey.includes('alkuin')) { questRequirement = { itemId: 'mushrooms', amount: 3 }; xpReward = 100; rewardItem = 'healing_potion'; }
+              else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'coins'; }
+              else if (baseKey.includes('beggar')) { questRequirement = { itemId: 'bread', amount: 1 }; xpReward = 50; }
+              else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 }; xpReward = 75; rewardItem = 'coffee'; }
+              else if (baseKey.includes('trader')) { questRequirement = { itemId: 'coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
+              else if (baseKey.includes('informant')) { questRequirement = { itemId: 'coins', amount: 5 }; xpReward = 50; rewardItem = 'treasure_map'; }
+
+              injectedQ.data.dialog = {
+                start: { 
+                  text: `${baseKey}.start`, 
+                  options: [
+                    { label: `${baseKey}.opt_tell_more`, next: "ask_trade" },
+                    { label: `${baseKey}.opt_no_time`, next: "end" }
+                  ] 
+                },
+                ask_trade: {
+                  text: `${baseKey}.ask_trade`,
+                  options: [
+                    { label: `${baseKey}.opt_help`, next: "accept_quest" },
+                    { label: `${baseKey}.opt_no_thanks`, next: "end" }
+                  ]
+                },
+                accept_quest: {
+                  text: `${baseKey}.accept_quest`,
+                  action: "give_quest",
+                  questRequirement,
+                  xpReward,
+                  rewardItem,
+                  options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
+                },
+                check_quest_progress: {
+                  text: `${baseKey}.check_quest_progress`,
+                  options: [
+                    { label: "map.dialogs.common.give_items", next: "complete_quest" },
+                    { label: "map.dialogs.common.not_yet", next: "end" }
+                  ]
+                },
+                complete_quest: {
+                  text: `${baseKey}.complete_quest`,
+                  action: "finish_quest",
+                  questRequirement,
+                  xpReward,
+                  rewardItem,
+                  options: [{ label: "map.dialogs.common.you_are_welcome", next: "end" }]
+                },
+                quest_already_completed: {
+                  text: `${baseKey}.quest_already_completed`,
+                  options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
+                }
+              };
+            }
           }
         }
 
