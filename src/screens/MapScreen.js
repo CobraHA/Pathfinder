@@ -503,14 +503,22 @@ export default function MapScreen() {
         const maxAmt = res.maxAmount || 3;
         const actualAmount = Math.floor(Math.random() * (maxAmt - minAmt + 1)) + minAmt;
 
+        let finalItemId = res.itemId;
+        if (finalItemId === 'stale_bread') {
+          const rand = Math.random();
+          if (rand < 0.2) finalItemId = 'bread'; // 20% fresh bread
+          else if (rand < 0.6) finalItemId = 'stale_bread'; // 40% stale
+          else finalItemId = 'moldy_bread'; // 40% moldy
+        }
+
         NodeStateEngine.gatherNode(npc.id, res.maxGathers || 3).then(({ gathersLeft, isDepleted }) => {
-          InventoryEngine.addItem({ id: res.itemId, name: res.name, type: res.type }, actualAmount).then(() => {
-            const translatedName = i18n.t(`items.${res.itemId}`, { defaultValue: res.name });
+          InventoryEngine.addItem({ id: finalItemId, name: res.name, type: res.type }, actualAmount).then(() => {
+            const translatedName = i18n.t(`items.${finalItemId}`, { defaultValue: res.name });
             const floatingId = Date.now().toString() + Math.random().toString();
 
             let iconName = 'leaf';
             let iconColor = '#A5D6A7';
-            switch (res.itemId) {
+            switch (finalItemId) {
               case 'wood_log': iconName = 'tree'; iconColor = '#8D6E63'; break;
               case 'iron_ore': iconName = 'diamond-stone'; iconColor = '#B0BEC5'; break;
               case 'clean_water': iconName = 'water'; iconColor = '#6495ED'; break;
@@ -518,6 +526,9 @@ export default function MapScreen() {
               case 'mushrooms': iconName = 'mushroom'; iconColor = '#9C27B0'; break;
               case 'berries': iconName = 'fruit-cherries'; iconColor = '#E91E63'; break;
               case 'herb_root': iconName = 'sprout'; iconColor = '#4CAF50'; break;
+              case 'bread': iconName = 'baguette'; iconColor = '#E9BC62'; break;
+              case 'stale_bread': iconName = 'baguette'; iconColor = '#8D6E63'; break;
+              case 'moldy_bread': iconName = 'baguette'; iconColor = '#4CAF50'; break;
             }
 
             if (isDepleted) {
