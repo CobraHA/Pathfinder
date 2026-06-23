@@ -504,15 +504,17 @@ export default function MapScreen() {
         const actualAmount = Math.floor(Math.random() * (maxAmt - minAmt + 1)) + minAmt;
 
         let finalItemId = res.itemId;
+        let finalType = res.type;
         if (finalItemId === 'stale_bread') {
           const rand = Math.random();
           if (rand < 0.2) finalItemId = 'bread'; // 20% fresh bread
           else if (rand < 0.6) finalItemId = 'stale_bread'; // 40% stale
           else finalItemId = 'moldy_bread'; // 40% moldy
+          finalType = 'consumable';
         }
 
         NodeStateEngine.gatherNode(npc.id, res.maxGathers || 3).then(({ gathersLeft, isDepleted }) => {
-          InventoryEngine.addItem({ id: finalItemId, name: res.name, type: res.type }, actualAmount).then(() => {
+          InventoryEngine.addItem({ id: finalItemId, name: res.name, type: finalType }, actualAmount).then(() => {
             const translatedName = i18n.t(`items.${finalItemId}`, { defaultValue: res.name });
             const floatingId = Date.now().toString() + Math.random().toString();
 

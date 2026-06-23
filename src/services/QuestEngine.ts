@@ -9569,7 +9569,7 @@ export class QuestEngine {
             resource: { 
               itemId: matchedMapping.itemId, 
               name: matchedMapping.title || matchedMapping.name, 
-              type: matchedMapping.itemId === 'clean_water' || matchedMapping.itemId === 'dirty_water' ? 'consumable' : 'material', 
+              type: ['clean_water', 'dirty_water', 'bread', 'stale_bread', 'moldy_bread', 'canned_food', 'berries', 'mushrooms'].includes(matchedMapping.itemId) ? 'consumable' : 'material', 
               minAmount: matchedMapping.amount?.[0] || 1, 
               maxAmount: matchedMapping.amount?.[1] || 3,
               maxGathers: 5 

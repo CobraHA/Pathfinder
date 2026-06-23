@@ -13,7 +13,22 @@ export class InventoryEngine {
   static async getInventory(): Promise<InventoryItem[]> {
     try {
       const jsonValue = await AsyncStorage.getItem(INVENTORY_KEY);
-      return jsonValue != null ? JSON.parse(jsonValue) : [];
+      let parsed = jsonValue != null ? JSON.parse(jsonValue) : [];
+      
+      // Heal types for known consumables
+      const consumables = [
+        'bread', 'stale_bread', 'moldy_bread', 'canned_food', 
+        'clean_water', 'dirty_water', 'berries', 'mushrooms', 
+        'raw_meat', 'roasted_meat', 'coffee', 'strong_coffee', 'herbal_tea'
+      ];
+      parsed = parsed.map((item: InventoryItem) => {
+        if (consumables.includes(item.id)) {
+          item.type = 'consumable';
+        }
+        return item;
+      });
+
+      return parsed;
     } catch (e) {
       console.error('Error loading inventory', e);
       return [];
