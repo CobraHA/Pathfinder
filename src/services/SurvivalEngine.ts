@@ -72,6 +72,8 @@ export class SurvivalEngine {
     'bread': { hunger: 50, thirst: -5, msg: "survival.eat_bread" },
     'herbal_tea': { hunger: 5, thirst: 40, msg: "survival.drink_herbal_tea" },
     'healing_potion': { hunger: 0, thirst: 10, msg: "survival.drink_healing_potion" },
+    'coffee': { hunger: 50, thirst: 50, msg: "survival.drink_coffee" },
+    'strong_coffee': { hunger: 100, thirst: 100, msg: "survival.drink_strong_coffee" },
   };
 
   // Wird aufgerufen, wenn man im Inventar auf "Benutzen" drückt
