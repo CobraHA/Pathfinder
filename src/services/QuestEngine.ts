@@ -9578,7 +9578,7 @@ export class QuestEngine {
         } else if (matchedMapping.type === 'npc') {
           const baseKey = matchedMapping.dialogStart || "map.dialogs.trader";
           
-          let questRequirement = { itemId: 'coins', amount: 5 };
+          let questRequirement = { itemId: 'copper_coins', amount: 15 };
           let xpReward = 50;
           let rewardItem = null;
           
@@ -9587,8 +9587,8 @@ export class QuestEngine {
           else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'coins'; }
           else if (baseKey.includes('beggar')) { questRequirement = { itemId: 'bread', amount: 1 }; xpReward = 50; }
           else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 }; xpReward = 75; rewardItem = 'coffee'; }
-          else if (baseKey.includes('trader')) { questRequirement = { itemId: 'coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
-          else if (baseKey.includes('informant')) { questRequirement = { itemId: 'coins', amount: 5 }; xpReward = 50; rewardItem = 'treasure_map'; }
+          else if (baseKey.includes('trader')) { questRequirement = { itemId: 'copper_coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
+          else if (baseKey.includes('informant')) { questRequirement = { itemId: 'copper_coins', amount: 15 }; xpReward = 50; rewardItem = 'treasure_map'; }
 
           formattedData = { 
             dialog: { 
@@ -9810,7 +9810,7 @@ export class QuestEngine {
             if (baseKeyMatch) {
               const baseKey = baseKeyMatch[1];
 
-              let questRequirement = { itemId: 'coins', amount: 5 };
+              let questRequirement = { itemId: 'copper_coins', amount: 15 };
               let xpReward = 50;
               let rewardItem = null;
 
@@ -9819,8 +9819,8 @@ export class QuestEngine {
               else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'coins'; }
               else if (baseKey.includes('beggar')) { questRequirement = { itemId: 'bread', amount: 1 }; xpReward = 50; }
               else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 }; xpReward = 75; rewardItem = 'coffee'; }
-              else if (baseKey.includes('trader')) { questRequirement = { itemId: 'coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
-              else if (baseKey.includes('informant')) { questRequirement = { itemId: 'coins', amount: 5 }; xpReward = 50; rewardItem = 'treasure_map'; }
+              else if (baseKey.includes('trader')) { questRequirement = { itemId: 'copper_coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
+              else if (baseKey.includes('informant')) { questRequirement = { itemId: 'copper_coins', amount: 15 }; xpReward = 50; rewardItem = 'treasure_map'; }
 
               injectedQ.data.dialog = {
                 start: { 
