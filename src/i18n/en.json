@@ -271,7 +271,9 @@
     "salt": "Salt",
     "salt_water": "Salt Water",
     "bread": "Bread",
-    "flint": "Flint"
+    "flint": "Flint",
+    "coffee": "Coffee",
+    "strong_coffee": "Extra Strong Coffee"
   },
   "chest": {
     "title": "Hidden Chest",
@@ -299,7 +301,9 @@
     "drink_dirty_water_safe": "You drink dirty water. It tastes awful, but you stay healthy. (+10 Thirst)",
     "eat_mushrooms_poisonous": "You eat a poisonous mushroom! You feel terribly sick... (-10 Hunger, -10 Thirst)",
     "eat_mushrooms_safe": "You eat tasty forest mushrooms. (+20 Hunger)",
-    "eat_bread": "You eat the fresh bread. It is very filling!"
+    "eat_bread": "You eat the fresh bread. It is very filling!",
+    "drink_coffee": "You drink a coffee. It revitalizes!",
+    "drink_strong_coffee": "You drink the extra strong coffee. You feel reborn!"
   },
   "questlog": {
     "title": "Journal",

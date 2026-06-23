@@ -278,7 +278,9 @@
     "salt_water": "Salzwasser",
     "bread": "Brot",
     "flint": "Feuerstein",
-    "undefined": "Unbekannt"
+    "undefined": "Unbekannt",
+    "coffee": "Kaffee",
+    "strong_coffee": "Extra Starker Kaffee"
   },
   "chest": {
     "title": "Verborgene Truhe",
@@ -306,7 +308,9 @@
     "drink_dirty_water_safe": "Du trinkst Dreckwasser. Es schmeckt furchtbar, aber du bleibst gesund. (+10 Durst)",
     "eat_mushrooms_poisonous": "Du isst einen giftigen Pilz! Dir wird furchtbar schlecht... (-10 Hunger, -10 Durst)",
     "eat_mushrooms_safe": "Du isst leckere Waldpilze. (+20 Hunger)",
-    "eat_bread": "Du isst das frische Brot. Es ist sehr sättigend!"
+    "eat_bread": "Du isst das frische Brot. Es ist sehr sättigend!",
+    "drink_coffee": "Du trinkst einen Kaffee. Das belebt!",
+    "drink_strong_coffee": "Du trinkst den extra starken Kaffee. Du fühlst dich wie neu geboren!"
   },
   "questlog": {
     "title": "Tagebuch",
