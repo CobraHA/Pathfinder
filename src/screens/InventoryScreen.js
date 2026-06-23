@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, TextInput } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { InventoryEngine } from '../services/InventoryEngine';
@@ -11,6 +11,10 @@ export default function InventoryScreen() {
   const isFocused = useIsFocused();
   const [inventory, setInventory] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortMode, setSortMode] = useState('name'); // name, amount, type
+  const [sortAscending, setSortAscending] = useState(true);
 
   useEffect(() => {
     if (isFocused) {
@@ -46,13 +50,44 @@ export default function InventoryScreen() {
       case 'copper_coins': return 'circle-multiple';
       case 'salt': return 'shaker';
       case 'salt_water': return 'water-percent';
-      case 'bread': return 'baguette';
+      case 'bread': 
+      case 'stale_bread':
+      case 'moldy_bread': return 'baguette';
+      case 'canned_food': return 'food-apple';
+      case 'cloth_scrap': return 'tshirt-crew-outline';
+      case 'old_currency': return 'cash-multiple';
       case 'flint': return 'flare';
       case 'coffee': return 'coffee';
       case 'strong_coffee': return 'coffee-outline';
       default: return 'bag-personal';
     }
   };
+
+  const filteredAndSortedInventory = React.useMemo(() => {
+    let result = inventory.filter(item => {
+      if (!searchQuery) return true;
+      const translatedName = i18n.t(`items.${item.id}`, { defaultValue: item.name || '' }).toLowerCase();
+      return translatedName.includes(searchQuery.toLowerCase());
+    });
+
+    result.sort((a, b) => {
+      let comparison = 0;
+      if (sortMode === 'name') {
+        const nameA = i18n.t(`items.${a.id}`, { defaultValue: a.name || '' });
+        const nameB = i18n.t(`items.${b.id}`, { defaultValue: b.name || '' });
+        comparison = nameA.localeCompare(nameB);
+      } else if (sortMode === 'amount') {
+        comparison = a.quantity - b.quantity;
+      } else if (sortMode === 'type') {
+        const typeA = a.type || '';
+        const typeB = b.type || '';
+        comparison = typeA.localeCompare(typeB);
+      }
+      return sortAscending ? comparison : -comparison;
+    });
+
+    return result;
+  }, [inventory, searchQuery, sortMode, sortAscending]);
 
   const handleUseItem = async () => {
     if (!selectedItem) return;
@@ -109,13 +144,53 @@ export default function InventoryScreen() {
           <View style={{ width: 40 }} /> {/* Spacer */}
         </View>
 
+        <View style={styles.filterContainer}>
+          <View style={styles.searchBox}>
+            <Feather name="search" size={20} color="#888" style={styles.searchIcon} />
+            <TextInput
+              style={styles.searchInput}
+              placeholder={i18n.t('inventory.search', { defaultValue: 'Suchen...' })}
+              placeholderTextColor="#888"
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+            />
+            {searchQuery.length > 0 && (
+              <TouchableOpacity onPress={() => setSearchQuery('')}>
+                <Feather name="x-circle" size={18} color="#888" />
+              </TouchableOpacity>
+            )}
+          </View>
+          
+          <View style={styles.sortControls}>
+            <TouchableOpacity 
+              style={styles.sortButton} 
+              onPress={() => {
+                const modes = ['name', 'amount', 'type'];
+                const nextIndex = (modes.indexOf(sortMode) + 1) % modes.length;
+                setSortMode(modes[nextIndex]);
+              }}
+            >
+              <Text style={styles.sortButtonText}>
+                {sortMode === 'name' ? 'Name' : sortMode === 'amount' ? 'Menge' : 'Typ'}
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.sortDirectionButton}
+              onPress={() => setSortAscending(!sortAscending)}
+            >
+              <Feather name={sortAscending ? "arrow-down" : "arrow-up"} size={20} color="#E9BC62" />
+            </TouchableOpacity>
+          </View>
+        </View>
+
         <View style={styles.contentContainer}>
           <View style={styles.gridContainer}>
             <ScrollView contentContainerStyle={styles.inventoryGrid}>
-              {inventory.length === 0 && (
+              {filteredAndSortedInventory.length === 0 && (
                 <Text style={styles.emptyText}>{i18n.t('inventory.empty')}</Text>
               )}
-              {inventory.map(item => (
+              {filteredAndSortedInventory.map(item => (
                 <TouchableOpacity 
                   key={item.id} 
                   style={[styles.inventorySlot, selectedItem?.id === item.id && styles.inventorySlotSelected]}
@@ -398,5 +473,62 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1,
+  },
+  filterContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  searchBox: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(30, 18, 12, 0.8)',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#5D4037',
+    paddingHorizontal: 10,
+    height: 40,
+    marginRight: 10,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    color: '#F5E6CE',
+    fontFamily: 'Courier',
+    height: '100%',
+  },
+  sortControls: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  sortButton: {
+    backgroundColor: 'rgba(44, 26, 18, 0.8)',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#5D4037',
+    paddingHorizontal: 12,
+    height: 40,
+    justifyContent: 'center',
+    marginRight: 6,
+  },
+  sortButtonText: {
+    color: '#E9BC62',
+    fontFamily: 'Courier',
+    fontWeight: 'bold',
+  },
+  sortDirectionButton: {
+    backgroundColor: 'rgba(44, 26, 18, 0.8)',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#5D4037',
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
