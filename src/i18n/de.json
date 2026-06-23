@@ -54,6 +54,21 @@
         "start": "Hast du etwas Brot oder Salz für mich?",
         "ask_trade": "Ich verhungere fast.",
         "accept_quest": "Danke für deine Güte."
+      },
+      "barista": {
+        "start": "Willkommen im Café! Brauchst du etwas Koffein?",
+        "ask_trade": "Ich tausche Wasser gegen Kaffee.",
+        "accept_quest": "Vielen Dank!"
+      },
+      "trader": {
+        "start": "Brauchst du Vorräte? Ich habe alles, was du brauchst.",
+        "ask_trade": "Zeig mir deine Waren.",
+        "accept_quest": "Gute Wahl."
+      },
+      "informant": {
+        "start": "Psst! Ich weiß Dinge... für den richtigen Preis.",
+        "ask_trade": "Gib mir Münzen, dann rede ich.",
+        "accept_quest": "Hör gut zu..."
       }
     },
     "markers": {
@@ -77,7 +92,10 @@
       "herb_patch": "Kräuterbeet",
       "salt_deposit": "Salzablagerung",
       "iron_vein": "Erzvorkommen",
-      "dead_animal": "Erlegtes Tier"
+      "dead_animal": "Erlegtes Tier",
+      "survivor_barista": "Überlebender Barista",
+      "trader_bot": "Händler-Bot",
+      "drunk_informant": "Betrunkener Informant"
     },
     "debug_waiting_gps": "Debug: Warten auf GPS...",
     "distance_away": "%{distance}m entfernt",
@@ -95,7 +113,17 @@
     "sortType_shop": "Händler",
     "sortType_workbench": "Werkbank",
     "sortType_enemy": "Gegner",
-    "sortType_cold_campfire": "Lagerfeuer"
+    "sortType_cold_campfire": "Lagerfeuer",
+    "quests": {
+      "monument_history": "Historisches Relikt",
+      "monument_history_desc": "Untersuche das antike Monument.",
+      "rest_stop": "Rastplatz",
+      "rest_stop_desc": "Ruhe dich kurz aus und durchsuche die Gegend.",
+      "hospital_run": "Medizinische Vorräte",
+      "hospital_run_desc": "Beschaffe dringend benötigte Medikamente aus dem Krankenhaus.",
+      "lost_knowledge": "Verlorenes Wissen",
+      "lost_knowledge_desc": "Berge alte Aufzeichnungen aus der Bibliothek."
+    }
   },
   "inventory": {
     "title": "Inventar",

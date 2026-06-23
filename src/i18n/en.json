@@ -62,6 +62,21 @@
         "start": "Hast du etwas Brot oder Salz für mich?",
         "ask_trade": "Ich verhungere fast.",
         "accept_quest": "Danke für deine Güte."
+      },
+      "barista": {
+        "start": "Welcome to the cafe! Need some caffeine?",
+        "ask_trade": "I'll trade water for coffee.",
+        "accept_quest": "Thank you!"
+      },
+      "trader": {
+        "start": "Need supplies? I have everything you need.",
+        "ask_trade": "Show me your wares.",
+        "accept_quest": "Good choice."
+      },
+      "informant": {
+        "start": "Psst! I know things... for the right price.",
+        "ask_trade": "Give me coins and I'll talk.",
+        "accept_quest": "Listen closely..."
       }
     },
     "markers": {
@@ -85,10 +100,23 @@
       "herb_patch": "Herb Patch",
       "salt_deposit": "Salt Deposit",
       "iron_vein": "Iron Vein",
-      "dead_animal": "Dead Animal"
+      "dead_animal": "Dead Animal",
+      "survivor_barista": "Survivor Barista",
+      "trader_bot": "Trader Bot",
+      "drunk_informant": "Drunk Informant"
     },
     "need_flint_and_wood": "You need wood and a flint to ignite this campfire.",
-    "need_more_items": "You don't have anything I could use."
+    "need_more_items": "You don't have anything I could use.",
+    "quests": {
+      "monument_history": "Historical Relic",
+      "monument_history_desc": "Investigate the ancient monument.",
+      "rest_stop": "Rest Stop",
+      "rest_stop_desc": "Rest for a moment and search the area.",
+      "hospital_run": "Medical Supplies",
+      "hospital_run_desc": "Procure urgently needed medicine from the hospital.",
+      "lost_knowledge": "Lost Knowledge",
+      "lost_knowledge_desc": "Recover ancient records from the library."
+    }
   },
   "inventory": {
     "title": "Inventory",
