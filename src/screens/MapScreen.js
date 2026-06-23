@@ -57,6 +57,7 @@ import { InventoryEngine } from '../services/InventoryEngine';
 import { QuestLogEngine } from '../services/QuestLogEngine';
 import { NodeStateEngine } from '../services/NodeStateEngine';
 import { SurvivalEngine } from '../services/SurvivalEngine';
+import { PinEngine } from '../services/PinEngine';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import i18n from '../i18n';
@@ -360,6 +361,7 @@ export default function MapScreen() {
   useFocusEffect(
     React.useCallback(() => {
       SurvivalEngine.getStats().then(stats => setSurvivalStats(stats));
+      PinEngine.getPinnedNodeId().then(id => setPinnedQuestId(id));
     }, [])
   );
 
@@ -1405,7 +1407,9 @@ export default function MapScreen() {
                   <TouchableOpacity
                     style={[styles.pinButton, isPinned && styles.pinButtonActive]}
                     onPress={() => {
-                      setPinnedQuestId(isPinned ? null : q.id);
+                      const newId = isPinned ? null : q.id;
+                      setPinnedQuestId(newId);
+                      PinEngine.setPinnedNodeId(newId);
                       setIsQuestListVisible(false);
                     }}
                   >

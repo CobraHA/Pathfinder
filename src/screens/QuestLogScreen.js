@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { QuestLogEngine } from '../services/QuestLogEngine';
 import { InventoryEngine } from '../services/InventoryEngine';
+import { PinEngine } from '../services/PinEngine';
 import i18n from '../i18n';
 
 export default function QuestLogScreen() {
@@ -12,6 +13,7 @@ export default function QuestLogScreen() {
   const [quests, setQuests] = useState([]);
   const [inventory, setInventory] = useState([]);
   const [activeTab, setActiveTab] = useState('active');
+  const [pinnedNodeId, setPinnedNodeId] = useState(null);
 
   useEffect(() => {
     if (isFocused) {
@@ -24,6 +26,8 @@ export default function QuestLogScreen() {
     setQuests(allQuests);
     const inv = await InventoryEngine.getInventory();
     setInventory(inv);
+    const pinned = await PinEngine.getPinnedNodeId();
+    setPinnedNodeId(pinned);
   };
 
   const filteredQuests = quests.filter(q => q.status === activeTab).sort((a, b) => b.timestamp - a.timestamp);
@@ -58,6 +62,19 @@ export default function QuestLogScreen() {
           <Text style={[styles.questTitle, isCompleted && styles.textCompleted]}>
             {i18n.t(quest.titleKey, { defaultValue: 'Quest' })}
           </Text>
+          {!isCompleted && (
+            <TouchableOpacity 
+              onPress={() => {
+                const isPinned = pinnedNodeId === quest.npcId;
+                const newId = isPinned ? null : quest.npcId;
+                setPinnedNodeId(newId);
+                PinEngine.setPinnedNodeId(newId);
+              }}
+              style={{ padding: 4 }}
+            >
+              <Feather name="map-pin" size={20} color={pinnedNodeId === quest.npcId ? "#FFD700" : "#666"} />
+            </TouchableOpacity>
+          )}
         </View>
         <View style={styles.questBody}>
           <Text style={[styles.questDesc, isCompleted && styles.textCompleted]}>
