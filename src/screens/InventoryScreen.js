@@ -190,18 +190,35 @@ export default function InventoryScreen() {
               {filteredAndSortedInventory.length === 0 && (
                 <Text style={styles.emptyText}>{i18n.t('inventory.empty')}</Text>
               )}
-              {filteredAndSortedInventory.map(item => (
-                <TouchableOpacity 
-                  key={item.id} 
-                  style={[styles.inventorySlot, selectedItem?.id === item.id && styles.inventorySlotSelected]}
-                  onPress={() => setSelectedItem(item)}
-                >
-                  <MaterialCommunityIcons name={getItemIcon(item.id)} size={38} color={selectedItem?.id === item.id ? "#E9BC62" : "#A67B38"} />
-                  <View style={styles.quantityBadge}>
-                    <Text style={styles.quantityText}>{item.quantity}</Text>
-                  </View>
-                </TouchableOpacity>
-              ))}
+              {filteredAndSortedInventory.flatMap((item, index, array) => {
+                const elements = [];
+                if (sortMode === 'type') {
+                  const prevType = index === 0 ? null : array[index - 1].type;
+                  if (item.type !== prevType) {
+                    const translatedType = item.type === 'consumable' ? i18n.t('inventory.type_consumable', {defaultValue: 'Verbrauchsgut'}) : 
+                                           item.type === 'material' ? i18n.t('inventory.type_material', {defaultValue: 'Material'}) : 
+                                           i18n.t('inventory.type_quest', {defaultValue: 'Quest-Item'});
+                    elements.push(
+                      <View key={`header-${item.type}`} style={styles.typeHeader}>
+                        <Text style={styles.typeHeaderText}>{translatedType}</Text>
+                      </View>
+                    );
+                  }
+                }
+                elements.push(
+                  <TouchableOpacity 
+                    key={item.id} 
+                    style={[styles.inventorySlot, selectedItem?.id === item.id && styles.inventorySlotSelected]}
+                    onPress={() => setSelectedItem(item)}
+                  >
+                    <MaterialCommunityIcons name={getItemIcon(item.id)} size={38} color={selectedItem?.id === item.id ? "#E9BC62" : "#A67B38"} />
+                    <View style={styles.quantityBadge}>
+                      <Text style={styles.quantityText}>{item.quantity}</Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+                return elements;
+              })}
             </ScrollView>
           </View>
 
@@ -531,5 +548,21 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  typeHeader: {
+    width: '100%',
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    marginTop: 10,
+    marginBottom: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: '#8B4513',
+  },
+  typeHeaderText: {
+    color: '#E9BC62',
+    fontFamily: 'Courier',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
 });
