@@ -115,7 +115,19 @@
       "hospital_run": "Medical Supplies",
       "hospital_run_desc": "Procure urgently needed medicine from the hospital.",
       "lost_knowledge": "Lost Knowledge",
-      "lost_knowledge_desc": "Recover ancient records from the library."
+      "lost_knowledge_desc": "Recover ancient records from the library.",
+      "park_patrol": "Park Patrol",
+      "park_patrol_desc": "Clear the park of mutated animals.",
+      "ruin_scavenge": "Ruin Scavenger",
+      "ruin_scavenge_desc": "Search the ruins for usable scrap.",
+      "museum_artifact": "Lost Artifact",
+      "museum_artifact_desc": "Find a rare artifact in the old museum.",
+      "bus_stop_ambush": "Bus Stop Ambush",
+      "bus_stop_ambush_desc": "Survive the ambush at the bus stop.",
+      "sanctuary": "Safe Sanctuary",
+      "sanctuary_desc": "Check if this place can serve as a sanctuary.",
+      "stadium_horde": "Stadium Horde",
+      "stadium_horde_desc": "Eliminate the nest on the sports field."
     }
   },
   "inventory": {

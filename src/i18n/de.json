@@ -122,7 +122,19 @@
       "hospital_run": "Medizinische Vorräte",
       "hospital_run_desc": "Beschaffe dringend benötigte Medikamente aus dem Krankenhaus.",
       "lost_knowledge": "Verlorenes Wissen",
-      "lost_knowledge_desc": "Berge alte Aufzeichnungen aus der Bibliothek."
+      "lost_knowledge_desc": "Berge alte Aufzeichnungen aus der Bibliothek.",
+      "park_patrol": "Park Patrouille",
+      "park_patrol_desc": "Säubere den Park von mutierten Tieren.",
+      "ruin_scavenge": "Ruinen-Plünderer",
+      "ruin_scavenge_desc": "Durchsuche die Ruinen nach verwertbarem Schrott.",
+      "museum_artifact": "Verlorenes Artefakt",
+      "museum_artifact_desc": "Finde ein seltenes Artefakt im alten Museum.",
+      "bus_stop_ambush": "Hinterhalt an der Haltestelle",
+      "bus_stop_ambush_desc": "Überlebe den Angriff an der Bushaltestelle.",
+      "sanctuary": "Sichere Zuflucht",
+      "sanctuary_desc": "Überprüfe, ob dieser Ort als Zuflucht dienen kann.",
+      "stadium_horde": "Horde im Stadion",
+      "stadium_horde_desc": "Beseitige das Nest auf dem Sportplatz."
     }
   },
   "inventory": {
