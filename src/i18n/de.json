@@ -280,7 +280,11 @@
     "flint": "Feuerstein",
     "undefined": "Unbekannt",
     "coffee": "Kaffee",
-    "strong_coffee": "Extra Starker Kaffee"
+    "strong_coffee": "Extra Starker Kaffee",
+    "stale_bread": "Altes Brot",
+    "canned_food": "Dosenfutter",
+    "cloth_scrap": "Stoffreste",
+    "old_currency": "Alte Währung"
   },
   "chest": {
     "title": "Verborgene Truhe",
@@ -310,7 +314,9 @@
     "eat_mushrooms_safe": "Du isst leckere Waldpilze. (+20 Hunger)",
     "eat_bread": "Du isst das frische Brot. Es ist sehr sättigend!",
     "drink_coffee": "Du trinkst einen Kaffee. Das belebt!",
-    "drink_strong_coffee": "Du trinkst den extra starken Kaffee. Du fühlst dich wie neu geboren!"
+    "drink_strong_coffee": "Du trinkst den extra starken Kaffee. Du fühlst dich wie neu geboren!",
+    "eat_stale_bread": "Du isst das alte Brot. Es ist sehr trocken.",
+    "eat_canned_food": "Du isst das Dosenfutter. Schmeckt überraschend gut!"
   },
   "questlog": {
     "title": "Tagebuch",

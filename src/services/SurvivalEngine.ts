@@ -70,6 +70,8 @@ export class SurvivalEngine {
     'mushrooms': { hunger: 20, thirst: 0, msg: "survival.eat_mushrooms", sideEffect: "10% Risiko für Vergiftung" },
     'roasted_meat': { hunger: 40, thirst: -5, msg: "survival.eat_roasted_meat" },
     'bread': { hunger: 50, thirst: -5, msg: "survival.eat_bread" },
+    'stale_bread': { hunger: 30, thirst: -10, msg: "survival.eat_stale_bread", sideEffect: "Trocken und zäh" },
+    'canned_food': { hunger: 50, thirst: 10, msg: "survival.eat_canned_food" },
     'herbal_tea': { hunger: 5, thirst: 40, msg: "survival.drink_herbal_tea" },
     'healing_potion': { hunger: 0, thirst: 10, msg: "survival.drink_healing_potion" },
     'coffee': { hunger: 50, thirst: 50, msg: "survival.drink_coffee" },

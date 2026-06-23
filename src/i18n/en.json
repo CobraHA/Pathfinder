@@ -273,7 +273,11 @@
     "bread": "Bread",
     "flint": "Flint",
     "coffee": "Coffee",
-    "strong_coffee": "Extra Strong Coffee"
+    "strong_coffee": "Extra Strong Coffee",
+    "stale_bread": "Stale Bread",
+    "canned_food": "Canned Food",
+    "cloth_scrap": "Cloth Scrap",
+    "old_currency": "Old Currency"
   },
   "chest": {
     "title": "Hidden Chest",
@@ -303,7 +307,9 @@
     "eat_mushrooms_safe": "You eat tasty forest mushrooms. (+20 Hunger)",
     "eat_bread": "You eat the fresh bread. It is very filling!",
     "drink_coffee": "You drink a coffee. It revitalizes!",
-    "drink_strong_coffee": "You drink the extra strong coffee. You feel reborn!"
+    "drink_strong_coffee": "You drink the extra strong coffee. You feel reborn!",
+    "eat_stale_bread": "You eat the stale bread. It's very dry.",
+    "eat_canned_food": "You eat the canned food. Tastes surprisingly good!"
   },
   "questlog": {
     "title": "Journal",
