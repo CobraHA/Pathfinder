@@ -23,7 +23,9 @@
         "accept_quest": "Kehre zurück, wenn du das Erz hast.",
         "info": "Ich brauche unbedingt Eisenerz aus den nahen Minen, damit ich die Esse wieder anheizen kann. Wenn du mir welches bringst, schmiede ich dir im Gegenzug eine vernünftige Ausrüstung.",
         "opt_tell_more": "Was genau brauchst du für die Schmiede?",
-        "opt_help": "Ich werde dir das Eisenerz besorgen."
+        "opt_help": "Ich werde dir das Eisenerz besorgen.",
+        "opt_no_time": "Ich habe gerade keine Zeit für Schmiedearbeiten.",
+        "opt_no_thanks": "Tut mir leid, die Minen sind mir zu gefährlich."
       },
       "common": {
         "tell_more": "Erzähl mir mehr.",
@@ -46,7 +48,9 @@
         "quest_already_completed": "Vielen Dank nochmal für deine Hilfe bei den Pilzen. Meine Forschungen machen gute Fortschritte!",
         "info": "Ich suche nach speziellen Pilzen und Heilwurzeln aus dem Wald. Nur damit kann ich ein wirksames Heilmittel brauen und den Kranken helfen.",
         "opt_tell_more": "Was für Kräuter suchst du?",
-        "opt_help": "Ich suche dir die Heilwurzeln im Wald."
+        "opt_help": "Ich suche dir die Heilwurzeln im Wald.",
+        "opt_no_time": "Ich muss weiter, viel Glück.",
+        "opt_no_thanks": "Ich kenne mich mit Kräutern leider nicht aus."
       },
       "leif": {
         "start": "In letzter Zeit treiben sich Banditen vor den Toren herum.",
@@ -57,7 +61,9 @@
         "quest_already_completed": "Die Barrikade hält. Danke nochmal für das Holz!",
         "info": "Ja, sie werden immer dreister. Wir müssen unsere Barrikaden verstärken. Wenn du mir Holz besorgst, zahle ich dir eine gute Belohnung.",
         "opt_tell_more": "Gibt es Probleme mit Banditen?",
-        "opt_help": "Ich besorge das Holz für die Barrikaden."
+        "opt_help": "Ich besorge das Holz für die Barrikaden.",
+        "opt_no_time": "Ich halte mich aus euren Problemen raus.",
+        "opt_no_thanks": "Dafür riskiere ich nicht mein Leben."
       },
       "beggar": {
         "start": "Hast du etwas Brot oder Salz für mich?",
@@ -65,7 +71,9 @@
         "accept_quest": "Danke für deine Güte.",
         "info": "Ich habe seit Tagen nichts gegessen und verliere meine Kraft. Bitte, schon eine kleine Portion würde mir helfen, den morgigen Tag zu überstehen.",
         "opt_tell_more": "Wie kann ich dir helfen?",
-        "opt_help": "Ich werde versuchen, etwas Essen zu finden."
+        "opt_help": "Ich werde versuchen, etwas Essen zu finden.",
+        "opt_no_time": "Lass mich in Ruhe.",
+        "opt_no_thanks": "Ich habe selbst kaum genug zum Überleben."
       },
       "barista": {
         "start": "Hey! Hast du sauberes Wasser dabei?",
@@ -73,7 +81,9 @@
         "accept_quest": "Vielen Dank!",
         "info": "Die Kaffeebohnen habe ich gerettet, aber mir fehlt sauberes Wasser. Wenn du mir welches abgibst, brühe ich dir einen extra starken Kaffee, der dir neue Energie verleiht.",
         "opt_tell_more": "Was willst du im Tausch?",
-        "opt_help": "Deal, ich bringe dir das Wasser."
+        "opt_help": "Deal, ich bringe dir das Wasser.",
+        "opt_no_time": "Nein, mein Wasser brauche ich selbst.",
+        "opt_no_thanks": "Ich trinke lieber mein Wasser, als es für Kaffee wegzugeben."
       },
       "trader": {
         "start": "Sei gegrüßt. Suchst du nach nützlichen Vorräten?",
@@ -81,7 +91,9 @@
         "accept_quest": "Gute Wahl.",
         "info": "Ich habe Werkzeuge, Nahrung und einige seltene Gegenstände gesammelt. Wenn du genug Kupfermünzen hast, werden wir sicher ins Geschäft kommen.",
         "opt_tell_more": "Was hast du im Angebot?",
-        "opt_help": "Lass uns handeln."
+        "opt_help": "Lass uns handeln.",
+        "opt_no_time": "Nein, ich bin wunschlos glücklich.",
+        "opt_no_thanks": "Ich behalte meine Münzen lieber."
       },
       "informant": {
         "start": "Hehehe... du siehst aus, als könntest du einen guten Tipp gebrauchen.",
@@ -89,7 +101,9 @@
         "accept_quest": "Hör gut zu...",
         "info": "Oh, ich weiß wo man verborgene Schätze und seltene Materialien findet. Für ein paar glänzende Münzen verrate ich dir die genauen Koordinaten.",
         "opt_tell_more": "Was für Geheimnisse kennst du?",
-        "opt_help": "Hier sind die Münzen, lass hören."
+        "opt_help": "Hier sind die Münzen, lass hören.",
+        "opt_no_time": "Verschwinde, ich brauche keine zwielichtigen Tipps.",
+        "opt_no_thanks": "Meine Münzen sind mir zu schade für Gerüchte."
       }
     },
     "markers": {

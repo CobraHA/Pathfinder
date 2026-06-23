@@ -31,7 +31,9 @@
         "accept_quest": "Return when you have the ore.",
         "info": "I urgently need iron ore from the nearby mines so I can heat up the forge again. If you bring me some, I will craft you proper equipment in return.",
         "opt_tell_more": "What exactly do you need for the forge?",
-        "opt_help": "I will get the iron ore for you."
+        "opt_help": "I will get the iron ore for you.",
+        "opt_no_time": "I don't have time for blacksmithing right now.",
+        "opt_no_thanks": "Sorry, the mines are too dangerous for me."
       },
       "common": {
         "tell_more": "Tell me more.",
@@ -54,7 +56,9 @@
         "quest_already_completed": "Thank you again for your help with the mushrooms. My research is making good progress!",
         "info": "I am looking for special mushrooms and healing roots from the forest. It's the only way I can brew an effective cure and help the sick.",
         "opt_tell_more": "What kind of herbs are you looking for?",
-        "opt_help": "I'll find the healing roots in the forest."
+        "opt_help": "I'll find the healing roots in the forest.",
+        "opt_no_time": "I must move on, good luck.",
+        "opt_no_thanks": "I'm afraid I don't know much about herbs."
       },
       "leif": {
         "start": "Lately, bandits have been roaming outside the gates.",
@@ -65,7 +69,9 @@
         "quest_already_completed": "The barricade holds. Thanks again for the wood!",
         "info": "Yes, they are getting bolder. We need to reinforce our barricades. If you get me some wood, I'll pay you a handsome reward.",
         "opt_tell_more": "Are there problems with bandits?",
-        "opt_help": "I'll get the wood for the barricades."
+        "opt_help": "I'll get the wood for the barricades.",
+        "opt_no_time": "I'm staying out of your problems.",
+        "opt_no_thanks": "I won't risk my life for that."
       },
       "beggar": {
         "start": "Do you have any bread or salt for me?",
@@ -73,7 +79,9 @@
         "accept_quest": "Thank you for your kindness.",
         "info": "I haven't eaten in days and I'm losing my strength. Please, even a small portion would help me survive another day.",
         "opt_tell_more": "How can I help you?",
-        "opt_help": "I will try to find some food."
+        "opt_help": "I will try to find some food.",
+        "opt_no_time": "Leave me alone.",
+        "opt_no_thanks": "I barely have enough to survive myself."
       },
       "barista": {
         "start": "Hey! Do you have any clean water?",
@@ -81,7 +89,9 @@
         "accept_quest": "Thank you!",
         "info": "I saved the coffee beans, but I'm out of clean water. If you spare some, I'll brew you an extra strong coffee that gives you new energy.",
         "opt_tell_more": "What do you want in return?",
-        "opt_help": "Deal, I'll bring you the water."
+        "opt_help": "Deal, I'll bring you the water.",
+        "opt_no_time": "No, I need my water for myself.",
+        "opt_no_thanks": "I prefer keeping my water over a cup of coffee."
       },
       "trader": {
         "start": "Greetings. Are you looking for useful supplies?",
@@ -89,7 +99,9 @@
         "accept_quest": "Good choice.",
         "info": "I've gathered tools, food, and some rare items. If you have enough copper coins, I'm sure we can make a deal.",
         "opt_tell_more": "What do you have for sale?",
-        "opt_help": "Let's trade."
+        "opt_help": "Let's trade.",
+        "opt_no_time": "No, I have everything I need.",
+        "opt_no_thanks": "I'd rather keep my coins."
       },
       "informant": {
         "start": "Hehehe... you look like you could use a good tip.",
@@ -97,7 +109,9 @@
         "accept_quest": "Listen closely...",
         "info": "Oh, I know where to find hidden treasures and rare materials. For a few shiny coins, I'll share the exact coordinates with you.",
         "opt_tell_more": "What kind of secrets do you know?",
-        "opt_help": "Here are the coins, let's hear it."
+        "opt_help": "Here are the coins, let's hear it.",
+        "opt_no_time": "Get lost, I don't need shady tips.",
+        "opt_no_thanks": "My coins are too precious for rumors."
       }
     },
     "markers": {

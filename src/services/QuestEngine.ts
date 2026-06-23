@@ -22,7 +22,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.garrosh.opt_no_time",
               "next": "end"
             }
           ]
@@ -35,7 +35,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.garrosh.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -73,7 +73,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.alkuin.opt_no_time",
               "next": "end"
             }
           ]
@@ -86,7 +86,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.alkuin.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -161,7 +161,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.leif.opt_no_time",
               "next": "end"
             }
           ]
@@ -174,7 +174,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.leif.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -505,7 +505,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
@@ -518,7 +518,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -820,7 +820,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
@@ -833,7 +833,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -975,7 +975,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
@@ -988,7 +988,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -1070,7 +1070,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
@@ -1083,7 +1083,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -1405,7 +1405,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
@@ -1418,7 +1418,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -1456,7 +1456,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
@@ -1469,7 +1469,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -1959,7 +1959,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
@@ -1972,7 +1972,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -2062,7 +2062,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
@@ -2075,7 +2075,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -2165,7 +2165,7 @@ const MOCK_DB = [
               "next": "ask_trade"
             },
             {
-              "label": "map.dialogs.common.no_time",
+              "label": "map.dialogs.beggar.opt_no_time",
               "next": "end"
             }
           ]
@@ -2178,7 +2178,7 @@ const MOCK_DB = [
               "next": "accept_quest"
             },
             {
-              "label": "map.dialogs.common.no_thanks",
+              "label": "map.dialogs.beggar.opt_no_thanks",
               "next": "end"
             }
           ]
@@ -9583,14 +9583,14 @@ export class QuestEngine {
                 text: `${baseKey}.start`, 
                 options: [
                   { label: `${baseKey}.opt_tell_more`, next: "ask_trade" },
-                  { label: "map.dialogs.common.no_time", next: "end" }
+                  { label: `${baseKey}.opt_no_time`, next: "end" }
                 ] 
               },
               ask_trade: {
                 text: `${baseKey}.ask_trade`,
                 options: [
                   { label: `${baseKey}.opt_help`, next: "accept_quest" },
-                  { label: "map.dialogs.common.no_thanks", next: "end" }
+                  { label: `${baseKey}.opt_no_thanks`, next: "end" }
                 ]
               },
               accept_quest: {
@@ -9771,14 +9771,14 @@ export class QuestEngine {
                 text: `${baseKey}.start`, 
                 options: [
                   { label: `${baseKey}.opt_tell_more`, next: "ask_trade" },
-                  { label: "map.dialogs.common.no_time", next: "end" }
+                  { label: `${baseKey}.opt_no_time`, next: "end" }
                 ] 
               },
               ask_trade: {
                 text: `${baseKey}.ask_trade`,
                 options: [
                   { label: `${baseKey}.opt_help`, next: "accept_quest" },
-                  { label: "map.dialogs.common.no_thanks", next: "end" }
+                  { label: `${baseKey}.opt_no_thanks`, next: "end" }
                 ]
               },
               accept_quest: {
