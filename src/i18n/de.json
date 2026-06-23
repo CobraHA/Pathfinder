@@ -19,9 +19,9 @@
     "dialogs": {
       "garrosh": {
         "start": "Ah, ein Reisender! Mein Feuer erlischt fast und mir geht das Eisen aus.",
-        "ask_trade": "Bringe mir Eisenerz aus den Minen.",
+        "ask_trade": "Ich brauche unbedingt Eisenerz aus den nahen Minen, damit ich die Esse wieder anheizen kann. Wenn du mir welches bringst, schmiede ich dir im Gegenzug eine vernünftige Ausrüstung.",
         "accept_quest": "Kehre zurück, wenn du das Erz hast.",
-        "info": "Ich bin Schmied Garrosh. Bring mir Eisenerz, damit ich meine Esse befeuern und dir eine vernünftige Ausrüstung schmieden kann.",
+        "info": "Ich brauche unbedingt Eisenerz aus den nahen Minen, damit ich die Esse wieder anheizen kann. Wenn du mir welches bringst, schmiede ich dir im Gegenzug eine vernünftige Ausrüstung.",
         "opt_tell_more": "Was genau brauchst du für die Schmiede?",
         "opt_help": "Ich werde dir das Eisenerz besorgen."
       },
@@ -39,55 +39,55 @@
       },
       "alkuin": {
         "start": "Die Pestilenz greift um sich, wir benötigen dringend Kräuter.",
-        "ask_trade": "Finde Heilwurzeln in den Wäldern.",
+        "ask_trade": "Ich suche nach speziellen Pilzen und Heilwurzeln aus dem Wald. Nur damit kann ich ein wirksames Heilmittel brauen und den Kranken helfen.",
         "accept_quest": "Der Segen sei mit dir.",
         "check_quest_progress": "Ah, mein Freund! Hast du die Pilze für mich gesammelt?",
         "complete_quest": "Wunderbar! Diese Pilze werden mir bei meinen Studien sehr helfen. Nimm diese Münzen als Dank.",
         "quest_already_completed": "Vielen Dank nochmal für deine Hilfe bei den Pilzen. Meine Forschungen machen gute Fortschritte!",
-        "info": "Ich bin Mönch Alkuin. Ich brauche dringend Pilze und Heilwurzeln aus dem Wald, um ein Heilmittel gegen diese schreckliche Pestilenz herzustellen.",
+        "info": "Ich suche nach speziellen Pilzen und Heilwurzeln aus dem Wald. Nur damit kann ich ein wirksames Heilmittel brauen und den Kranken helfen.",
         "opt_tell_more": "Was für Kräuter suchst du?",
         "opt_help": "Ich suche dir die Heilwurzeln im Wald."
       },
       "leif": {
         "start": "In letzter Zeit treiben sich Banditen vor den Toren herum.",
-        "ask_trade": "Der Hauptmann zahlt Gold für das Amulett des Anführers.",
+        "ask_trade": "Ja, sie werden immer dreister. Wir müssen unsere Barrikaden verstärken. Wenn du mir Holz besorgst, zahle ich dir eine gute Belohnung.",
         "accept_quest": "Pass auf deinen Rücken auf.",
         "check_quest_progress": "Halt! Hast du das Holz dabei, das wir für die Barrikade brauchen?",
         "complete_quest": "Ausgezeichnet. Damit können wir die Straße ein Stück sicherer machen. Hier ist dein Lohn.",
         "quest_already_completed": "Die Barrikade hält. Danke nochmal für das Holz!",
-        "info": "Hier spricht Wache Leif. Ich suche nach Freiwilligen, die mir Holz für die Barrikaden besorgen oder helfen, die Banditen vor den Toren zu bekämpfen.",
+        "info": "Ja, sie werden immer dreister. Wir müssen unsere Barrikaden verstärken. Wenn du mir Holz besorgst, zahle ich dir eine gute Belohnung.",
         "opt_tell_more": "Gibt es Probleme mit Banditen?",
         "opt_help": "Ich besorge das Holz für die Barrikaden."
       },
       "beggar": {
         "start": "Hast du etwas Brot oder Salz für mich?",
-        "ask_trade": "Ich verhungere fast.",
+        "ask_trade": "Ich habe seit Tagen nichts gegessen und verliere meine Kraft. Bitte, schon eine kleine Portion würde mir helfen, den morgigen Tag zu überstehen.",
         "accept_quest": "Danke für deine Güte.",
-        "info": "Bitte... Ich bin am Verhungern. Hast du vielleicht ein Stück Brot oder etwas Salz für mich?",
+        "info": "Ich habe seit Tagen nichts gegessen und verliere meine Kraft. Bitte, schon eine kleine Portion würde mir helfen, den morgigen Tag zu überstehen.",
         "opt_tell_more": "Wie kann ich dir helfen?",
         "opt_help": "Ich werde versuchen, etwas Essen zu finden."
       },
       "barista": {
-        "start": "Willkommen im Café! Brauchst du etwas Koffein?",
-        "ask_trade": "Ich tausche Wasser gegen Kaffee.",
+        "start": "Hey! Hast du sauberes Wasser dabei?",
+        "ask_trade": "Die Kaffeebohnen habe ich gerettet, aber mir fehlt sauberes Wasser. Wenn du mir welches abgibst, brühe ich dir einen extra starken Kaffee, der dir neue Energie verleiht.",
         "accept_quest": "Vielen Dank!",
-        "info": "Hey, ich bin der Barista. Wenn du mir dein überschüssiges Wasser überlässt, brühe ich dir einen heißen, aufputschenden Kaffee.",
-        "opt_tell_more": "Kaffee? Was willst du im Tausch?",
+        "info": "Die Kaffeebohnen habe ich gerettet, aber mir fehlt sauberes Wasser. Wenn du mir welches abgibst, brühe ich dir einen extra starken Kaffee, der dir neue Energie verleiht.",
+        "opt_tell_more": "Was willst du im Tausch?",
         "opt_help": "Deal, ich bringe dir das Wasser."
       },
       "trader": {
-        "start": "Brauchst du Vorräte? Ich habe alles, was du brauchst.",
-        "ask_trade": "Zeig mir deine Waren.",
+        "start": "Sei gegrüßt. Suchst du nach nützlichen Vorräten?",
+        "ask_trade": "Ich habe Werkzeuge, Nahrung und einige seltene Gegenstände gesammelt. Wenn du genug Kupfermünzen hast, werden wir sicher ins Geschäft kommen.",
         "accept_quest": "Gute Wahl.",
-        "info": "Ich bin Händler. Wenn du die nötigen Münzen hast, biete ich dir im Tausch meine besten Vorräte an.",
+        "info": "Ich habe Werkzeuge, Nahrung und einige seltene Gegenstände gesammelt. Wenn du genug Kupfermünzen hast, werden wir sicher ins Geschäft kommen.",
         "opt_tell_more": "Was hast du im Angebot?",
         "opt_help": "Lass uns handeln."
       },
       "informant": {
-        "start": "Psst! Ich weiß Dinge... für den richtigen Preis.",
-        "ask_trade": "Gib mir Münzen, dann rede ich.",
+        "start": "Hehehe... du siehst aus, als könntest du einen guten Tipp gebrauchen.",
+        "ask_trade": "Oh, ich weiß wo man verborgene Schätze und seltene Materialien findet. Für ein paar glänzende Münzen verrate ich dir die genauen Koordinaten.",
         "accept_quest": "Hör gut zu...",
-        "info": "Psst... ich weiß Dinge, die sonst niemand weiß. Für ein paar Kupfermünzen teile ich meine Geheimnisse mit dir.",
+        "info": "Oh, ich weiß wo man verborgene Schätze und seltene Materialien findet. Für ein paar glänzende Münzen verrate ich dir die genauen Koordinaten.",
         "opt_tell_more": "Was für Geheimnisse kennst du?",
         "opt_help": "Hier sind die Münzen, lass hören."
       }
