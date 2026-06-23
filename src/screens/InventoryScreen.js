@@ -48,6 +48,8 @@ export default function InventoryScreen() {
       case 'salt_water': return 'water-percent';
       case 'bread': return 'baguette';
       case 'flint': return 'flare';
+      case 'coffee': return 'coffee';
+      case 'strong_coffee': return 'coffee-outline';
       default: return 'bag-personal';
     }
   };
