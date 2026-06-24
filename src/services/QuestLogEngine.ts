@@ -95,7 +95,7 @@ export class QuestLogEngine {
         quest.pigeonStatus = 'flying';
         quest.pigeonDispatchTime = Date.now();
         quest.pigeonArrivalTime = arrivalTime;
-        await AsyncStorage.setItem(QUESTS_KEY, JSON.stringify(quests));
+        await AsyncStorage.setItem(QUEST_LOG_KEY, JSON.stringify(quests));
         return true;
       }
       return false;
@@ -112,7 +112,7 @@ export class QuestLogEngine {
       if (quest && quest.pigeonStatus === 'flying') {
         quest.pigeonStatus = 'idle';
         quest.status = 'completed';
-        await AsyncStorage.setItem(QUESTS_KEY, JSON.stringify(quests));
+        await AsyncStorage.setItem(QUEST_LOG_KEY, JSON.stringify(quests));
         return true;
       }
       return false;
