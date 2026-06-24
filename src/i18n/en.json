@@ -174,7 +174,8 @@
       "dead_animal": "Dead Animal",
       "survivor_barista": "Survivor Barista",
       "trader_bot": "Trader Bot",
-      "drunk_informant": "Drunk Informant"
+      "drunk_informant": "Drunk Informant",
+      "treasure_mark": "Hidden Treasure"
     },
     "need_flint_and_wood": "You need wood and a flint to ignite this campfire.",
     "need_more_items": "You don't have anything I could use.",

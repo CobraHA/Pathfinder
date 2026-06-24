@@ -166,7 +166,8 @@
       "dead_animal": "Erlegtes Tier",
       "survivor_barista": "Überlebender Barista",
       "trader_bot": "Händler-Bot",
-      "drunk_informant": "Betrunkener Informant"
+      "drunk_informant": "Betrunkener Informant",
+      "treasure_mark": "Verborgener Schatz"
     },
     "debug_waiting_gps": "Debug: Warten auf GPS...",
     "distance_away": "%{distance}m entfernt",

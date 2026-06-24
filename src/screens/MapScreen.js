@@ -186,15 +186,13 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
       </View>
       <Callout>
         <View style={{ padding: 4, alignItems: 'center', minWidth: 140, maxWidth: 220 }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 2 }}>{markerTitle}</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 11, color: '#444', textAlign: 'center' }}>{markerDesc}</Text>
-            {q.distance_meters > 50 && (
-              <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 3, fontSize: 11 }}>
-                {Math.round(q.distance_meters)}m
-              </Text>
-            )}
-          </View>
+          <Text style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 2, textAlign: 'center' }}>{markerTitle}</Text>
+          <Text style={{ fontSize: 11, color: '#444', textAlign: 'center', }}>{markerDesc}</Text>
+          {q.distance_meters > 50 && (
+            <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 3, fontSize: 11 }}>
+              {Math.round(q.distance_meters)}m
+            </Text>
+          )}
         </View>
       </Callout>
     </Marker>
