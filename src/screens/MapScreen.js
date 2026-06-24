@@ -185,7 +185,7 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
         <MaterialCommunityIcons name={iconName} size={18} color={iconColor} />
       </View>
       <Callout>
-        <View style={{ padding: 4, alignItems: 'center', minWidth: 140, maxWidth: 220 }}>
+        <View style={{ padding: 4, alignItems: 'center' }}>
           <Text style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 2, textAlign: 'center' }}>{markerTitle}</Text>
           <Text style={{ fontSize: 11, color: '#444', textAlign: 'center' }}>{markerDesc}</Text>
           {q.distance_meters > 50 && (
