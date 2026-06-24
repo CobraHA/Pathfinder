@@ -89,43 +89,23 @@ export default function QuestLogScreen() {
             {i18n.t(quest.titleKey, { defaultValue: 'Quest' })}
           </Text>
           {!isCompleted && (
-            <TouchableOpacity 
-              onPress={() => {
-                const isPinned = pinnedNodeId === quest.npcId;
-                const newId = isPinned ? null : quest.npcId;
-                setPinnedNodeId(newId);
-                PinEngine.setPinnedNodeId(newId);
-                if (!isPinned) {
-                  navigation.goBack();
-                }
-              }}
-              style={{ padding: 4 }}
-            >
-              <Feather name="map-pin" size={20} color={pinnedNodeId === quest.npcId ? "#FFD700" : "#666"} />
-            </TouchableOpacity>
-          )}
-        </View>
-        <View style={styles.questBody}>
-          <Text style={[styles.questDesc, isCompleted && styles.textCompleted]}>
-            {i18n.t(quest.descKey, { defaultValue: '...' })}
-          </Text>
-          
-          {progressText && (
-            <View style={styles.progressContainer}>
-              <Text style={[styles.progressText, isGoalMet ? styles.progressMet : styles.progressNotMet]}>
-                {progressText}
-              </Text>
-              {isGoalMet && <Feather name="check" size={16} color="#4CAF50" style={{ marginLeft: 5 }} />}
-            </View>
-          )}
-
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
-            <Text style={styles.dateText}>
-              {new Date(quest.timestamp).toLocaleDateString()}
-            </Text>
-            {!isCompleted && (
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <TouchableOpacity 
+                onPress={() => {
+                  const isPinned = pinnedNodeId === quest.npcId;
+                  const newId = isPinned ? null : quest.npcId;
+                  setPinnedNodeId(newId);
+                  PinEngine.setPinnedNodeId(newId);
+                  if (!isPinned) {
+                    navigation.goBack();
+                  }
+                }}
+                style={{ padding: 4, marginRight: 10 }}
+              >
+                <Feather name="map-pin" size={20} color={pinnedNodeId === quest.npcId ? "#FFD700" : "#666"} />
+              </TouchableOpacity>
               <TouchableOpacity
-                style={{ paddingVertical: 4, paddingHorizontal: 8, backgroundColor: '#3E2723', borderRadius: 4, borderWidth: 1, borderColor: '#8B4513' }}
+                style={{ padding: 4 }}
                 onPress={() => {
                   Alert.alert(
                     "Aufgabe abbrechen",
@@ -148,9 +128,29 @@ export default function QuestLogScreen() {
                   );
                 }}
               >
-                <Text style={{ color: '#FF6B6B', fontSize: 12 }}>Abbrechen</Text>
+                <Feather name="x" size={22} color="#FF6B6B" />
               </TouchableOpacity>
-            )}
+            </View>
+          )}
+        </View>
+        <View style={styles.questBody}>
+          <Text style={[styles.questDesc, isCompleted && styles.textCompleted]}>
+            {i18n.t(quest.descKey, { defaultValue: '...' })}
+          </Text>
+          
+          {progressText && (
+            <View style={styles.progressContainer}>
+              <Text style={[styles.progressText, isGoalMet ? styles.progressMet : styles.progressNotMet]}>
+                {progressText}
+              </Text>
+              {isGoalMet && <Feather name="check" size={16} color="#4CAF50" style={{ marginLeft: 5 }} />}
+            </View>
+          )}
+
+          <View style={{ marginTop: 10 }}>
+            <Text style={styles.dateText}>
+              {new Date(quest.timestamp).toLocaleDateString()}
+            </Text>
           </View>
         </View>
       </View>
