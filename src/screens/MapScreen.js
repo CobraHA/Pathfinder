@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, Modal, ScrollView, Animated, Platform, PanResponder, Dimensions, ActivityIndicator } from 'react-native';
-import MapView, { Marker, Polygon, PROVIDER_GOOGLE, PROVIDER_DEFAULT } from 'react-native-maps';
+import MapView, { Marker, Polygon, Callout, PROVIDER_GOOGLE, PROVIDER_DEFAULT } from 'react-native-maps';
 
 const FloatingText = ({ text, subtext, icon, iconColor, onComplete }) => {
   const translateY = useRef(new Animated.Value(0)).current;
@@ -185,11 +185,11 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
         <MaterialCommunityIcons name={iconName} size={18} color={iconColor} />
       </View>
       <Callout>
-        <View style={{ padding: 4, alignItems: 'center', minWidth: 120 }}>
-          <Text style={{ fontWeight: 'bold', marginBottom: 2 }}>{markerTitle}</Text>
-          <Text style={{ fontSize: 12, color: '#333', textAlign: 'center' }}>{markerDesc}</Text>
+        <View style={{ padding: 2, alignItems: 'center', minWidth: 90 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 12, marginBottom: 1, textAlign: 'center' }}>{markerTitle}</Text>
+          <Text style={{ fontSize: 10, color: '#333', textAlign: 'center' }}>{markerDesc}</Text>
           {q.distance_meters > 50 && (
-            <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 4, fontSize: 12 }}>
+            <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 2, fontSize: 10 }}>
               {Math.round(q.distance_meters)}m entfernt
             </Text>
           )}
