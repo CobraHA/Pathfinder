@@ -378,7 +378,8 @@
       "opt_farewell": "Ich mache mich auf den Weg.",
       "give_items": "Hier sind die Items.",
       "not_yet": "Ich arbeite noch daran.",
-      "you_are_welcome": "Gern geschehen."
+      "you_are_welcome": "Gern geschehen.",
+      "already_have_items": "Ich habe bereits dabei, was du suchst!"
     },
     "blacksmith": {
       "name": "Schmied",

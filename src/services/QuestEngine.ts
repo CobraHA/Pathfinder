@@ -9489,7 +9489,7 @@ export class QuestEngine {
       }
 
       const query = `[out:json][timeout:10];(${queryBody});out center;`;
-      
+
       const endpoints = [
         'https://overpass-api.de/api/interpreter',
         'https://lz4.overpass-api.de/api/interpreter',
@@ -9549,14 +9549,14 @@ export class QuestEngine {
 
         // Apply spawn chance deterministically to prevent map clutter and randomization on refetch
         const chance = matchedMapping.spawnChance !== undefined ? matchedMapping.spawnChance : 1.0;
-        
+
         // Simple hash of osmId to a float between 0 and 1
         let hash = 0;
         for (let i = 0; i < osmId.length; i++) {
           hash = Math.imul(31, hash) + osmId.charCodeAt(i) | 0;
         }
         const seededRandom = Math.abs(hash) / 2147483647; // Max 32bit int
-        
+
         if (seededRandom > chance) return;
 
         const lat = el.lat || el.center?.lat;
@@ -9565,23 +9565,23 @@ export class QuestEngine {
 
         let formattedData: any = { ...matchedMapping };
         if (matchedMapping.type === 'resource') {
-          formattedData = { 
-            resource: { 
-              itemId: matchedMapping.itemId, 
-              name: matchedMapping.title || matchedMapping.name, 
-              type: ['clean_water', 'dirty_water', 'bread', 'stale_bread', 'moldy_bread', 'canned_food', 'berries', 'mushrooms', 'medicine', 'burger', 'canned_beans', 'beer'].includes(matchedMapping.itemId) ? 'consumable' : 'material', 
-              minAmount: matchedMapping.amount?.[0] || 1, 
+          formattedData = {
+            resource: {
+              itemId: matchedMapping.itemId,
+              name: matchedMapping.title || matchedMapping.name,
+              type: ['clean_water', 'dirty_water', 'bread', 'stale_bread', 'moldy_bread', 'canned_food', 'berries', 'mushrooms', 'medicine', 'burger', 'canned_beans', 'beer'].includes(matchedMapping.itemId) ? 'consumable' : 'material',
+              minAmount: matchedMapping.amount?.[0] || 1,
               maxAmount: matchedMapping.amount?.[1] || 3,
-              maxGathers: 5 
-            } 
+              maxGathers: 5
+            }
           };
         } else if (matchedMapping.type === 'npc') {
           const baseKey = matchedMapping.dialogStart || "map.dialogs.trader";
-          
+
           let questRequirement = { itemId: 'copper_coins', amount: 15 };
           let xpReward = 50;
           let rewardItem = null;
-          
+
           if (baseKey.includes('garrosh')) { questRequirement = { itemId: 'iron_ore', amount: 3 }; xpReward = 100; rewardItem = 'sword'; }
           else if (baseKey.includes('alkuin')) { questRequirement = { itemId: 'mushrooms', amount: 3 }; xpReward = 100; rewardItem = 'healing_potion'; }
           else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'copper_coins'; }
@@ -9590,14 +9590,14 @@ export class QuestEngine {
           else if (baseKey.includes('trader')) { questRequirement = { itemId: 'copper_coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
           else if (baseKey.includes('informant')) { questRequirement = { itemId: 'copper_coins', amount: 15 }; xpReward = 50; rewardItem = 'treasure_map'; }
 
-          formattedData = { 
-            dialog: { 
-              start: { 
-                text: `${baseKey}.start`, 
+          formattedData = {
+            dialog: {
+              start: {
+                text: `${baseKey}.start`,
                 options: [
                   { label: `${baseKey}.opt_tell_more`, next: "ask_trade" },
                   { label: `${baseKey}.opt_no_time`, next: "end" }
-                ] 
+                ]
               },
               ask_trade: {
                 text: `${baseKey}.ask_trade`,
@@ -9635,7 +9635,7 @@ export class QuestEngine {
                 text: `${baseKey}.quest_already_completed`,
                 options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
               }
-            } 
+            }
           };
         } else if (matchedMapping.type === 'chest') {
           formattedData = { lootPool: matchedMapping.lootPool, isLocked: matchedMapping.isLocked };
@@ -9662,12 +9662,12 @@ export class QuestEngine {
       console.log(`[QuestEngine] Mapped ${newNodes.length} nodes from Overpass elements.`);
       // --- INJECT RANDOM NPCS ---
       const npcCount = Math.floor(Math.random() * 3) + 2; // 2 to 4 NPCs
-            for (let i = 0; i < npcCount; i++) {
+      for (let i = 0; i < npcCount; i++) {
         const offsetLat = (Math.random() - 0.5) * 0.008;
         const offsetLon = (Math.random() - 0.5) * 0.008;
         const npcLat = latitude + offsetLat;
         const npcLon = longitude + offsetLon;
-        
+
         const randomNpcDef = NPCS[Math.floor(Math.random() * NPCS.length)];
         const randomQuest = randomNpcDef.quests[Math.floor(Math.random() * randomNpcDef.quests.length)];
         const npcTitle = randomNpcDef.nameKey;
@@ -9739,7 +9739,7 @@ export class QuestEngine {
       const offsetLat = (Math.random() - 0.5) * 0.008; // ca. 400m
       const offsetLon = (Math.random() - 0.5) * 0.008;
       const t = types[Math.floor(Math.random() * types.length)];
-      
+
       let qType = 'resource';
       let title = "Ressource";
       let itemId = "wood_log";
@@ -9761,15 +9761,15 @@ export class QuestEngine {
         data: qType === 'resource' ? { resource: { itemId, name: title, type: itemType, amount: 1, maxGathers: 5 } } : { name: title }
       });
     }
-    
+
     this.mockEnvironmentCache = nodes;
     this.mockEnvironmentCenter = { lat: latitude, lon: longitude };
-    
+
     return nodes;
   }
 
-  
-  
+
+
   static async spawnTreasureMark(longitude: number, latitude: number): Promise<string> {
     const angle = Math.random() * Math.PI * 2;
     const distance = 200 + Math.random() * 600; // 200m to 800m
@@ -9778,7 +9778,7 @@ export class QuestEngine {
     const newLat = latitude + offsetLat;
     const newLon = longitude + offsetLon;
     const osmId = 'treasure_' + Date.now() + Math.floor(Math.random() * 1000);
-    
+
     const loot = [
       { itemId: 'copper_coins', amount: 50 + Math.floor(Math.random() * 100) },
       { itemId: 'gold_coin', amount: 1 + Math.floor(Math.random() * 3) }
@@ -9799,15 +9799,15 @@ export class QuestEngine {
     } catch (e) {
       console.error("Error inserting treasure mark:", e);
     }
-    
+
     return osmId;
   }
 
   static async getNodesByIds(ids: string[]): Promise<any[]> {
     if (!ids || ids.length === 0) return [];
-    
+
     let results: any[] = [];
-    
+
     // Check MOCK_DB
     MOCK_DB.forEach(m => {
       if (ids.includes(m.id)) results.push(m);
@@ -9894,20 +9894,20 @@ export class QuestEngine {
       const localNodesCount = data ? data.filter(q => {
         if (!q.location?.coordinates) return false;
         const dist = getDistance(latitude, longitude, q.location.coordinates[1], q.location.coordinates[0]);
-        return dist < 800;
+        return dist < 400;
       }).length : 0;
 
       // If local area is empty or barely populated, procedurally fetch from OSM to seed the DB
       if (!data || localNodesCount < 10) {
         console.log(`[QuestEngine] Only ${localNodesCount} quests found in DB within 800m. Triggering fetchAndSeedOSM...`);
         let osmGenerated = await this.fetchAndSeedOSM(longitude, latitude);
-        
+
         // IF Overpass API failed or didn't find anything, generate a mock environment!
         if (osmGenerated.length === 0) {
-            console.log("[QuestEngine] Overpass failed or returned 0. Generating rich mock offline environment!");
-            osmGenerated = this.generateRichMockEnvironment(latitude, longitude);
+          console.log("[QuestEngine] Overpass failed or returned 0. Generating rich mock offline environment!");
+          osmGenerated = this.generateRichMockEnvironment(latitude, longitude);
         }
-        
+
         console.log(`[QuestEngine] Procedural generation returned ${osmGenerated.length} quests.`);
         allData = [...allData, ...osmGenerated];
       } else {
@@ -9920,9 +9920,9 @@ export class QuestEngine {
       return uniqueData.map(q => {
         let qLoc = q.location;
         if (typeof qLoc === 'string') {
-          try { qLoc = JSON.parse(qLoc); } catch (e) {}
+          try { qLoc = JSON.parse(qLoc); } catch (e) { }
         }
-        
+
         let qLat = qLoc?.coordinates?.[1];
         let qLon = qLoc?.coordinates?.[0];
         if (qLoc?.type === 'Point' && Array.isArray(qLoc?.coordinates)) {
@@ -9930,7 +9930,7 @@ export class QuestEngine {
           qLon = qLoc.coordinates[0];
           qLat = qLoc.coordinates[1];
         }
-        
+
         const injectedQ = this.injectDefaultGathers(q);
 
         // Dynamic generation of quest lifecycle for all loaded NPCs (cached or mock)
@@ -9958,12 +9958,12 @@ export class QuestEngine {
               else if (baseKey.includes('informant')) { questRequirement = { itemId: 'copper_coins', amount: 15 }; xpReward = 50; rewardItem = 'treasure_map'; }
 
               injectedQ.data.dialog = {
-                start: { 
-                  text: `${baseKey}.start`, 
+                start: {
+                  text: `${baseKey}.start`,
                   options: [
                     { label: `${baseKey}.opt_tell_more`, next: "ask_trade" },
                     { label: `${baseKey}.opt_no_time`, next: "end" }
-                  ] 
+                  ]
                 },
                 ask_trade: {
                   text: `${baseKey}.ask_trade`,

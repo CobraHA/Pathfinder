@@ -365,7 +365,8 @@
       "opt_farewell": "I will be on my way.",
       "give_items": "Here are the items.",
       "not_yet": "I'm still working on it.",
-      "you_are_welcome": "You're welcome."
+      "you_are_welcome": "You're welcome.",
+      "already_have_items": "I already have what you are looking for!"
     },
     "blacksmith": {
       "name": "Blacksmith",
