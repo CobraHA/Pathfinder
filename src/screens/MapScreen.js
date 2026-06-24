@@ -1076,7 +1076,7 @@ export default function MapScreen() {
     const rotationDeg = (angleRad * 180 / Math.PI) + 90;
 
     return (
-      <TouchableOpacity 
+      <TouchableOpacity
         style={{
           position: 'absolute',
           left: finalX - 24, // Zentrieren
@@ -1218,11 +1218,11 @@ export default function MapScreen() {
       {!!pinnedQuestId && quests.find(q => q.id === pinnedQuestId) && (
         <View style={styles.pinnedHUD}>
           <Feather name="map-pin" size={16} color="#FFD700" style={{ marginRight: 8 }} />
-          <View style={{ marginRight: 8, flex: 1 }}>
+          <View style={{ marginRight: 8, maxWidth: 250 }}>
             <Text style={styles.pinnedText} numberOfLines={1}>{i18n.t(quests.find(q => q.id === pinnedQuestId).title, { defaultValue: quests.find(q => q.id === pinnedQuestId).title })}</Text>
             <Text style={styles.pinnedDistance}>{i18n.t('map.distance_away', { distance: Math.round(quests.find(q => q.id === pinnedQuestId).distance_meters), defaultValue: `${Math.round(quests.find(q => q.id === pinnedQuestId).distance_meters)}m entfernt` })}</Text>
           </View>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={{ padding: 4 }}
             onPress={() => {
               PinEngine.setPinnedNodeId(null);
@@ -1622,6 +1622,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#FFD700',
+    width: "auto",
     flexDirection: 'row',
     alignItems: 'center',
     zIndex: 10,
