@@ -9679,7 +9679,27 @@ export class QuestEngine {
           name: npcTitle,
           baseKey: randomNpcDef.id,
           quest: randomQuest,
-          dialog: { start: { text: dialogStart } }
+          dialog: {
+            start: {
+              text: dialogStart,
+              options: [
+                { label: "Kann ich irgendwie helfen?", next: "offer_quest" },
+                { label: "Auf Wiedersehen.", next: "end" }
+              ]
+            },
+            offer_quest: {
+              text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich belohnen.",
+              action: "give_quest",
+              questTitle: "Auftrag von " + npcTitle,
+              questDesc: "Sammle die geforderten Gegenstände.",
+              questRequirement: randomQuest.requirement,
+              xpReward: randomQuest.xpReward,
+              rewardItem: randomQuest.rewardItem,
+              options: [
+                { label: "Verstanden!", next: "end" }
+              ]
+            }
+          }
         };
 
         newNodes.push({
@@ -9764,7 +9784,27 @@ export class QuestEngine {
           name: title,
           baseKey: randomNpcDef.id,
           quest: randomQuest,
-          dialog: { start: { text: randomNpcDef.dialogStartKey } }
+          dialog: {
+            start: {
+              text: randomNpcDef.dialogStartKey,
+              options: [
+                { label: "Kann ich irgendwie helfen?", next: "offer_quest" },
+                { label: "Auf Wiedersehen.", next: "end" }
+              ]
+            },
+            offer_quest: {
+              text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich belohnen.",
+              action: "give_quest",
+              questTitle: "Auftrag von " + title,
+              questDesc: "Sammle die geforderten Gegenstände.",
+              questRequirement: randomQuest.requirement,
+              xpReward: randomQuest.xpReward,
+              rewardItem: randomQuest.rewardItem,
+              options: [
+                { label: "Verstanden!", next: "end" }
+              ]
+            }
+          }
         };
       }
 
