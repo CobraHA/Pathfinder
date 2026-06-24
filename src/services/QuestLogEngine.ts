@@ -80,6 +80,17 @@ export class QuestLogEngine {
     return true;
   }
 
+  
+  static async removeQuest(questId: string): Promise<boolean> {
+    const quests = await this.getQuests();
+    const filtered = quests.filter(q => q.id !== questId);
+    if (filtered.length !== quests.length) {
+      await this.saveQuests(filtered);
+      return true;
+    }
+    return false;
+  }
+
   static async completeQuest(questId: string): Promise<boolean> {
     const quests = await this.getQuests();
     let found = false;

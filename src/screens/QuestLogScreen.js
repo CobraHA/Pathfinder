@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
@@ -119,9 +119,39 @@ export default function QuestLogScreen() {
             </View>
           )}
 
-          <Text style={styles.dateText}>
-            {new Date(quest.timestamp).toLocaleDateString()}
-          </Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
+            <Text style={styles.dateText}>
+              {new Date(quest.timestamp).toLocaleDateString()}
+            </Text>
+            {!isCompleted && (
+              <TouchableOpacity
+                style={{ paddingVertical: 4, paddingHorizontal: 8, backgroundColor: '#3E2723', borderRadius: 4, borderWidth: 1, borderColor: '#8B4513' }}
+                onPress={() => {
+                  Alert.alert(
+                    "Aufgabe abbrechen",
+                    "Bist du sicher, dass du diese Aufgabe abbrechen möchtest? Du kannst sie später wieder annehmen.",
+                    [
+                      { text: "Nein", style: "cancel" },
+                      { 
+                        text: "Ja", 
+                        style: "destructive",
+                        onPress: async () => {
+                          if (pinnedNodeId === quest.npcId || pinnedNodeId === quest.id.replace('quest_', '')) {
+                            setPinnedNodeId(null);
+                            PinEngine.setPinnedNodeId(null);
+                          }
+                          await QuestLogEngine.removeQuest(quest.id);
+                          loadQuests();
+                        }
+                      }
+                    ]
+                  );
+                }}
+              >
+                <Text style={{ color: '#FF6B6B', fontSize: 12 }}>Abbrechen</Text>
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
       </View>
     );
