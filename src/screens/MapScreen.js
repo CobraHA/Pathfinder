@@ -1389,17 +1389,17 @@ export default function MapScreen() {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.dialogBox}>
-            <Text style={styles.dialogTitle}>{i18n.t(npcTarget?.title || "...", { defaultValue: npcTarget?.title || "..." })}</Text>
+            <Text style={styles.dialogTitle}>{i18n.t(activeNPC?.title || "...", { defaultValue: activeNPC?.title || "..." })}</Text>
             <View style={styles.dialogLine} />
 
             <ScrollView style={styles.dialogTextContainer}>
               <Text style={styles.dialogText}>
-                {i18n.t(npcTarget?.data?.dialog?.[dialogNode]?.text || "...", { defaultValue: npcTarget?.data?.dialog?.[dialogNode]?.text || "..." })}
+                {i18n.t(activeNPC?.data?.dialog?.[dialogNode]?.text || "...", { defaultValue: activeNPC?.data?.dialog?.[dialogNode]?.text || "..." })}
               </Text>
             </ScrollView>
 
             <View style={styles.dialogOptions}>
-              {npcTarget?.data?.dialog?.[dialogNode]?.options?.map((opt, idx) => (
+              {activeNPC?.data?.dialog?.[dialogNode]?.options?.map((opt, idx) => (
                 <TouchableOpacity key={idx} style={styles.dialogButton} onPress={() => handleDialogOption(opt)}>
                   <Text style={styles.dialogButtonText}>&gt; {i18n.t(opt.label, { defaultValue: opt.label })}</Text>
                 </TouchableOpacity>
