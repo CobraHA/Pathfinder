@@ -634,6 +634,20 @@ export default function MapScreen() {
       if (isCompleted) {
         setDialogNode('quest_already_completed');
       } else if (isActive) {
+        const allQuests = await QuestLogEngine.getQuests();
+        const activeQuest = allQuests.find(q => q.id === questId);
+        if (activeQuest && activeQuest.requirement) {
+          const req = activeQuest.requirement;
+          const inventory = await InventoryEngine.getInventory();
+          const invItem = inventory.find(i => i.id === req.itemId);
+          const hasAmount = invItem ? invItem.quantity : 0;
+          const turnedIn = activeQuest.turnedInAmount || 0;
+          if (hasAmount + turnedIn >= req.amount) {
+            setActiveNPC(npc);
+            await handleDialogOption({ next: 'complete_quest' }, npc);
+            return;
+          }
+        }
         setDialogNode('check_quest_progress');
       } else {
         setDialogNode('start');
@@ -724,7 +738,7 @@ export default function MapScreen() {
     });
   };
 
-  const handleDialogOption = async (option) => {
+  const handleDialogOption = async (option, npcTarget = activeNPC) => {
     if (option.action === 'trade_iron') {
       const hasIron = await InventoryEngine.hasItem('iron_ore', 3);
       if (hasIron) {
@@ -755,33 +769,33 @@ export default function MapScreen() {
     }
 
     if (option.next && option.next !== 'end') {
-      const nextNode = activeNPC?.data?.dialog?.[option.next];
+      const nextNode = npcTarget?.data?.dialog?.[option.next];
       if (nextNode?.action === 'give_quest') {
-        const questId = `quest_${activeNPC?.id}`;
+        const questId = `quest_${npcTarget?.id}`;
         const added = await QuestLogEngine.addQuest({
           id: questId,
-          npcId: activeNPC?.id || 'unknown',
-          titleKey: nextNode?.questTitle || `quest_title_${activeNPC?.id}`,
-          descKey: nextNode?.questDesc || `quest_desc_${activeNPC?.id}`,
+          npcId: npcTarget?.id || 'unknown',
+          titleKey: nextNode?.questTitle || `quest_title_${npcTarget?.id}`,
+          descKey: nextNode?.questDesc || `quest_desc_${npcTarget?.id}`,
           requirement: nextNode?.questRequirement,
           rewardXP: nextNode?.xpReward || 50,
           rewardItem: nextNode?.rewardItem
         });
         if (added) {
           setActiveQuestIds(prev => {
-            if (!prev.includes(activeNPC?.id)) return [...prev, activeNPC?.id];
+            if (!prev.includes(npcTarget?.id)) return [...prev, npcTarget?.id];
             return prev;
           });
         }
       } else if (nextNode?.action === 'finish_quest') {
-        const questId = `quest_${activeNPC?.id}`;
+        const questId = `quest_${npcTarget?.id}`;
         const allQuests = await QuestLogEngine.getQuests();
         const activeQuest = allQuests.find(q => q.id === questId);
 
         let req = activeQuest?.requirement;
         if (!req) {
-          if (activeNPC?.id === 'mock2') req = { itemId: 'mushrooms', amount: 3 };
-          if (activeNPC?.id === 'mock3') req = { itemId: 'wood_log', amount: 5 };
+          if (npcTarget?.id === 'mock2') req = { itemId: 'mushrooms', amount: 3 };
+          if (npcTarget?.id === 'mock3') req = { itemId: 'wood_log', amount: 5 };
         }
 
         if (req) {
@@ -809,9 +823,9 @@ export default function MapScreen() {
               setActiveNPC({
                 ...activeNPC,
                 data: {
-                  ...activeNPC.data,
+                  ...npcTarget.data,
                   dialog: {
-                    ...activeNPC.data.dialog,
+                    ...npcTarget.data.dialog,
                     'partial_turn_in_node': {
                       text: dynamicText,
                       options: [{ label: 'map.dialogs.common.see_you', next: 'end' }]
@@ -827,9 +841,9 @@ export default function MapScreen() {
             setActiveNPC({
               ...activeNPC,
               data: {
-                ...activeNPC.data,
+                ...npcTarget.data,
                 dialog: {
-                  ...activeNPC.data.dialog,
+                  ...npcTarget.data.dialog,
                   'no_items_node': {
                     text: dynamicText,
                     options: [{ label: 'map.dialogs.common.see_you', next: 'end' }]
@@ -846,6 +860,14 @@ export default function MapScreen() {
           await InventoryEngine.addItem({ id: itemRewardId, name: itemRewardId, type: 'quest_reward' }, 1);
           await QuestLogEngine.completeQuest(questId);
           handleGainXP(xpGained, 'quest');
+          
+          const translatedRewardName = i18n.t(`items.${itemRewardId}`, { defaultValue: itemRewardId });
+          setChestLootResult({
+            amount: 1,
+            name: translatedRewardName,
+            icon: 'star',
+            color: '#FFD700'
+          });
         }
       }
     }
@@ -1367,17 +1389,17 @@ export default function MapScreen() {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.dialogBox}>
-            <Text style={styles.dialogTitle}>{i18n.t(activeNPC?.title || "...", { defaultValue: activeNPC?.title || "..." })}</Text>
+            <Text style={styles.dialogTitle}>{i18n.t(npcTarget?.title || "...", { defaultValue: npcTarget?.title || "..." })}</Text>
             <View style={styles.dialogLine} />
 
             <ScrollView style={styles.dialogTextContainer}>
               <Text style={styles.dialogText}>
-                {i18n.t(activeNPC?.data?.dialog?.[dialogNode]?.text || "...", { defaultValue: activeNPC?.data?.dialog?.[dialogNode]?.text || "..." })}
+                {i18n.t(npcTarget?.data?.dialog?.[dialogNode]?.text || "...", { defaultValue: npcTarget?.data?.dialog?.[dialogNode]?.text || "..." })}
               </Text>
             </ScrollView>
 
             <View style={styles.dialogOptions}>
-              {activeNPC?.data?.dialog?.[dialogNode]?.options?.map((opt, idx) => (
+              {npcTarget?.data?.dialog?.[dialogNode]?.options?.map((opt, idx) => (
                 <TouchableOpacity key={idx} style={styles.dialogButton} onPress={() => handleDialogOption(opt)}>
                   <Text style={styles.dialogButtonText}>&gt; {i18n.t(opt.label, { defaultValue: opt.label })}</Text>
                 </TouchableOpacity>
