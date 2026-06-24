@@ -156,7 +156,7 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
   }
 
   const markerTitle = i18n.t(q.title, { defaultValue: q.title });
-  const markerDesc = isTreasureMark ? i18n.t('map.markers.treasure_mark', { defaultValue: 'Verborgener Schatz' }) : isChest ? (q.data?.isLocked ? i18n.t('chest.locked_title') : i18n.t('chest.title')) : isNPC ? i18n.t('map.tapToSpeak') : isWorkbench ? i18n.t('map.openWorkbench', { defaultValue: 'Werkbank öffnen' }) : q.type === 'cold_campfire' ? i18n.t('map.igniteCampfire', { defaultValue: 'Mit Feuerstein anzünden' }) : isShop ? i18n.t('map.enterShop', { defaultValue: 'Betreten' }) : q.type === 'resource' ? i18n.t('map.gather') : i18n.t('map.metersAway', { distance: (q.distance_meters).toFixed(0) });
+  const markerDesc = isTreasureMark ? i18n.t('map.markers.treasure_mark', { defaultValue: 'Verborgener Schatz' }) : isChest ? (q.data?.isLocked ? i18n.t('chest.locked_title') : i18n.t('chest.title')) : isNPC ? i18n.t('map.tapToSpeak') : isWorkbench ? i18n.t('map.openWorkbench', { defaultValue: 'Werkbank öffnen' }) : q.type === 'cold_campfire' ? i18n.t('map.igniteCampfire', { defaultValue: 'Mit Feuerstein anzünden' }) : isShop ? i18n.t('map.enterShop', { defaultValue: 'Betreten' }) : q.type === 'resource' ? i18n.t('map.gather') : (q.data?.desc || q.desc) ? i18n.t((q.data?.desc || q.desc)) : i18n.t('map.metersAway', { distance: (q.distance_meters).toFixed(0) });
 
   return (
     <Marker
@@ -185,14 +185,16 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
         <MaterialCommunityIcons name={iconName} size={18} color={iconColor} />
       </View>
       <Callout>
-        <View style={{ padding: 4, alignItems: 'center' }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 2, textAlign: 'center' }}>{markerTitle}</Text>
-          <Text style={{ fontSize: 11, color: '#444', textAlign: 'center' }}>{markerDesc}</Text>
-          {q.distance_meters > 50 && (
-            <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 3, fontSize: 11 }}>
-              {Math.round(q.distance_meters)}m entfernt
-            </Text>
-          )}
+        <View style={{ padding: 4, alignItems: 'center', minWidth: 140, maxWidth: 220 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 2 }}>{markerTitle}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ fontSize: 11, color: '#444', textAlign: 'center' }}>{markerDesc}</Text>
+            {q.distance_meters > 50 && (
+              <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 3, fontSize: 11 }}>
+                {Math.round(q.distance_meters)}m
+              </Text>
+            )}
+          </View>
         </View>
       </Callout>
     </Marker>
