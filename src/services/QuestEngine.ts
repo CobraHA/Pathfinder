@@ -1,5 +1,6 @@
 import { supabase, QuestResponse } from '../lib/supabaseClient';
 import osmMapping from '../config/osm_mapping.json';
+import { NPCS } from '../config/NPCData';
 
 const MOCK_DB = [
   {
