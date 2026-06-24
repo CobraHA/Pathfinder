@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
@@ -24,6 +25,30 @@ export default function QuestLogScreen() {
 
   const loadQuests = async () => {
     const allQuests = await QuestLogEngine.getQuests();
+
+    const mockDbData = await AsyncStorage.getItem('@mock_db');
+    if (mockDbData) {
+      const mockDb = JSON.parse(mockDbData);
+      const treasureMarks = mockDb.filter(n => n.type === 'treasure_mark');
+      let questsAdded = false;
+      for (const tm of treasureMarks) {
+        if (!allQuests.find(q => q.id === 'quest_' + tm.id || q.id === tm.id)) {
+          await QuestLogEngine.addQuest({
+            id: 'quest_' + tm.id,
+            npcId: 'system',
+            titleKey: 'map.markers.treasure_mark',
+            descKey: 'inventory.treasure_map_desc',
+          });
+          questsAdded = true;
+        }
+      }
+      if (questsAdded) {
+        const updatedQuests = await QuestLogEngine.getQuests();
+        setQuests(updatedQuests);
+        return;
+      }
+    }
+
     setQuests(allQuests);
     const inv = await InventoryEngine.getInventory();
     setInventory(inv);
