@@ -687,6 +687,7 @@ export default function MapScreen() {
             return;
           }
         }
+        setActiveNPC(npc);
         setDialogNode('start');
       }
       return;

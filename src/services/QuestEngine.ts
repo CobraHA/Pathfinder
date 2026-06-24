@@ -9894,7 +9894,7 @@ export class QuestEngine {
       const localNodesCount = data ? data.filter(q => {
         if (!q.location?.coordinates) return false;
         const dist = getDistance(latitude, longitude, q.location.coordinates[1], q.location.coordinates[0]);
-        return dist < 400;
+        return dist < 800;
       }).length : 0;
 
       // If local area is empty or barely populated, procedurally fetch from OSM to seed the DB
