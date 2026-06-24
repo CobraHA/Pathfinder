@@ -220,9 +220,10 @@ export default function QuestLogScreen() {
                         ]);
                       }}
                     >
-                      <Feather name="send" size={14} color="#E9BC62" style={{ marginRight: 5 }} />
-                      <Text style={{ color: '#E9BC62', fontSize: 12 }}>Senden</Text>
+                      <Feather name="send" size={14} color={availablePigeons > 0 ? "#E9BC62" : "#666"} style={{ marginRight: 5 }} />
+                      <Text style={{ color: availablePigeons > 0 ? '#E9BC62' : '#666', fontSize: 12 }}>Senden ({flightSecs}s)</Text>
                     </TouchableOpacity>
+                  </View>
                   );
                 }
               }
