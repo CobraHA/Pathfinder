@@ -372,25 +372,12 @@ export default function MapScreen() {
           if (pinId && !idsToFetch.includes(pinId)) idsToFetch.push(pinId);
 
           if (idsToFetch.length > 0) {
-            const { data } = await supabase.from('world_nodes').select('*').in('osm_id', idsToFetch);
-            if (data) {
+            const data = await QuestEngine.getNodesByIds(idsToFetch);
+            if (data && data.length > 0) {
               setQuests(prev => {
                 const map = new Map();
                 prev.forEach(p => map.set(p.id, p));
-                data.forEach(n => {
-                  let lon = 0, lat = 0;
-                  if (n.location && typeof n.location === 'string' && n.location.startsWith('POINT')) {
-                    const coords = n.location.replace('POINT(', '').replace(')', '').split(' ');
-                    lon = parseFloat(coords[0]);
-                    lat = parseFloat(coords[1]);
-                  }
-                  const parsedNode = {
-                    id: n.osm_id,
-                    title: n.title,
-                    type: n.type,
-                    location: { type: 'Point', coordinates: [lon, lat] },
-                    data: n.data
-                  };
+                data.forEach(parsedNode => {
                   if (!map.has(parsedNode.id)) {
                     map.set(parsedNode.id, parsedNode);
                   }
