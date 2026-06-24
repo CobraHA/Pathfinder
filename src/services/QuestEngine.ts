@@ -9762,9 +9762,16 @@ export class QuestEngine {
       this.generateRandomChests(latitude, longitude);
       let allData = [...(data || []), ...generatedChests];
 
-      // If area is empty or barely populated, procedurally fetch from OSM to seed the DB
-      if (!data || data.length < 20) {
-        console.log(`[QuestEngine] Only ${data?.length || 0} quests found in DB within 5km. Triggering fetchAndSeedOSM...`);
+      // Count how many nodes are within an 800m radius of the current location
+      const localNodesCount = data ? data.filter(q => {
+        if (!q.location?.coordinates) return false;
+        const dist = getDistance(latitude, longitude, q.location.coordinates[1], q.location.coordinates[0]);
+        return dist < 800;
+      }).length : 0;
+
+      // If local area is empty or barely populated, procedurally fetch from OSM to seed the DB
+      if (!data || localNodesCount < 10) {
+        console.log(`[QuestEngine] Only ${localNodesCount} quests found in DB within 800m. Triggering fetchAndSeedOSM...`);
         let osmGenerated = await this.fetchAndSeedOSM(longitude, latitude);
         
         // IF Overpass API failed or didn't find anything, generate a mock environment!
@@ -9776,7 +9783,7 @@ export class QuestEngine {
         console.log(`[QuestEngine] Procedural generation returned ${osmGenerated.length} quests.`);
         allData = [...allData, ...osmGenerated];
       } else {
-        console.log(`[QuestEngine] Found ${data.length} quests in DB. Skipping OSM fetch.`);
+        console.log(`[QuestEngine] Found ${localNodesCount} quests in DB within 800m (Total 5km: ${data.length}). Skipping OSM fetch.`);
       }
 
       console.log(`[QuestEngine] Total quests before deduplication: ${allData.length}`);
