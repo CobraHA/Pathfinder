@@ -1205,10 +1205,19 @@ export default function MapScreen() {
       {!!pinnedQuestId && quests.find(q => q.id === pinnedQuestId) && (
         <View style={styles.pinnedHUD}>
           <Feather name="map-pin" size={16} color="#FFD700" style={{ marginRight: 8 }} />
-          <View>
+          <View style={{ marginRight: 8 }}>
             <Text style={styles.pinnedText}>{quests.find(q => q.id === pinnedQuestId).title}</Text>
             <Text style={styles.pinnedDistance}>{i18n.t('map.distance_away', { distance: Math.round(quests.find(q => q.id === pinnedQuestId).distance_meters), defaultValue: `${Math.round(quests.find(q => q.id === pinnedQuestId).distance_meters)}m entfernt` })}</Text>
           </View>
+          <TouchableOpacity 
+            style={{ padding: 4 }}
+            onPress={() => {
+              PinEngine.setPinnedNodeId(null);
+              setPinnedQuestId(null);
+            }}
+          >
+            <Feather name="x" size={20} color="#FF6B6B" />
+          </TouchableOpacity>
         </View>
       )}
 
