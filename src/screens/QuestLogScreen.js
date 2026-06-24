@@ -69,6 +69,9 @@ export default function QuestLogScreen() {
                 const newId = isPinned ? null : quest.npcId;
                 setPinnedNodeId(newId);
                 PinEngine.setPinnedNodeId(newId);
+                if (!isPinned) {
+                  navigation.goBack();
+                }
               }}
               style={{ padding: 4 }}
             >
