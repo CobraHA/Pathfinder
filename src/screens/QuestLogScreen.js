@@ -214,7 +214,7 @@ export default function QuestLogScreen() {
                         disabled={availablePigeons <= 0}
                         onPress={() => {
                           if (availablePigeons <= 0) return;
-                          Alert.alert("Brieftaube senden?", \`Willst du die Items per Brieftaube schicken? Die Reise dauert ca. \${flightSecs} Sekunden.\`, [
+                          Alert.alert("Brieftaube senden?", `Willst du die Items per Brieftaube schicken? Die Reise dauert ca. ${flightSecs} Sekunden.`, [
                             { text: "Abbrechen", style: "cancel" },
                             { text: "Senden", onPress: async () => {
                               const arrivalTime = Date.now() + flightSecs * 1000;
