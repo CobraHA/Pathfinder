@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Feather } from '@expo/vector-icons';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 
 import { QuestLogEngine } from '../services/QuestLogEngine';
@@ -188,7 +188,7 @@ export default function QuestLogScreen() {
                     <View style={{ width: '100%', height: 4, backgroundColor: '#333', borderRadius: 2, overflow: 'hidden' }}>
                        <View style={{ width: `${progress * 100}%`, height: '100%', backgroundColor: '#4CAF50' }} />
                     </View>
-                    <Feather name="send" size={14} color="#4CAF50" style={{ position: 'absolute', left: `${Math.max(0, progress * 100 - 15)}%`, bottom: 6 }} />
+                    <MaterialCommunityIcons name="bird" size={16} color="#4CAF50" style={{ position: 'absolute', left: `${Math.max(0, progress * 100 - 15)}%`, bottom: 6 }} />
                   </View>
                 );
               }
@@ -225,8 +225,8 @@ export default function QuestLogScreen() {
                           ]);
                         }}
                       >
-                        <Feather name="send" size={14} color={availablePigeons > 0 ? "#E9BC62" : "#666"} style={{ marginRight: 5 }} />
-                        <Text style={{ color: availablePigeons > 0 ? '#E9BC62' : '#666', fontSize: 12 }}>Senden ({flightSecs}s)</Text>
+                        <MaterialCommunityIcons name="bird" size={16} color={availablePigeons > 0 ? "#E9BC62" : "#666"} style={{ marginRight: 5 }} />
+                        <Text style={{ color: availablePigeons > 0 ? '#E9BC62' : '#666', fontSize: 12 }}>Brieftaube ({flightSecs}s)</Text>
                       </TouchableOpacity>
                     </View>
                   );
