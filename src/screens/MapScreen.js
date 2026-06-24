@@ -245,6 +245,7 @@ export default function MapScreen() {
   const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
   const [playerLevel, setPlayerLevel] = useState(1);
   const [pinnedQuestId, setPinnedQuestId] = useState(null);
+  const [activeQuestIds, setActiveQuestIds] = useState([]);
   const [mapRegion, setMapRegion] = useState(null);
   const [sortMode, setSortMode] = useState('distance'); // 'distance', 'name', 'type'
   const [sortAscending, setSortAscending] = useState(true);
@@ -362,6 +363,10 @@ export default function MapScreen() {
     React.useCallback(() => {
       SurvivalEngine.getStats().then(stats => setSurvivalStats(stats));
       PinEngine.getPinnedNodeId().then(id => setPinnedQuestId(id));
+      QuestLogEngine.getQuests().then(quests => {
+        const activeIds = quests.filter(q => q.status === 'active').map(q => q.id.replace('quest_', ''));
+        setActiveQuestIds(activeIds);
+      });
     }, [])
   );
 
@@ -721,10 +726,15 @@ export default function MapScreen() {
           npcId: activeNPC?.id || 'unknown',
           titleKey: nextNode?.questTitle || `quest_title_${activeNPC?.id}`,
           descKey: nextNode?.questDesc || `quest_desc_${activeNPC?.id}`,
-          requirement: nextNode?.questRequirement
+          requirement: nextNode?.questRequirement,
+          rewardXP: nextNode?.xpReward || 50,
+          rewardItem: nextNode?.rewardItem
         });
         if (added) {
-          //alert(i18n.t('questlog.quest_accepted', { defaultValue: 'Neue Quest erhalten!' }));
+          setActiveQuestIds(prev => {
+            if (!prev.includes(activeNPC?.id)) return [...prev, activeNPC?.id];
+            return prev;
+          });
         }
       } else if (nextNode?.action === 'finish_quest') {
         const questId = `quest_${activeNPC?.id}`;
@@ -831,7 +841,7 @@ export default function MapScreen() {
               setQuests(prev => {
                 const map = new Map();
                 prev.forEach(p => {
-                  if (p.distance_meters === undefined || p.distance_meters < 1500) {
+                  if (p.distance_meters === undefined || p.distance_meters < 1500 || p.id === pinnedQuestId || activeQuestIds.includes(p.id)) {
                     map.set(p.id, p);
                   }
                 });
@@ -890,7 +900,7 @@ export default function MapScreen() {
               setQuests(prev => {
                 const map = new Map();
                 prev.forEach(p => {
-                  if (p.distance_meters === undefined || p.distance_meters < 1500) {
+                  if (p.distance_meters === undefined || p.distance_meters < 1500 || p.id === pinnedQuestId || activeQuestIds.includes(p.id)) {
                     map.set(p.id, p);
                   }
                 });
