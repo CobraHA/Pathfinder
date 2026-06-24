@@ -87,6 +87,40 @@ export class QuestLogEngine {
   }
 
   
+  static async sendPigeon(id: string, arrivalTime: number): Promise<boolean> {
+    try {
+      const quests = await this.getQuests();
+      const quest = quests.find(q => q.id === id);
+      if (quest) {
+        quest.pigeonStatus = 'flying';
+        quest.pigeonDispatchTime = Date.now();
+        quest.pigeonArrivalTime = arrivalTime;
+        await AsyncStorage.setItem(QUESTS_KEY, JSON.stringify(quests));
+        return true;
+      }
+      return false;
+    } catch (e) {
+      console.error("Error sending pigeon:", e);
+      return false;
+    }
+  }
+
+  static async completePigeonFlight(id: string): Promise<boolean> {
+    try {
+      const quests = await this.getQuests();
+      const quest = quests.find(q => q.id === id);
+      if (quest && quest.pigeonStatus === 'flying') {
+        quest.pigeonStatus = 'idle';
+        quest.status = 'completed';
+        await AsyncStorage.setItem(QUESTS_KEY, JSON.stringify(quests));
+        return true;
+      }
+      return false;
+    } catch (e) {
+      return false;
+    }
+  }
+
   static async removeQuest(questId: string): Promise<boolean> {
     const quests = await this.getQuests();
     const filtered = quests.filter(q => q.id !== questId);
