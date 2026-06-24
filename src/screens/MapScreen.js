@@ -185,11 +185,11 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
         <MaterialCommunityIcons name={iconName} size={18} color={iconColor} />
       </View>
       <Callout>
-        <View style={{ padding: 2, alignItems: 'center', minWidth: 90 }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 12, marginBottom: 1, textAlign: 'center' }}>{markerTitle}</Text>
-          <Text style={{ fontSize: 10, color: '#333', textAlign: 'center' }}>{markerDesc}</Text>
+        <View style={{ padding: 4, alignItems: 'center', minWidth: 140, maxWidth: 220 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 2, textAlign: 'center' }}>{markerTitle}</Text>
+          <Text style={{ fontSize: 11, color: '#444', textAlign: 'center' }}>{markerDesc}</Text>
           {q.distance_meters > 50 && (
-            <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 2, fontSize: 10 }}>
+            <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 3, fontSize: 11 }}>
               {Math.round(q.distance_meters)}m entfernt
             </Text>
           )}
