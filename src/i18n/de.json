@@ -39,9 +39,9 @@
         "help_quest": "Ich helfe dir. (Quest)",
         "no_thanks": "Nein danke.",
         "see_you": "Bis bald.",
-        "give_items": "Hier, ich habe alles (Abgeben)",
-        "not_yet": "Noch nicht ganz... (Weg)",
-        "you_are_welcome": "Sehr gerne!",
+        "give_items": "Hier sind die Gegenstände.",
+        "not_yet": "Ich brauche noch etwas Zeit.",
+        "you_are_welcome": "Gern geschehen!",
         "quest_completed": "Ich habe bereits getan, was ich konnte.",
         "partial_turn_in": "Danke für %{amount}x %{item}, aber mir fehlen noch %{remaining}!"
       },
