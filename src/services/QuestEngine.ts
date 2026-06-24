@@ -9690,8 +9690,8 @@ export class QuestEngine {
             offer_quest: {
               text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich belohnen.",
               action: "give_quest",
-              questTitle: `npc.${randomNpcDef.id}.quest_title`,
-              questDesc: `npc.${randomNpcDef.id}.quest_desc`,
+              questTitle: `quest.title.${randomQuest.questId}`,
+              questDesc: `quest.desc.${randomQuest.questId}`,
               questRequirement: randomQuest.requirement,
               xpReward: randomQuest.xpReward,
               rewardItem: randomQuest.rewardItem,
@@ -9795,8 +9795,8 @@ export class QuestEngine {
             offer_quest: {
               text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich belohnen.",
               action: "give_quest",
-              questTitle: `npc.${randomNpcDef.id}.quest_title`,
-              questDesc: `npc.${randomNpcDef.id}.quest_desc`,
+              questTitle: `quest.title.${randomQuest.questId}`,
+              questDesc: `quest.desc.${randomQuest.questId}`,
               questRequirement: randomQuest.requirement,
               xpReward: randomQuest.xpReward,
               rewardItem: randomQuest.rewardItem,
