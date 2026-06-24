@@ -355,5 +355,459 @@
     "quests": "Completed Quests",
     "chests": "Opened Chests",
     "gathers": "Gathered Resources"
+  },
+  "npc": {
+    "common": {
+      "opt_tell_more": "Tell me more.",
+      "opt_no_time": "I have no time.",
+      "opt_help": "How can I help?",
+      "opt_no_thanks": "No thanks.",
+      "opt_farewell": "I will be on my way.",
+      "give_items": "Here are the items.",
+      "not_yet": "I'm still working on it.",
+      "you_are_welcome": "You're welcome."
+    },
+    "blacksmith": {
+      "name": "Blacksmith",
+      "start": "Greetings. I am the local Blacksmith.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Blacksmith",
+      "quest_desc": "Gather the required materials."
+    },
+    "herbalist": {
+      "name": "Herbalist",
+      "start": "Greetings. I am the local Herbalist.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Herbalist",
+      "quest_desc": "Gather the required materials."
+    },
+    "lumberjack": {
+      "name": "Lumberjack",
+      "start": "Greetings. I am the local Lumberjack.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Lumberjack",
+      "quest_desc": "Gather the required materials."
+    },
+    "beggar": {
+      "name": "Beggar",
+      "start": "Greetings. I am the local Beggar.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Beggar",
+      "quest_desc": "Gather the required materials."
+    },
+    "barista": {
+      "name": "Barista",
+      "start": "Greetings. I am the local Barista.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Barista",
+      "quest_desc": "Gather the required materials."
+    },
+    "trader": {
+      "name": "Trader",
+      "start": "Greetings. I am the local Trader.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Trader",
+      "quest_desc": "Gather the required materials."
+    },
+    "informant": {
+      "name": "Informant",
+      "start": "Greetings. I am the local Informant.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Informant",
+      "quest_desc": "Gather the required materials."
+    },
+    "guard_captain": {
+      "name": "Guard Captain",
+      "start": "Greetings. I am the local Guard Captain.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Guard Captain",
+      "quest_desc": "Gather the required materials."
+    },
+    "miner": {
+      "name": "Miner",
+      "start": "Greetings. I am the local Miner.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Miner",
+      "quest_desc": "Gather the required materials."
+    },
+    "farmer": {
+      "name": "Farmer",
+      "start": "Greetings. I am the local Farmer.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Farmer",
+      "quest_desc": "Gather the required materials."
+    },
+    "cook": {
+      "name": "Cook",
+      "start": "Greetings. I am the local Cook.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Cook",
+      "quest_desc": "Gather the required materials."
+    },
+    "hunter": {
+      "name": "Hunter",
+      "start": "Greetings. I am the local Hunter.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Hunter",
+      "quest_desc": "Gather the required materials."
+    },
+    "scout": {
+      "name": "Scout",
+      "start": "Greetings. I am the local Scout.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Scout",
+      "quest_desc": "Gather the required materials."
+    },
+    "mayor": {
+      "name": "Mayor",
+      "start": "Greetings. I am the local Mayor.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Mayor",
+      "quest_desc": "Gather the required materials."
+    },
+    "priest": {
+      "name": "Priest",
+      "start": "Greetings. I am the local Priest.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Priest",
+      "quest_desc": "Gather the required materials."
+    },
+    "alchemist": {
+      "name": "Alchemist",
+      "start": "Greetings. I am the local Alchemist.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Alchemist",
+      "quest_desc": "Gather the required materials."
+    },
+    "carpenter": {
+      "name": "Carpenter",
+      "start": "Greetings. I am the local Carpenter.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Carpenter",
+      "quest_desc": "Gather the required materials."
+    },
+    "mason": {
+      "name": "Mason",
+      "start": "Greetings. I am the local Mason.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Mason",
+      "quest_desc": "Gather the required materials."
+    },
+    "merchant": {
+      "name": "Merchant",
+      "start": "Greetings. I am the local Merchant.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Merchant",
+      "quest_desc": "Gather the required materials."
+    },
+    "tailor": {
+      "name": "Tailor",
+      "start": "Greetings. I am the local Tailor.",
+      "ask_trade": "I urgently need help with a task.",
+      "accept_quest": "Great! Get me the materials, and you will be rewarded.",
+      "check_quest_progress": "Do you have the items with you?",
+      "complete_quest": "Perfect! Here is your reward.",
+      "quest_title": "Task from the Tailor",
+      "quest_desc": "Gather the required materials."
+    }
+  },
+  "npc_quests": {
+    "blacksmith_q1": {
+      "title": "Blacksmith: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "blacksmith_q2": {
+      "title": "Blacksmith: Task 2",
+      "desc": "I need supplies."
+    },
+    "blacksmith_q3": {
+      "title": "Blacksmith: Task 3",
+      "desc": "Help me with my work."
+    },
+    "herbalist_q1": {
+      "title": "Herbalist: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "herbalist_q2": {
+      "title": "Herbalist: Task 2",
+      "desc": "I need supplies."
+    },
+    "herbalist_q3": {
+      "title": "Herbalist: Task 3",
+      "desc": "Help me with my work."
+    },
+    "lumberjack_q1": {
+      "title": "Lumberjack: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "lumberjack_q2": {
+      "title": "Lumberjack: Task 2",
+      "desc": "I need supplies."
+    },
+    "lumberjack_q3": {
+      "title": "Lumberjack: Task 3",
+      "desc": "Help me with my work."
+    },
+    "beggar_q1": {
+      "title": "Beggar: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "beggar_q2": {
+      "title": "Beggar: Task 2",
+      "desc": "I need supplies."
+    },
+    "beggar_q3": {
+      "title": "Beggar: Task 3",
+      "desc": "Help me with my work."
+    },
+    "barista_q1": {
+      "title": "Barista: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "barista_q2": {
+      "title": "Barista: Task 2",
+      "desc": "I need supplies."
+    },
+    "barista_q3": {
+      "title": "Barista: Task 3",
+      "desc": "Help me with my work."
+    },
+    "trader_q1": {
+      "title": "Trader: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "trader_q2": {
+      "title": "Trader: Task 2",
+      "desc": "I need supplies."
+    },
+    "trader_q3": {
+      "title": "Trader: Task 3",
+      "desc": "Help me with my work."
+    },
+    "informant_q1": {
+      "title": "Informant: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "informant_q2": {
+      "title": "Informant: Task 2",
+      "desc": "I need supplies."
+    },
+    "informant_q3": {
+      "title": "Informant: Task 3",
+      "desc": "Help me with my work."
+    },
+    "guard_captain_q1": {
+      "title": "Guard Captain: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "guard_captain_q2": {
+      "title": "Guard Captain: Task 2",
+      "desc": "I need supplies."
+    },
+    "guard_captain_q3": {
+      "title": "Guard Captain: Task 3",
+      "desc": "Help me with my work."
+    },
+    "miner_q1": {
+      "title": "Miner: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "miner_q2": {
+      "title": "Miner: Task 2",
+      "desc": "I need supplies."
+    },
+    "miner_q3": {
+      "title": "Miner: Task 3",
+      "desc": "Help me with my work."
+    },
+    "farmer_q1": {
+      "title": "Farmer: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "farmer_q2": {
+      "title": "Farmer: Task 2",
+      "desc": "I need supplies."
+    },
+    "farmer_q3": {
+      "title": "Farmer: Task 3",
+      "desc": "Help me with my work."
+    },
+    "cook_q1": {
+      "title": "Cook: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "cook_q2": {
+      "title": "Cook: Task 2",
+      "desc": "I need supplies."
+    },
+    "cook_q3": {
+      "title": "Cook: Task 3",
+      "desc": "Help me with my work."
+    },
+    "hunter_q1": {
+      "title": "Hunter: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "hunter_q2": {
+      "title": "Hunter: Task 2",
+      "desc": "I need supplies."
+    },
+    "hunter_q3": {
+      "title": "Hunter: Task 3",
+      "desc": "Help me with my work."
+    },
+    "scout_q1": {
+      "title": "Scout: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "scout_q2": {
+      "title": "Scout: Task 2",
+      "desc": "I need supplies."
+    },
+    "scout_q3": {
+      "title": "Scout: Task 3",
+      "desc": "Help me with my work."
+    },
+    "mayor_q1": {
+      "title": "Mayor: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "mayor_q2": {
+      "title": "Mayor: Task 2",
+      "desc": "I need supplies."
+    },
+    "mayor_q3": {
+      "title": "Mayor: Task 3",
+      "desc": "Help me with my work."
+    },
+    "priest_q1": {
+      "title": "Priest: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "priest_q2": {
+      "title": "Priest: Task 2",
+      "desc": "I need supplies."
+    },
+    "priest_q3": {
+      "title": "Priest: Task 3",
+      "desc": "Help me with my work."
+    },
+    "alchemist_q1": {
+      "title": "Alchemist: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "alchemist_q2": {
+      "title": "Alchemist: Task 2",
+      "desc": "I need supplies."
+    },
+    "alchemist_q3": {
+      "title": "Alchemist: Task 3",
+      "desc": "Help me with my work."
+    },
+    "carpenter_q1": {
+      "title": "Carpenter: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "carpenter_q2": {
+      "title": "Carpenter: Task 2",
+      "desc": "I need supplies."
+    },
+    "carpenter_q3": {
+      "title": "Carpenter: Task 3",
+      "desc": "Help me with my work."
+    },
+    "mason_q1": {
+      "title": "Mason: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "mason_q2": {
+      "title": "Mason: Task 2",
+      "desc": "I need supplies."
+    },
+    "mason_q3": {
+      "title": "Mason: Task 3",
+      "desc": "Help me with my work."
+    },
+    "merchant_q1": {
+      "title": "Merchant: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "merchant_q2": {
+      "title": "Merchant: Task 2",
+      "desc": "I need supplies."
+    },
+    "merchant_q3": {
+      "title": "Merchant: Task 3",
+      "desc": "Help me with my work."
+    },
+    "tailor_q1": {
+      "title": "Tailor: Task 1",
+      "desc": "Gather the required materials."
+    },
+    "tailor_q2": {
+      "title": "Tailor: Task 2",
+      "desc": "I need supplies."
+    },
+    "tailor_q3": {
+      "title": "Tailor: Task 3",
+      "desc": "Help me with my work."
+    }
   }
 }

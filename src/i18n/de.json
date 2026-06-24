@@ -368,5 +368,459 @@
     "quests": "Erledigte Quests",
     "chests": "Geöffnete Truhen",
     "gathers": "Gesammelte Rohstoffe"
+  },
+  "npc": {
+    "common": {
+      "opt_tell_more": "Erzähl mir mehr.",
+      "opt_no_time": "Ich habe keine Zeit.",
+      "opt_help": "Wie kann ich helfen?",
+      "opt_no_thanks": "Nein danke.",
+      "opt_farewell": "Ich mache mich auf den Weg.",
+      "give_items": "Hier sind die Items.",
+      "not_yet": "Ich arbeite noch daran.",
+      "you_are_welcome": "Gern geschehen."
+    },
+    "blacksmith": {
+      "name": "Schmied",
+      "start": "Sei gegrüßt. Ich bin der Schmied dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Schmied",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "herbalist": {
+      "name": "Kräuterkundler",
+      "start": "Sei gegrüßt. Ich bin der Kräuterkundler dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Kräuterkundler",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "lumberjack": {
+      "name": "Holzfäller",
+      "start": "Sei gegrüßt. Ich bin der Holzfäller dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Holzfäller",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "beggar": {
+      "name": "Bettler",
+      "start": "Sei gegrüßt. Ich bin der Bettler dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Bettler",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "barista": {
+      "name": "Barista",
+      "start": "Sei gegrüßt. Ich bin der Barista dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Barista",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "trader": {
+      "name": "Händler",
+      "start": "Sei gegrüßt. Ich bin der Händler dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Händler",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "informant": {
+      "name": "Informant",
+      "start": "Sei gegrüßt. Ich bin der Informant dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Informant",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "guard_captain": {
+      "name": "Wachhauptmann",
+      "start": "Sei gegrüßt. Ich bin der Wachhauptmann dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Wachhauptmann",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "miner": {
+      "name": "Minenarbeiter",
+      "start": "Sei gegrüßt. Ich bin der Minenarbeiter dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Minenarbeiter",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "farmer": {
+      "name": "Bauer",
+      "start": "Sei gegrüßt. Ich bin der Bauer dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Bauer",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "cook": {
+      "name": "Koch",
+      "start": "Sei gegrüßt. Ich bin der Koch dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Koch",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "hunter": {
+      "name": "Jäger",
+      "start": "Sei gegrüßt. Ich bin der Jäger dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Jäger",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "scout": {
+      "name": "Späher",
+      "start": "Sei gegrüßt. Ich bin der Späher dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Späher",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "mayor": {
+      "name": "Bürgermeister",
+      "start": "Sei gegrüßt. Ich bin der Bürgermeister dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Bürgermeister",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "priest": {
+      "name": "Priester",
+      "start": "Sei gegrüßt. Ich bin der Priester dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Priester",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "alchemist": {
+      "name": "Alchemist",
+      "start": "Sei gegrüßt. Ich bin der Alchemist dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Alchemist",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "carpenter": {
+      "name": "Zimmermann",
+      "start": "Sei gegrüßt. Ich bin der Zimmermann dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Zimmermann",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "mason": {
+      "name": "Steinmetz",
+      "start": "Sei gegrüßt. Ich bin der Steinmetz dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Steinmetz",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "merchant": {
+      "name": "Kaufmann",
+      "start": "Sei gegrüßt. Ich bin der Kaufmann dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Kaufmann",
+      "quest_desc": "Besorge die benötigten Materialien."
+    },
+    "tailor": {
+      "name": "Schneider",
+      "start": "Sei gegrüßt. Ich bin der Schneider dieser Gegend.",
+      "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
+      "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
+      "check_quest_progress": "Hast du die Sachen dabei?",
+      "complete_quest": "Perfekt! Hier ist dein Lohn.",
+      "quest_title": "Auftrag vom Schneider",
+      "quest_desc": "Besorge die benötigten Materialien."
+    }
+  },
+  "npc_quests": {
+    "blacksmith_q1": {
+      "title": "Schmied: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "blacksmith_q2": {
+      "title": "Schmied: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "blacksmith_q3": {
+      "title": "Schmied: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "herbalist_q1": {
+      "title": "Kräuterkundler: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "herbalist_q2": {
+      "title": "Kräuterkundler: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "herbalist_q3": {
+      "title": "Kräuterkundler: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "lumberjack_q1": {
+      "title": "Holzfäller: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "lumberjack_q2": {
+      "title": "Holzfäller: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "lumberjack_q3": {
+      "title": "Holzfäller: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "beggar_q1": {
+      "title": "Bettler: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "beggar_q2": {
+      "title": "Bettler: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "beggar_q3": {
+      "title": "Bettler: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "barista_q1": {
+      "title": "Barista: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "barista_q2": {
+      "title": "Barista: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "barista_q3": {
+      "title": "Barista: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "trader_q1": {
+      "title": "Händler: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "trader_q2": {
+      "title": "Händler: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "trader_q3": {
+      "title": "Händler: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "informant_q1": {
+      "title": "Informant: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "informant_q2": {
+      "title": "Informant: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "informant_q3": {
+      "title": "Informant: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "guard_captain_q1": {
+      "title": "Wachhauptmann: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "guard_captain_q2": {
+      "title": "Wachhauptmann: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "guard_captain_q3": {
+      "title": "Wachhauptmann: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "miner_q1": {
+      "title": "Minenarbeiter: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "miner_q2": {
+      "title": "Minenarbeiter: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "miner_q3": {
+      "title": "Minenarbeiter: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "farmer_q1": {
+      "title": "Bauer: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "farmer_q2": {
+      "title": "Bauer: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "farmer_q3": {
+      "title": "Bauer: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "cook_q1": {
+      "title": "Koch: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "cook_q2": {
+      "title": "Koch: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "cook_q3": {
+      "title": "Koch: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "hunter_q1": {
+      "title": "Jäger: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "hunter_q2": {
+      "title": "Jäger: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "hunter_q3": {
+      "title": "Jäger: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "scout_q1": {
+      "title": "Späher: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "scout_q2": {
+      "title": "Späher: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "scout_q3": {
+      "title": "Späher: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "mayor_q1": {
+      "title": "Bürgermeister: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "mayor_q2": {
+      "title": "Bürgermeister: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "mayor_q3": {
+      "title": "Bürgermeister: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "priest_q1": {
+      "title": "Priester: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "priest_q2": {
+      "title": "Priester: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "priest_q3": {
+      "title": "Priester: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "alchemist_q1": {
+      "title": "Alchemist: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "alchemist_q2": {
+      "title": "Alchemist: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "alchemist_q3": {
+      "title": "Alchemist: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "carpenter_q1": {
+      "title": "Zimmermann: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "carpenter_q2": {
+      "title": "Zimmermann: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "carpenter_q3": {
+      "title": "Zimmermann: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "mason_q1": {
+      "title": "Steinmetz: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "mason_q2": {
+      "title": "Steinmetz: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "mason_q3": {
+      "title": "Steinmetz: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "merchant_q1": {
+      "title": "Kaufmann: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "merchant_q2": {
+      "title": "Kaufmann: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "merchant_q3": {
+      "title": "Kaufmann: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    },
+    "tailor_q1": {
+      "title": "Schneider: Aufgabe 1",
+      "desc": "Besorge die benötigten Materialien."
+    },
+    "tailor_q2": {
+      "title": "Schneider: Aufgabe 2",
+      "desc": "Ich brauche Vorräte."
+    },
+    "tailor_q3": {
+      "title": "Schneider: Aufgabe 3",
+      "desc": "Hilf mir bei meiner Arbeit."
+    }
   }
 }

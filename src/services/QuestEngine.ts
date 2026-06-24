@@ -9662,33 +9662,22 @@ export class QuestEngine {
       console.log(`[QuestEngine] Mapped ${newNodes.length} nodes from Overpass elements.`);
       // --- INJECT RANDOM NPCS ---
       const npcCount = Math.floor(Math.random() * 3) + 2; // 2 to 4 NPCs
-      const npcNames = [
-        'map.markers.survivor_barista',
-        'map.markers.trader_bot',
-        'map.markers.drunk_informant',
-        'Alkuin der Alchemist',
-        'Leif der Holzfäller',
-        'Garrosh der Schmied',
-        'Einsamer Wanderer'
-      ];
-      for (let i = 0; i < npcCount; i++) {
+            for (let i = 0; i < npcCount; i++) {
         const offsetLat = (Math.random() - 0.5) * 0.008;
         const offsetLon = (Math.random() - 0.5) * 0.008;
         const npcLat = latitude + offsetLat;
         const npcLon = longitude + offsetLon;
-        const npcTitle = npcNames[Math.floor(Math.random() * npcNames.length)];
         
-        let dialogStart = "map.dialogs.trader";
-        if (npcTitle.includes("barista")) dialogStart = "map.dialogs.survivor_barista";
-        if (npcTitle.includes("informant")) dialogStart = "map.dialogs.drunk_informant";
-        if (npcTitle.includes("Alkuin")) dialogStart = "map.dialogs.alkuin";
-        if (npcTitle.includes("Leif")) dialogStart = "map.dialogs.leif";
-        if (npcTitle.includes("Garrosh")) dialogStart = "map.dialogs.garrosh";
-        if (npcTitle.includes("Wanderer")) dialogStart = "map.dialogs.beggar";
+        const randomNpcDef = NPCS[Math.floor(Math.random() * NPCS.length)];
+        const randomQuest = randomNpcDef.quests[Math.floor(Math.random() * randomNpcDef.quests.length)];
+        const npcTitle = randomNpcDef.nameKey;
+        const dialogStart = randomNpcDef.dialogStartKey;
 
         const npcOsmId = 'rnd_npc_' + Date.now() + '_' + i;
         const npcData = {
           name: npcTitle,
+          baseKey: randomNpcDef.id,
+          quest: randomQuest,
           dialog: { start: { text: dialogStart } }
         };
 
