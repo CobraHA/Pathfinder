@@ -18,7 +18,7 @@ export default function QuestLogScreen() {
   const [inventory, setInventory] = useState([]);
   const [activeTab, setActiveTab] = useState('active');
   const [pinnedNodeId, setPinnedNodeId] = useState(null);
-  const [inventory, setInventory] = useState([]);
+
   const [currentTime, setCurrentTime] = useState(Date.now());
 
   useEffect(() => {
