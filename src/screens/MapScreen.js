@@ -828,12 +828,16 @@ export default function MapScreen() {
           if (Array.isArray(nearbyQuests)) {
             const activeNodes = await NodeStateEngine.getActiveNodes(nearbyQuests);
             console.log(`[MapScreen] Updating quests state with ${activeNodes.length} nodes...`); 
-            setQuests(prev => {
-              const map = new Map();
-              prev.forEach(p => map.set(p.id, p));
-              activeNodes.forEach(n => map.set(n.id, n));
-              return Array.from(map.values());
-            });
+              setQuests(prev => {
+                const map = new Map();
+                prev.forEach(p => {
+                  if (p.distance_meters === undefined || p.distance_meters < 1500) {
+                    map.set(p.id, p);
+                  }
+                });
+                activeNodes.forEach(n => map.set(n.id, n));
+                return Array.from(map.values());
+              });
             setSupabaseError(null);
           } else if (nearbyQuests === null || nearbyQuests === undefined) {
             // Keep existing quests instead of clearing them to prevent index crash
@@ -885,7 +889,11 @@ export default function MapScreen() {
               const activeNodes = await NodeStateEngine.getActiveNodes(nearbyQuests);
               setQuests(prev => {
                 const map = new Map();
-                prev.forEach(p => map.set(p.id, p));
+                prev.forEach(p => {
+                  if (p.distance_meters === undefined || p.distance_meters < 1500) {
+                    map.set(p.id, p);
+                  }
+                });
                 activeNodes.forEach(n => map.set(n.id, n));
                 return Array.from(map.values());
               });
