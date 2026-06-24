@@ -14,6 +14,12 @@ export interface Quest {
     amount: number;
   };
   turnedInAmount?: number;
+  rewardItem?: string;
+  rewardXP?: number;
+  npcLocation?: { lat: number; lon: number };
+  pigeonStatus?: 'idle' | 'flying';
+  pigeonDispatchTime?: number;
+  pigeonArrivalTime?: number;
 }
 
 export class QuestLogEngine {

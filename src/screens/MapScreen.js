@@ -810,6 +810,15 @@ export default function MapScreen() {
       const nextNode = npcTarget?.data?.dialog?.[option.next];
       if (nextNode?.action === 'give_quest') {
         const questId = `quest_${npcTarget?.id}`;
+        let nLat = npcTarget?.location?.coordinates?.[1] || effectiveLocation.coords.latitude;
+        let nLon = npcTarget?.location?.coordinates?.[0] || effectiveLocation.coords.longitude;
+        if (typeof npcTarget?.location === 'string') {
+          try {
+            const match = npcTarget.location.match(/POINT\(([^ ]+) ([^ ]+)\)/);
+            if (match) { nLon = parseFloat(match[1]); nLat = parseFloat(match[2]); }
+          } catch(e) {}
+        }
+        
         const added = await QuestLogEngine.addQuest({
           id: questId,
           npcId: npcTarget?.id || 'unknown',
@@ -817,7 +826,8 @@ export default function MapScreen() {
           descKey: nextNode?.questDesc || `quest_desc_${npcTarget?.id}`,
           requirement: nextNode?.questRequirement,
           rewardXP: nextNode?.xpReward || 50,
-          rewardItem: nextNode?.rewardItem
+          rewardItem: nextNode?.rewardItem,
+          npcLocation: { lat: nLat, lon: nLon }
         });
         if (added) {
           setActiveQuestIds(prev => {
@@ -828,6 +838,15 @@ export default function MapScreen() {
       } else if (nextNode?.action === 'fast_complete_quest') {
         const questId = `quest_${npcTarget?.id}`;
         
+        let nLat = npcTarget?.location?.coordinates?.[1] || effectiveLocation.coords.latitude;
+        let nLon = npcTarget?.location?.coordinates?.[0] || effectiveLocation.coords.longitude;
+        if (typeof npcTarget?.location === 'string') {
+          try {
+            const match = npcTarget.location.match(/POINT\(([^ ]+) ([^ ]+)\)/);
+            if (match) { nLon = parseFloat(match[1]); nLat = parseFloat(match[2]); }
+          } catch(e) {}
+        }
+
         await QuestLogEngine.addQuest({
           id: questId,
           npcId: npcTarget?.id || 'unknown',
@@ -835,7 +854,8 @@ export default function MapScreen() {
           descKey: nextNode?.questDesc || `quest_desc_${npcTarget?.id}`,
           requirement: nextNode?.questRequirement,
           rewardXP: nextNode?.xpReward || 50,
-          rewardItem: nextNode?.rewardItem
+          rewardItem: nextNode?.rewardItem,
+          npcLocation: { lat: nLat, lon: nLon }
         });
 
         const req = nextNode?.questRequirement;
