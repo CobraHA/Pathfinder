@@ -19,7 +19,7 @@ export class InventoryEngine {
       const consumables = [
         'bread', 'stale_bread', 'moldy_bread', 'canned_food', 
         'clean_water', 'dirty_water', 'berries', 'mushrooms', 
-        'raw_meat', 'roasted_meat', 'coffee', 'strong_coffee', 'herbal_tea'
+        'raw_meat', 'roasted_meat', 'coffee', 'strong_coffee', 'herbal_tea', 'medicine', 'burger', 'canned_beans', 'beer'
       ];
       parsed = parsed.map((item: InventoryItem) => {
         if (consumables.includes(item.id)) {

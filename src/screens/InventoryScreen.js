@@ -59,6 +59,16 @@ export default function InventoryScreen() {
       case 'flint': return 'flare';
       case 'coffee': return 'coffee';
       case 'strong_coffee': return 'coffee-outline';
+      case 'medicine': return 'pill';
+      case 'coffee_beans': return 'seed';
+      case 'burger': return 'hamburger';
+      case 'canned_beans': return 'food-apple';
+      case 'flower': return 'flower';
+      case 'gold_coin': return 'coin';
+      case 'beer': return 'beer';
+      case 'book': return 'book-open-page-variant';
+      case 'fabric': return 'tshirt-crew';
+      case 'gasoline': return 'gas-station';
       default: return 'bag-personal';
     }
   };

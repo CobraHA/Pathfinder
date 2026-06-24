@@ -278,7 +278,17 @@
     "canned_food": "Canned Food",
     "cloth_scrap": "Cloth Scrap",
     "old_currency": "Old Currency",
-    "moldy_bread": "Moldy Bread"
+    "moldy_bread": "Moldy Bread",
+    "medicine": "Medicine",
+    "coffee_beans": "Coffee Beans",
+    "burger": "Burger",
+    "canned_beans": "Canned Soup",
+    "flower": "Flower",
+    "gold_coin": "Gold Coin",
+    "beer": "Beer",
+    "book": "Old Book",
+    "fabric": "Fabric",
+    "gasoline": "Gasoline"
   },
   "chest": {
     "title": "Hidden Chest",
@@ -311,7 +321,11 @@
     "drink_strong_coffee": "You drink the extra strong coffee. You feel reborn!",
     "eat_stale_bread": "You eat the stale bread. It's very dry.",
     "eat_canned_food": "You eat the canned food. Tastes surprisingly good!",
-    "eat_moldy_bread": "Ugh... The bread was completely moldy."
+    "eat_moldy_bread": "Ugh... The bread was completely moldy.",
+    "eat_medicine": "You take the medicine. You feel a bit better.",
+    "eat_burger": "You eat the burger. Very filling!",
+    "eat_canned_beans": "You eat the canned soup. Tastes like home.",
+    "eat_beer": "You drink the beer. Cheers!"
   },
   "questlog": {
     "title": "Journal",

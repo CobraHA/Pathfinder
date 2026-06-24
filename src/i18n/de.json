@@ -285,7 +285,17 @@
     "canned_food": "Dosenfutter",
     "cloth_scrap": "Stoffreste",
     "old_currency": "Alte Währung",
-    "moldy_bread": "Verschimmeltes Brot"
+    "moldy_bread": "Verschimmeltes Brot",
+    "medicine": "Medizin",
+    "coffee_beans": "Kaffeebohnen",
+    "burger": "Burger",
+    "canned_beans": "Dosensuppe",
+    "flower": "Blume",
+    "gold_coin": "Goldmünze",
+    "beer": "Bier",
+    "book": "Altes Buch",
+    "fabric": "Stoff",
+    "gasoline": "Benzin"
   },
   "chest": {
     "title": "Verborgene Truhe",
@@ -318,7 +328,11 @@
     "drink_strong_coffee": "Du trinkst den extra starken Kaffee. Du fühlst dich wie neu geboren!",
     "eat_stale_bread": "Du isst das alte Brot. Es ist sehr trocken.",
     "eat_canned_food": "Du isst das Dosenfutter. Schmeckt überraschend gut!",
-    "eat_moldy_bread": "Uargh... Das Brot war komplett verschimmelt."
+    "eat_moldy_bread": "Uargh... Das Brot war komplett verschimmelt.",
+    "eat_medicine": "Du nimmst die Medizin. Du fühlst dich etwas besser.",
+    "eat_burger": "Du isst den Burger. Sehr sättigend!",
+    "eat_canned_beans": "Du isst die Dosensuppe. Schmeckt wie bei Muttern.",
+    "eat_beer": "Du trinkst das Bier. Prost!"
   },
   "questlog": {
     "title": "Tagebuch",

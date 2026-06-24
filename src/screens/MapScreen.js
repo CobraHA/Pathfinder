@@ -531,6 +531,16 @@ export default function MapScreen() {
               case 'bread': iconName = 'baguette'; iconColor = '#E9BC62'; break;
               case 'stale_bread': iconName = 'baguette'; iconColor = '#8D6E63'; break;
               case 'moldy_bread': iconName = 'baguette'; iconColor = '#4CAF50'; break;
+              case 'medicine': iconName = 'pill'; iconColor = '#FFCDD2'; break;
+              case 'coffee_beans': iconName = 'seed'; iconColor = '#5D4037'; break;
+              case 'burger': iconName = 'hamburger'; iconColor = '#FF9800'; break;
+              case 'canned_beans': iconName = 'food-apple'; iconColor = '#9E9E9E'; break;
+              case 'flower': iconName = 'flower'; iconColor = '#E91E63'; break;
+              case 'gold_coin': iconName = 'coin'; iconColor = '#FFD700'; break;
+              case 'beer': iconName = 'beer'; iconColor = '#FFC107'; break;
+              case 'book': iconName = 'book-open-page-variant'; iconColor = '#795548'; break;
+              case 'fabric': iconName = 'tshirt-crew'; iconColor = '#00BCD4'; break;
+              case 'gasoline': iconName = 'gas-station'; iconColor = '#607D8B'; break;
             }
 
             if (isDepleted) {
