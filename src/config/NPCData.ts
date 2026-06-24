@@ -212,5 +212,15 @@ export const NPCS: NPCDefinition[] = [
       { questId: "tailor_q2", requirement: { itemId: "berries", amount: 10 }, xpReward: 150, rewardItem: "copper_coins" },
       { questId: "tailor_q3", requirement: { itemId: "bread", amount: 2 }, xpReward: 80, rewardItem: "copper_coins" },
     ]
+  },
+  {
+    id: "bard",
+    nameKey: "npc.bard.name",
+    dialogStartKey: "npc.bard.start",
+    quests: [
+      { questId: "bard_q1", requirement: { itemId: "clean_water", amount: 3 }, xpReward: 100, rewardItem: "copper_coins" },
+      { questId: "bard_q2", requirement: { itemId: "berries", amount: 5 }, xpReward: 120, rewardItem: "copper_coins" },
+      { questId: "bard_q3", requirement: { itemId: "copper_coins", amount: 5 }, xpReward: 50, rewardItem: "bread" },
+    ]
   }
 ];
