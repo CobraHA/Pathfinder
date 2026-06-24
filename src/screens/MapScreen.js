@@ -122,7 +122,7 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
   } else if (isColdCampfire) {
     iconName = 'campfire'; iconColor = '#A9A9A9'; bgColor = 'rgba(62, 39, 35, 0.9)';
   } else if (isWorkbench) {
-    if (q.title === 'map.markers.campfire') { iconName = 'campfire'; iconColor = '#FF4500'; } 
+    if (q.title === 'map.markers.campfire') { iconName = 'campfire'; iconColor = '#FF4500'; }
     else { iconName = 'anvil'; iconColor = '#E9BC62'; }
     bgColor = 'rgba(62, 39, 35, 0.9)';
   } else if (isShop) {
@@ -152,6 +152,9 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
     }
   }
 
+  const markerTitle = i18n.t(q.title, { defaultValue: q.title });
+  const markerDesc = isChest ? (q.data?.isLocked ? i18n.t('chest.locked_title') : i18n.t('chest.title')) : isNPC ? i18n.t('map.tapToSpeak') : isWorkbench ? i18n.t('map.openWorkbench', { defaultValue: 'Werkbank öffnen' }) : q.type === 'cold_campfire' ? i18n.t('map.igniteCampfire', { defaultValue: 'Mit Feuerstein anzünden' }) : isShop ? i18n.t('map.enterShop', { defaultValue: 'Betreten' }) : q.type === 'resource' ? i18n.t('map.gather') : i18n.t('map.metersAway', { distance: (q.distance_meters).toFixed(0) });
+
   return (
     <Marker
       key={q.id}
@@ -160,8 +163,6 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
         latitude: qLat || (effectiveLocation.coords.latitude + 0.001),
         longitude: qLon || (effectiveLocation.coords.longitude + 0.001)
       }}
-      title={i18n.t(q.title, { defaultValue: q.title })}
-      description={isChest ? (q.data?.isLocked ? i18n.t('chest.locked_title') : i18n.t('chest.title')) : isNPC ? i18n.t('map.tapToSpeak') : isWorkbench ? i18n.t('map.openWorkbench', { defaultValue: 'Werkbank öffnen' }) : q.type === 'cold_campfire' ? i18n.t('map.igniteCampfire', { defaultValue: 'Mit Feuerstein anzünden' }) : isShop ? i18n.t('map.enterShop', { defaultValue: 'Betreten' }) : q.type === 'resource' ? i18n.t('map.gather') : i18n.t('map.metersAway', { distance: (q.distance_meters).toFixed(0) })}
       onPress={() => onPress && onPress(q)}
     >
       <View style={{
@@ -180,6 +181,17 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
       }} pointerEvents="none">
         <MaterialCommunityIcons name={iconName} size={18} color={iconColor} />
       </View>
+      <Callout>
+        <View style={{ padding: 4, alignItems: 'center', minWidth: 120 }}>
+          <Text style={{ fontWeight: 'bold', marginBottom: 2 }}>{markerTitle}</Text>
+          <Text style={{ fontSize: 12, color: '#333', textAlign: 'center' }}>{markerDesc}</Text>
+          {q.distance_meters > 50 && (
+            <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 4, fontSize: 12 }}>
+              {Math.round(q.distance_meters)}m entfernt
+            </Text>
+          )}
+        </View>
+      </Callout>
     </Marker>
   );
 }, (prev, next) => {
@@ -251,7 +263,7 @@ export default function MapScreen() {
   const [sortAscending, setSortAscending] = useState(true);
   const mapRef = useRef(null);
 
-  useEffect(() => {    
+  useEffect(() => {
     // Check role and level at startup
     RoleEngine.loadRole().then(role => {
       if (!role) setIsRoleSelectionVisible(true);
@@ -456,14 +468,14 @@ export default function MapScreen() {
   const handleNPCInteraction = async (npc) => {
     let nodeLat = npc.location?.coordinates?.[1];
     let nodeLon = npc.location?.coordinates?.[0];
-    
+
     // Safety check if location is stringified
     if (typeof npc.location === 'string') {
       try {
         const parsed = JSON.parse(npc.location);
         nodeLat = parsed?.coordinates?.[1];
         nodeLon = parsed?.coordinates?.[0];
-      } catch(e) {}
+      } catch (e) { }
     }
 
     if (!nodeLat || !nodeLon) {
@@ -858,17 +870,17 @@ export default function MapScreen() {
         .then(async nearbyQuests => {
           if (Array.isArray(nearbyQuests)) {
             const activeNodes = await NodeStateEngine.getActiveNodes(nearbyQuests);
-            console.log(`[MapScreen] Updating quests state with ${activeNodes.length} nodes...`); 
-              setQuests(prev => {
-                const map = new Map();
-                prev.forEach(p => {
-                  if (p.distance_meters === undefined || p.distance_meters < 1500 || p.id === pinnedQuestId || activeQuestIds.includes(p.id)) {
-                    map.set(p.id, p);
-                  }
-                });
-                activeNodes.forEach(n => map.set(n.id, n));
-                return Array.from(map.values());
+            console.log(`[MapScreen] Updating quests state with ${activeNodes.length} nodes...`);
+            setQuests(prev => {
+              const map = new Map();
+              prev.forEach(p => {
+                if (p.distance_meters === undefined || p.distance_meters < 1500 || p.id === pinnedQuestId || activeQuestIds.includes(p.id)) {
+                  map.set(p.id, p);
+                }
               });
+              activeNodes.forEach(n => map.set(n.id, n));
+              return Array.from(map.values());
+            });
             setSupabaseError(null);
           } else if (nearbyQuests === null || nearbyQuests === undefined) {
             // Keep existing quests instead of clearing them to prevent index crash
@@ -941,7 +953,7 @@ export default function MapScreen() {
         setQuests(prev => prev.map(q => {
           let qLoc = q.location;
           if (typeof qLoc === 'string') {
-            try { qLoc = JSON.parse(qLoc); } catch(e) {}
+            try { qLoc = JSON.parse(qLoc); } catch (e) { }
           }
           let qLat = Number(qLoc?.coordinates?.[1]);
           let qLon = Number(qLoc?.coordinates?.[0]);
@@ -952,38 +964,38 @@ export default function MapScreen() {
         }));
       }
 
-        // Background Check für Umgebung (nur alle ~100m Bewegung scannen)
-        const distFromLastWaterCheck = Math.abs(lastWaterCheckRef.current.lat - latitude) + Math.abs(lastWaterCheckRef.current.lon - longitude);
-        if (distFromLastWaterCheck > 0.001 || lastWaterCheckRef.current.lat === 0) {
-          lastWaterCheckRef.current = { lat: latitude, lon: longitude };
+      // Background Check für Umgebung (nur alle ~100m Bewegung scannen)
+      const distFromLastWaterCheck = Math.abs(lastWaterCheckRef.current.lat - latitude) + Math.abs(lastWaterCheckRef.current.lon - longitude);
+      if (distFromLastWaterCheck > 0.001 || lastWaterCheckRef.current.lat === 0) {
+        lastWaterCheckRef.current = { lat: latitude, lon: longitude };
 
-          // Random Beggar Encounter (2% chance every ~100m)
-          if (Math.random() < 0.02 && !activeNPC) {
-            const beggarNPC = {
-              id: 'random_beggar_' + Date.now(),
-              type: 'npc',
-              title: 'map.markers.beggar',
-              data: {
-                dialog: {
-                  start: { text: 'map.dialogs.beggar.start', options: [{ label: 'map.dialogs.common.tell_more', next: 'ask_trade' }, { label: 'map.dialogs.common.no_time', next: 'end' }] },
-                  ask_trade: { text: 'map.dialogs.beggar.ask_trade', options: [{ label: 'map.dialogs.common.help_quest', next: 'accept_quest' }, { label: 'map.dialogs.common.no_thanks', next: 'end' }] },
-                  accept_quest: { text: 'map.dialogs.beggar.accept_quest', action: 'trade_bread', options: [{ label: 'map.dialogs.common.see_you', next: 'end' }] }
-                }
+        // Random Beggar Encounter (2% chance every ~100m)
+        if (Math.random() < 0.02 && !activeNPC) {
+          const beggarNPC = {
+            id: 'random_beggar_' + Date.now(),
+            type: 'npc',
+            title: 'map.markers.beggar',
+            data: {
+              dialog: {
+                start: { text: 'map.dialogs.beggar.start', options: [{ label: 'map.dialogs.common.tell_more', next: 'ask_trade' }, { label: 'map.dialogs.common.no_time', next: 'end' }] },
+                ask_trade: { text: 'map.dialogs.beggar.ask_trade', options: [{ label: 'map.dialogs.common.help_quest', next: 'accept_quest' }, { label: 'map.dialogs.common.no_thanks', next: 'end' }] },
+                accept_quest: { text: 'map.dialogs.beggar.accept_quest', action: 'trade_bread', options: [{ label: 'map.dialogs.common.see_you', next: 'end' }] }
               }
-            };
-            setActiveNPC(beggarNPC);
-            setDialogNode('start');
-          }
-
-          checkEnvironmentInOSMBackground(latitude, longitude);
+            }
+          };
+          setActiveNPC(beggarNPC);
+          setDialogNode('start');
         }
 
-        // Survival Drain Check (alle ~50m)
-        const distFromLastDrainCheck = Math.abs(lastDrainCheckRef.current.lat - latitude) + Math.abs(lastDrainCheckRef.current.lon - longitude);
-        if (distFromLastDrainCheck > 0.0005 || lastDrainCheckRef.current.lat === 0) {
-          lastDrainCheckRef.current = { lat: latitude, lon: longitude };
-          SurvivalEngine.drainStats(50).then(stats => setSurvivalStats(stats));
-        }
+        checkEnvironmentInOSMBackground(latitude, longitude);
+      }
+
+      // Survival Drain Check (alle ~50m)
+      const distFromLastDrainCheck = Math.abs(lastDrainCheckRef.current.lat - latitude) + Math.abs(lastDrainCheckRef.current.lon - longitude);
+      if (distFromLastDrainCheck > 0.0005 || lastDrainCheckRef.current.lat === 0) {
+        lastDrainCheckRef.current = { lat: latitude, lon: longitude };
+        SurvivalEngine.drainStats(50).then(stats => setSurvivalStats(stats));
+      }
     }
   }, [effectiveLocation]);
 
@@ -1139,22 +1151,22 @@ export default function MapScreen() {
         {quests.map((q) => {
           let qLoc = q.location;
           if (typeof qLoc === 'string') {
-            try { qLoc = JSON.parse(qLoc); } catch(e) {}
+            try { qLoc = JSON.parse(qLoc); } catch (e) { }
           }
           let qLat = Number(qLoc?.coordinates?.[1]);
           let qLon = Number(qLoc?.coordinates?.[0]);
 
           return (
-            <MemoizedQuestMarker 
+            <MemoizedQuestMarker
               key={q.id}
-              q={q} 
-              qLat={qLat} 
-              qLon={qLon} 
-              effectiveLocation={effectiveLocation} 
+              q={q}
+              qLat={qLat}
+              qLon={qLon}
+              effectiveLocation={effectiveLocation}
               onPress={() => {
                 if (q.type === 'chest') {
                   if (q.distance_meters > 50) {
-                    alert(i18n.t('map.too_far_title', { defaultValue: 'Zu weit weg' }));
+                    //alert(i18n.t('map.too_far_title', { defaultValue: 'Zu weit weg' }));
                     return;
                   }
                   setActiveChest(q);
