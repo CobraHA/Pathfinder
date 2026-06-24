@@ -33,6 +33,16 @@ export class QuestLogEngine {
           if (q.requirement && q.requirement.itemId === 'coins') {
             q.requirement.itemId = 'copper_coins';
           }
+          // Fix broken generic NPC quests
+          if (q.titleKey && q.titleKey.startsWith('Auftrag von npc.')) {
+            const parts = q.titleKey.split('.');
+            if (parts.length >= 2) {
+              const npcId = parts[1];
+              q.titleKey = `npc.${npcId}.quest_title`;
+              q.descKey = `npc.${npcId}.quest_desc`;
+            }
+          }
+
           if ((q.titleKey && q.titleKey.startsWith('quest_title_')) || (q.descKey && q.descKey.startsWith('quest_desc_'))) {
             const req = q.requirement?.itemId;
             if (req === 'iron_ore') { q.titleKey = 'map.dialogs.garrosh.quest_title'; q.descKey = 'map.dialogs.garrosh.quest_desc'; }
