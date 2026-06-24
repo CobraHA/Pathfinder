@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import * as Location from 'expo-location';
+import { PinEngine } from '../services/PinEngine';
+import { QuestEngine } from '../services/QuestEngine';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -104,6 +107,32 @@ export default function InventoryScreen() {
     if (!selectedItem) return;
     
     // Try to consume for survival stats first
+    
+    // Custom use item logic for treasure map
+    if (selectedItem.id === 'treasure_map') {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          alert(i18n.t('map.location_denied', { defaultValue: 'Kein GPS Zugriff' }));
+          return;
+        }
+        let loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
+        const newTreasureId = await QuestEngine.spawnTreasureMark(loc.coords.longitude, loc.coords.latitude);
+        
+        await PinEngine.setPinnedNodeId(newTreasureId);
+        
+        const newInv = await InventoryEngine.removeItem(selectedItem.id, 1);
+        setInventory(newInv);
+        setSelectedItem(null);
+        
+        alert(i18n.t('inventory.use_treasure_map_success', { defaultValue: 'Schatzkarte gelesen! Das Ziel wurde auf deiner Karte mit einem X markiert!' }));
+        return;
+      } catch (e) {
+        console.error("Error using treasure map:", e);
+        return;
+      }
+    }
+
     const { success, message } = await SurvivalEngine.consumeItem(selectedItem.id);
     
     if (success) {

@@ -112,6 +112,7 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
   const isShop = q.type === 'shop';
   const isQuest = q.type === 'quest';
   const isChest = q.type === 'chest';
+  const isTreasureMark = q.type === 'treasure_mark';
 
   let iconName = 'map-marker';
   let iconColor = '#228B22';
@@ -131,6 +132,8 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
     iconName = 'star'; iconColor = '#FFD700'; bgColor = 'rgba(62, 39, 35, 0.9)';
   } else if (isChest) {
     iconName = 'treasure-chest'; iconColor = '#FFD700'; bgColor = 'rgba(80, 20, 20, 0.9)';
+  } else if (isTreasureMark) {
+    iconName = 'close'; iconColor = '#FF0000'; bgColor = 'rgba(50, 10, 10, 0.9)';
   } else if (q.type === 'resource') {
     const itemId = q.data?.resource?.itemId;
     bgColor = 'rgba(20, 25, 30, 0.9)';
@@ -153,7 +156,7 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
   }
 
   const markerTitle = i18n.t(q.title, { defaultValue: q.title });
-  const markerDesc = isChest ? (q.data?.isLocked ? i18n.t('chest.locked_title') : i18n.t('chest.title')) : isNPC ? i18n.t('map.tapToSpeak') : isWorkbench ? i18n.t('map.openWorkbench', { defaultValue: 'Werkbank öffnen' }) : q.type === 'cold_campfire' ? i18n.t('map.igniteCampfire', { defaultValue: 'Mit Feuerstein anzünden' }) : isShop ? i18n.t('map.enterShop', { defaultValue: 'Betreten' }) : q.type === 'resource' ? i18n.t('map.gather') : i18n.t('map.metersAway', { distance: (q.distance_meters).toFixed(0) });
+  const markerDesc = isTreasureMark ? i18n.t('map.markers.treasure_mark', { defaultValue: 'Verborgener Schatz' }) : isChest ? (q.data?.isLocked ? i18n.t('chest.locked_title') : i18n.t('chest.title')) : isNPC ? i18n.t('map.tapToSpeak') : isWorkbench ? i18n.t('map.openWorkbench', { defaultValue: 'Werkbank öffnen' }) : q.type === 'cold_campfire' ? i18n.t('map.igniteCampfire', { defaultValue: 'Mit Feuerstein anzünden' }) : isShop ? i18n.t('map.enterShop', { defaultValue: 'Betreten' }) : q.type === 'resource' ? i18n.t('map.gather') : i18n.t('map.metersAway', { distance: (q.distance_meters).toFixed(0) });
 
   return (
     <Marker
@@ -1164,7 +1167,7 @@ export default function MapScreen() {
               qLon={qLon}
               effectiveLocation={effectiveLocation}
               onPress={() => {
-                if (q.type === 'chest') {
+                if (q.type === 'chest' || q.type === 'treasure_mark') {
                   if (q.distance_meters > 50) {
                     //alert(i18n.t('map.too_far_title', { defaultValue: 'Zu weit weg' }));
                     return;
