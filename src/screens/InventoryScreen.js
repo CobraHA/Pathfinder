@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 import { PinEngine } from '../services/PinEngine';
+import { QuestLogEngine } from '../services/QuestLogEngine';
 import { QuestEngine } from '../services/QuestEngine';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -120,6 +121,12 @@ export default function InventoryScreen() {
         const newTreasureId = await QuestEngine.spawnTreasureMark(loc.coords.longitude, loc.coords.latitude);
         
         await PinEngine.setPinnedNodeId(newTreasureId);
+        await QuestLogEngine.addQuest({
+          id: 'quest_' + newTreasureId,
+          npcId: 'system',
+          titleKey: 'map.markers.treasure_mark',
+          descKey: 'inventory.treasure_map_desc',
+        });
         
         const newInv = await InventoryEngine.removeItem(selectedItem.id, 1);
         setInventory(newInv);

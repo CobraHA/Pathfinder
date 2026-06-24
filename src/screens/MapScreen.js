@@ -698,6 +698,7 @@ export default function MapScreen() {
     handleGainXP(20, 'chest');
 
     QuestEngine.removeChest(activeChest.id);
+    await QuestLogEngine.completeQuest('quest_' + activeChest.id);
 
     setQuests(prev => prev.filter(q => q.id !== activeChest.id));
     setActiveChest(null);

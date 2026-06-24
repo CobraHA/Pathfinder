@@ -219,7 +219,8 @@
     "traded_bread": "You helped and received a healing potion!",
     "not_enough_bread": "You have no bread and no salt with you...",
     "collected_remaining": "Gathered %{amount}x %{name}! (%{gathersLeft}x left)",
-    "collected_depleted": "Gathered %{amount}x %{name}! The resource is now depleted."
+    "collected_depleted": "Gathered %{amount}x %{name}! The resource is now depleted.",
+    "treasure_map_desc": "You used a treasure map. Go to the marked location on your map and dig up the treasure!"
   },
   "crafting": {
     "title": "Workbench",

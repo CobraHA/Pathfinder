@@ -226,7 +226,8 @@
     "traded_bread": "Du hast geholfen und einen Heiltrank erhalten!",
     "not_enough_bread": "Du hast kein Brot und kein Salz dabei...",
     "collected_remaining": "%{amount}x %{name} gesammelt! (Noch %{gathersLeft}x möglich)",
-    "collected_depleted": "%{amount}x %{name} gesammelt! Die Ressource ist nun erschöpft."
+    "collected_depleted": "%{amount}x %{name} gesammelt! Die Ressource ist nun erschöpft.",
+    "treasure_map_desc": "Du hast eine Schatzkarte benutzt. Begib dich zur markierten Stelle auf der Karte und hebe den Schatz aus!"
   },
   "crafting": {
     "title": "Werkbank",
