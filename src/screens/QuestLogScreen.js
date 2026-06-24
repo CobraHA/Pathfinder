@@ -60,8 +60,7 @@ export default function QuestLogScreen() {
     }
 
     setQuests(allQuests);
-    const inv = await InventoryEngine.getInventory();
-    setInventory(inv);
+
     const pinned = await PinEngine.getPinnedNodeId();
     setPinnedNodeId(pinned);
   };
