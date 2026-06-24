@@ -1076,26 +1076,38 @@ export default function MapScreen() {
     const rotationDeg = (angleRad * 180 / Math.PI) + 90;
 
     return (
-      <View style={{
-        position: 'absolute',
-        left: finalX - 24, // Zentrieren
-        top: finalY - 24,
-        width: 48,
-        height: 48,
-        backgroundColor: 'rgba(62, 39, 35, 0.9)',
-        borderRadius: 24,
-        borderWidth: 2,
-        borderColor: '#FFD700',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 50,
-        shadowColor: '#FFD700',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.8,
-        shadowRadius: 8,
-      }}>
+      <TouchableOpacity 
+        style={{
+          position: 'absolute',
+          left: finalX - 24, // Zentrieren
+          top: finalY - 24,
+          width: 48,
+          height: 48,
+          backgroundColor: 'rgba(62, 39, 35, 0.9)',
+          borderRadius: 24,
+          borderWidth: 2,
+          borderColor: '#FFD700',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 50,
+          shadowColor: '#FFD700',
+          shadowOffset: { width: 0, height: 0 },
+          shadowOpacity: 0.8,
+          shadowRadius: 8,
+        }}
+        onPress={() => {
+          if (mapRef.current) {
+            mapRef.current.animateToRegion({
+              latitude: target.location?.coordinates[1] || centerLat,
+              longitude: target.location?.coordinates[0] || centerLon,
+              latitudeDelta: 0.005,
+              longitudeDelta: 0.005,
+            }, 1000);
+          }
+        }}
+      >
         <Feather name="arrow-up" size={28} color="#FFD700" style={{ transform: [{ rotate: `${rotationDeg}deg` }] }} />
-      </View>
+      </TouchableOpacity>
     );
   };
 
