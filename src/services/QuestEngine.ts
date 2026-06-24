@@ -9753,12 +9753,26 @@ export class QuestEngine {
       let itemType = 'material';
       if (itemId === 'clean_water') itemType = 'consumable';
 
+      let nodeData = qType === 'resource' ? { resource: { itemId, name: title, type: itemType, amount: 1, maxGathers: 5 } } : { name: title };
+
+      if (qType === 'npc') {
+        const randomNpcDef = NPCS[Math.floor(Math.random() * NPCS.length)];
+        const randomQuest = randomNpcDef.quests[Math.floor(Math.random() * randomNpcDef.quests.length)];
+        title = randomNpcDef.nameKey;
+        nodeData = {
+          name: title,
+          baseKey: randomNpcDef.id,
+          quest: randomQuest,
+          dialog: { start: { text: randomNpcDef.dialogStartKey } }
+        };
+      }
+
       nodes.push({
         id: `offline_mock_${now}_${i}`,
         title: title,
         type: qType,
         location: { type: 'Point', coordinates: [longitude + offsetLon, latitude + offsetLat] },
-        data: qType === 'resource' ? { resource: { itemId, name: title, type: itemType, amount: 1, maxGathers: 5 } } : { name: title }
+        data: nodeData
       });
     }
 
