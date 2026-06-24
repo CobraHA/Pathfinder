@@ -9683,12 +9683,20 @@ export class QuestEngine {
             start: {
               text: dialogStart,
               options: [
-                { label: "Kann ich irgendwie helfen?", next: "offer_quest" },
+                { label: "Was genau machst du hier?", next: "explain_role" },
+                { label: "Kann ich dir bei etwas helfen?", next: "offer_quest" },
                 { label: "Auf Wiedersehen.", next: "end" }
               ]
             },
+            explain_role: {
+              text: `npc.${randomNpcDef.id}.explain_role`,
+              options: [
+                { label: "Verstehe. Brauchst du dabei Hilfe?", next: "offer_quest" },
+                { label: "Interessant. Bis bald!", next: "end" }
+              ]
+            },
             offer_quest: {
-              text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich belohnen.",
+              text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich angemessen entlohnen.",
               action: "give_quest",
               questTitle: `quest.title.${randomQuest.questId}`,
               questDesc: `quest.desc.${randomQuest.questId}`,
@@ -9807,12 +9815,20 @@ export class QuestEngine {
             start: {
               text: randomNpcDef.dialogStartKey,
               options: [
-                { label: "Kann ich irgendwie helfen?", next: "offer_quest" },
+                { label: "Was genau machst du hier?", next: "explain_role" },
+                { label: "Kann ich dir bei etwas helfen?", next: "offer_quest" },
                 { label: "Auf Wiedersehen.", next: "end" }
               ]
             },
+            explain_role: {
+              text: `npc.${randomNpcDef.id}.explain_role`,
+              options: [
+                { label: "Verstehe. Brauchst du dabei Hilfe?", next: "offer_quest" },
+                { label: "Interessant. Bis bald!", next: "end" }
+              ]
+            },
             offer_quest: {
-              text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich belohnen.",
+              text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich angemessen entlohnen.",
               action: "give_quest",
               questTitle: `quest.title.${randomQuest.questId}`,
               questDesc: `quest.desc.${randomQuest.questId}`,

@@ -383,207 +383,228 @@
     },
     "blacksmith": {
       "name": "Schmied",
-      "start": "Das rhythmische Hämmern auf glühendem Stahl verstummt für einen Moment. 'Was gibt es, Reisender? Meine Esse brennt heiß und die Arbeit wartet nicht.'",
+      "start": "Was gibt es, Reisender? Meine Esse brennt heiß und die Arbeit wartet nicht.",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Schmied",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich bin der Schmied dieser Gegend. Ich fertige Waffen und Werkzeuge, aber mir gehen ständig die Materialien aus."
     },
     "herbalist": {
       "name": "Kräuterkundler",
-      "start": "Ein intensiver Duft von zerriebenen Blättern und getrockneten Blüten liegt in der Luft. 'Ah, ein neues Gesicht! Suchst du nach Linderung für deine Wunden oder nach etwas Speziellerem?'",
+      "start": "Ah, ein neues Gesicht! Suchst du nach Linderung für deine Wunden oder nach etwas Speziellerem?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Kräuterkundler",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich sammle seltene Pflanzen und braue Tränke, die selbst schwerste Wunden heilen können."
     },
     "lumberjack": {
       "name": "Holzfäller",
-      "start": "Mit einem lauten Ächzen lässt er die schwere Axt sinken und wischt sich den Schweiß von der Stirn. 'Holz hackt sich nicht von allein, mein Freund. Brauchst du was?'",
+      "start": "Holz hackt sich nicht von allein, mein Freund. Brauchst du was?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Holzfäller",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich fälle Bäume für das Sägewerk, damit die Stadt weiter wachsen kann."
     },
     "beggar": {
       "name": "Bettler",
-      "start": "Mit zittrigen Händen hält er eine alte, verbeulte Holzschale hin. 'Hast du eine Münze oder ein Stück Brot für einen armen Tropf, den das Schicksal vergessen hat?'",
+      "start": "Hast du eine Münze oder ein Stück Brot für einen armen Tropf, den das Schicksal vergessen hat?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Bettler",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich versuche nur, irgendwie den nächsten Tag zu überleben. Es ist ein hartes Leben auf der Straße."
     },
     "barista": {
       "name": "Barista",
-      "start": "Das Zischen von heißem Dampf übertönt fast seine Begrüßung. 'Einen starken Kaffee gegen die Müdigkeit der Reise? Oder suchst du nach etwas anderem?'",
+      "start": "Einen starken Kaffee gegen die Müdigkeit der Reise? Oder suchst du nach etwas anderem?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Barista",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich koche das einzige Getränk, das die Wachen und Händler hier bei Verstand hält: richtig guten Kaffee."
     },
     "trader": {
       "name": "Händler",
-      "start": "Sein Karren ist vollgepackt mit Waren aus aller Herren Länder. 'Komm näher, komm näher! Ich habe Waren, die du sonst nirgends finden wirst... wenn der Preis stimmt.'",
+      "start": "Komm näher, komm näher! Ich habe Waren, die du sonst nirgends finden wirst... wenn der Preis stimmt.",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Händler",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich reise von Stadt zu Stadt und kaufe seltene Gegenstände auf. Mein Inventar wechselt ständig."
     },
     "informant": {
       "name": "Informant",
-      "start": "Er mustert dich aus dem Schatten seiner Kapuze heraus mit einem berechnenden Blick. 'Informationen sind Macht. Und ich habe sehr viel Macht zu verkaufen. Was willst du wissen?'",
+      "start": "Informationen sind Macht. Und ich habe sehr viel Macht zu verkaufen. Was willst du wissen?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Informant",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich weiß Dinge. Wo Banditen sich verstecken, wo Schätze vergraben sind... alles hat seinen Preis."
     },
     "guard_captain": {
       "name": "Wachhauptmann",
-      "start": "Mit strengem Blick und ruhender Hand am Schwertgriff mustert er dich von Kopf bis Fuß. 'Kein Ärger in meiner Stadt, verstanden? Wir haben schon genug Probleme.'",
+      "start": "Kein Ärger in meiner Stadt, verstanden? Wir haben schon genug Probleme.",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Wachhauptmann",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich sorge dafür, dass Monster und Diebe nicht über unsere Mauern kommen. Es ist ein endloser Kampf."
     },
     "miner": {
       "name": "Minenarbeiter",
-      "start": "Sein Gesicht ist schwarz von Ruß und Steinstaub. Er hustet trocken. 'Die Minen sind tief und gefährlich. Suchst du nach Erzen oder nach Ärger?'",
+      "start": "Die Minen sind tief und gefährlich. Suchst du nach Erzen oder nach Ärger?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Minenarbeiter",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich schlage wertvolle Erze aus dem harten Gestein, tief unten im Dunkeln."
     },
     "farmer": {
       "name": "Bauer",
-      "start": "Er wischt sich die dreckigen Hände an seiner Schürze ab. 'Die Ernte macht sich nicht von allein, und das Vieh schreit nach Futter. Was führt dich auf meinen Hof?'",
+      "start": "Die Ernte macht sich nicht von allein, und das Vieh schreit nach Futter. Was führt dich auf meinen Hof?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Bauer",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich baue Getreide an und züchte Vieh, damit die Menschen in der Stadt nicht verhungern."
     },
     "cook": {
       "name": "Koch",
-      "start": "Ein köstlicher Duft nach gebratenem Fleisch und Kräutern strömt aus seinen Töpfen. 'Willkommen in meiner Küche! Das Wasser kocht bereits. Suchst du nach einer warmen Mahlzeit?'",
+      "start": "Willkommen in meiner Küche! Das Wasser kocht bereits. Suchst du nach einer warmen Mahlzeit?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Koch",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich bereite die besten Gerichte in der gesamten Region zu. Mein Geheimnis? Frische, seltene Zutaten."
     },
     "hunter": {
       "name": "Jäger",
-      "start": "Er schnitzt konzentriert an einem Pfeilschaft und blickt nur kurz auf. 'Der Wald ist voller Beute, aber auch voller Gefahren. Bist du Jäger oder Gejagter?'",
+      "start": "Der Wald ist voller Beute, aber auch voller Gefahren. Bist du Jäger oder Gejagter?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Jäger",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich spüre wilde Tiere und Monster in den Wäldern auf. Mein Bogen verfehlt sein Ziel nie."
     },
     "scout": {
       "name": "Späher",
-      "start": "Er rollt hastig eine alte Karte zusammen, als du dich näherst. 'Ich habe Dinge jenseits der Grenzen gesehen, die dir das Blut in den Adern gefrieren lassen würden.'",
+      "start": "Ich habe Dinge jenseits der Grenzen gesehen, die dir das Blut in den Adern gefrieren lassen würden.",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Späher",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich patrouilliere an den äußeren Grenzen und erkunde neue Gebiete für die Gilde."
     },
     "mayor": {
       "name": "Bürgermeister",
-      "start": "Mit einer ausladenden Geste und einem formellen Lächeln tritt er dir entgegen. 'Willkommen, Reisender! Als Bürgermeister dieser bescheidenen Gemeinde stehe ich dir zur Verfügung.'",
+      "start": "Willkommen, Reisender! Als Bürgermeister dieser bescheidenen Gemeinde stehe ich dir zur Verfügung.",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Bürgermeister",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich kümmere mich um die Verwaltung, die Steuern und die Sorgen der Bürger."
     },
     "priest": {
       "name": "Priester",
-      "start": "Er faltet die Hände und blickt dich mit einem sanften Lächeln an. 'Mögen die Götter deinen Weg erleuchten. Suchst du nach spirituellem Beistand in diesen dunklen Zeiten?'",
+      "start": "Mögen die Götter deinen Weg erleuchten. Suchst du nach spirituellem Beistand in diesen dunklen Zeiten?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Priester",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich spende Trost und führe heilige Rituale durch, um böse Geister fernzuhalten."
     },
     "alchemist": {
       "name": "Alchemist",
-      "start": "Verschiedenfarbige Flüssigkeiten blubbern in gläsernen Kolben. 'Fass nichts an! Ein falscher Tropfen und wir fliegen beide in die Luft. Was willst du?'",
+      "start": "Fass nichts an! Ein falscher Tropfen und wir fliegen beide in die Luft. Was willst du?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Alchemist",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich experimentiere mit flüchtigen Substanzen, um das Unmögliche möglich zu machen."
     },
     "carpenter": {
       "name": "Zimmermann",
-      "start": "Sägespäne fliegen durch die Luft, während er geschickt ein Holzbrett bearbeitet. 'Gutes Handwerk braucht Zeit und das richtige Holz. Was brauchst du?'",
+      "start": "Gutes Handwerk braucht Zeit und das richtige Holz. Was brauchst du?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Zimmermann",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich baue Möbel, Häuser und Reparaturmaterialien aus feinstem Holz."
     },
     "mason": {
       "name": "Steinmetz",
-      "start": "Er klopft prüfend auf einen massiven Steinblock. 'Ein Fundament muss stark sein, um den Stürmen der Zeit zu trotzen. Genau wie der Wille eines Kriegers.'",
+      "start": "Ein Fundament muss stark sein, um den Stürmen der Zeit zu trotzen. Genau wie der Wille eines Kriegers.",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Steinmetz",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich bearbeite Stein für die Befestigungsanlagen und Monumente der Stadt."
     },
     "merchant": {
       "name": "Kaufmann",
-      "start": "Er reibt sich geschäftig die Hände und grinst breit. 'Willkommen in meinem bescheidenen Laden! Schau dich in Ruhe um, bei mir findest du nur die beste Qualität!'",
+      "start": "Willkommen in meinem bescheidenen Laden! Schau dich in Ruhe um, bei mir findest du nur die beste Qualität!",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Kaufmann",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich verwalte das örtliche Warenhaus und sorge für einen stetigen Fluss an Ausrüstung."
     },
     "tailor": {
       "name": "Schneider",
-      "start": "Sie zieht vorsichtig einen Faden durch edlen Stoff. 'Kleider machen Leute, nicht wahr? Und eine gute Rüstung hält dich am Leben. Womit kann ich dienen?'",
+      "start": "Kleider machen Leute, nicht wahr? Und eine gute Rüstung hält dich am Leben. Womit kann ich dienen?",
       "ask_trade": "Ich brauche dringend Hilfe bei einer Aufgabe.",
       "accept_quest": "Klasse! Besorge mir die Materialien, dann wirst du belohnt.",
       "check_quest_progress": "Hast du die Sachen dabei?",
       "complete_quest": "Perfekt! Hier ist dein Lohn.",
       "quest_title": "Auftrag vom Schneider",
-      "quest_desc": "Besorge die benötigten Materialien."
+      "quest_desc": "Besorge die benötigten Materialien.",
+      "explain_role": "Ich nähe strapazierfähige Kleidung und Rüstungsunterfütterungen für Reisende wie dich."
     },
     "bard": {
       "name": "Barde",
-      "start": "Sei gegrüßt, Wanderer! Möchtest du einem einfachen Barden ein Lied abkaufen? Oder vielleicht hast du ja eine Aufgabe für mich?"
+      "start": "Sei gegrüßt, Wanderer! Möchtest du einem einfachen Barden ein Lied abkaufen?",
+      "explain_role": "Ich sammle die Geschichten der Welt und verwandle sie in Lieder, die die Herzen erfreuen."
     }
   },
   "npc_quests": {
