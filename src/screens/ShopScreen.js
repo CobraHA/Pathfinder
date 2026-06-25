@@ -75,7 +75,8 @@ export default function ShopScreen() {
       return;
     }
 
-    const success = await ShopEngine.buyItem(item.id);
+    const merchantId = route.params?.merchantId;
+    const success = await ShopEngine.buyItem(item.id, merchantId);
     if (success) {
       // Deduct coins & give item
       await InventoryEngine.removeItem('copper_coins', discountedPrice);
@@ -101,7 +102,7 @@ export default function ShopScreen() {
       case 'healing_potion': return 'bottle-tonic-plus';
       case 'iron_ingot': return 'gold';
       case 'wooden_board': return 'tools';
-      case 'iron_sword': 
+      case 'sword': 
       case 'sword': return 'sword';
       case 'stone_axe': return 'axe';
       case 'bandit_amulet': return 'necklace';

@@ -153,7 +153,7 @@
     "markers": {
       "campfire": "Campfire",
       "cold_campfire": "Cold Campfire",
-      "shop": "Street Merchant",
+      "shop": "Trading Post",
       "workbench": "Workbench",
       "garrosh": "Blacksmith Garrosh",
       "alkuin": "Monk Alkuin",
@@ -257,7 +257,7 @@
     "healing_potion": "Healing Potion",
     "iron_ingot": "Iron Ingot",
     "wooden_board": "Wooden Board",
-    "iron_sword": "Iron Sword",
+    "sword": "Sword",
     "stone_axe": "Stone Axe",
     "bandit_amulet": "Bandit Amulet",
     "campfire": "Campfire",
@@ -810,5 +810,12 @@
       "title": "Tailor: Task 3",
       "desc": "Help me with my work."
     }
+  },
+  "item": {
+    "broken_shirt": "Torn T-Shirt",
+    "broken_pants": "Torn Pants",
+    "shirt": "Intact T-Shirt",
+    "pants": "Intact Pants",
+    "stick": "Stick"
   }
 }

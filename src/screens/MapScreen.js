@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useMemo, useCallback, useRef, useState, useEffect } from 'react';
+import Svg, { Path } from 'react-native-svg';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, Modal, ScrollView, Animated, Platform, PanResponder, Dimensions, ActivityIndicator } from 'react-native';
+import DonationModal from '../components/DonationModal';
 import MapView, { Marker, Polygon, Callout, PROVIDER_GOOGLE, PROVIDER_DEFAULT } from 'react-native-maps';
 
 const FloatingText = ({ text, subtext, icon, iconColor, onComplete }) => {
@@ -105,7 +107,17 @@ const mapStyle = [
   { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#b9d3c2" }] }
 ];
 
-const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPress }) => {
+
+const BrokenTshirtIcon = ({ size, color }) => (
+  <Svg viewBox="3 4 17 17" width={size} height={size}>
+    <Path
+      fill={color}
+      d="M12.83,5.97 C12.59,6.58 12.03,7 11.39,7 C10.74,7 10.18,6.58 9.94,5.97 L5.5,7.5 V11.5 L7,11 V17 L8,14 L10,19 L12,15 L14,19 L15,16 L16,18 V11 L17.5,11.5 V7.5 L12.83,5.97 Z"
+    />
+  </Svg>
+);
+
+const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPress, markerIndex }) => {
   const isNPC = q.type === 'npc';
   const isWorkbench = q.type === 'workbench';
   const isColdCampfire = q.type === 'cold_campfire';
@@ -117,9 +129,34 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
   let iconName = 'map-marker';
   let iconColor = '#228B22';
   let bgColor = 'rgba(20, 30, 20, 0.9)';
+  let badgeIcon = null;
+  let badgeColor = '#FFFFFF';
 
   if (isNPC) {
     iconName = 'account'; iconColor = '#E9BC62'; bgColor = 'rgba(62, 39, 35, 0.9)';
+    const npcId = q.data?.baseKey;
+    switch (npcId) {
+      case 'drunkard_hostile': badgeIcon = 'glass-mug-variant'; badgeColor = '#FF6347'; break;
+      case 'thief': badgeIcon = 'incognito'; badgeColor = '#FF4500'; iconName = 'account-cowboy-hat'; break;
+      case 'blacksmith': badgeIcon = 'anvil'; badgeColor = '#A9A9A9'; iconName = 'account-hard-hat'; break;
+      case 'herbalist': badgeIcon = 'leaf'; badgeColor = '#32CD32'; break;
+      case 'lumberjack': badgeIcon = 'axe'; badgeColor = '#D2691E'; break;
+      case 'beggar': badgeIcon = 'hand-extended'; badgeColor = '#A9A9A9'; break;
+      case 'barista': badgeIcon = 'coffee'; badgeColor = '#8B4513'; break;
+      case 'trader': case 'merchant': badgeIcon = 'storefront'; badgeColor = '#FFD700'; break;
+      case 'guard_captain': badgeIcon = 'shield-sword'; badgeColor = '#4682B4'; iconName = 'account-hard-hat'; break;
+      case 'miner': badgeIcon = 'pickaxe'; badgeColor = '#A9A9A9'; iconName = 'account-hard-hat'; break;
+      case 'farmer': badgeIcon = 'pitchfork'; badgeColor = '#DAA520'; iconName = 'account-cowboy-hat'; break;
+      case 'cook': badgeIcon = 'chef-hat'; badgeColor = '#FFFFFF'; break;
+      case 'hunter': case 'scout': badgeIcon = 'bow-arrow'; badgeColor = '#556B2F'; break;
+      case 'mayor': badgeIcon = 'crown'; badgeColor = '#FFD700'; iconName = 'account-tie'; break;
+      case 'priest': badgeIcon = 'book-cross'; badgeColor = '#FFFFFF'; break;
+      case 'alchemist': badgeIcon = 'flask'; badgeColor = '#9400D3'; break;
+      case 'carpenter': case 'mason': badgeIcon = 'hammer-wrench'; badgeColor = '#D2B48C'; iconName = 'account-hard-hat'; break;
+      case 'tailor': badgeIcon = 'needle'; badgeColor = '#FFC0CB'; break;
+      case 'bard': badgeIcon = 'music-note'; badgeColor = '#FF69B4'; iconName = 'account-music'; break;
+      case 'informant': badgeIcon = 'eye'; badgeColor = '#8A2BE2'; break;
+    }
   } else if (isColdCampfire) {
     iconName = 'campfire'; iconColor = '#A9A9A9'; bgColor = 'rgba(62, 39, 35, 0.9)';
   } else if (isWorkbench) {
@@ -135,23 +172,51 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
   } else if (isTreasureMark) {
     iconName = 'close'; iconColor = '#FF0000'; bgColor = 'rgba(50, 10, 10, 0.9)';
   } else if (q.type === 'resource') {
-    const itemId = q.data?.resource?.itemId;
+    const itemId = q.data?.resource?.itemId || q.data?.itemId;
     bgColor = 'rgba(20, 25, 30, 0.9)';
-    switch (itemId) {
-      case 'clean_water': case 'dirty_water': case 'water_flask': iconName = 'water'; iconColor = '#4169E1'; break;
-      case 'iron_ore': iconName = 'diamond-stone'; iconColor = '#A9A9A9'; break;
-      case 'herb_root': iconName = 'sprout'; iconColor = '#32CD32'; break;
-      case 'wood_log': iconName = 'tree'; iconColor = '#D2691E'; break;
-      case 'stone_block': iconName = 'cube-outline'; iconColor = '#808080'; break;
-      case 'berries': iconName = 'fruit-cherries'; iconColor = '#FF1493'; break;
-      case 'mushrooms': iconName = 'mushroom'; iconColor = '#FF6347'; break;
-      case 'salt_water': iconName = 'water-percent'; iconColor = '#4169E1'; break;
-      case 'flint': iconName = 'flare'; iconColor = '#D3D3D3'; break;
-      case 'salt': iconName = 'shaker'; iconColor = '#FFFFFF'; break;
-      case 'bread': iconName = 'baguette'; iconColor = '#D2B48C'; break;
-      case 'raw_meat': iconName = 'food-steak'; iconColor = '#CD5C5C'; break;
-      case 'roasted_meat': iconName = 'food-drumstick'; iconColor = '#8B4513'; break;
-      default: iconName = 'package-variant'; iconColor = '#E9BC62'; break;
+    
+    const isAbandonedClothes = q.title?.includes('Geplündertes') || q.data?.resource?.name?.includes('Geplündertes') || q.data?.name?.includes('Geplündertes');
+    
+    if (isAbandonedClothes) {
+      iconName = 'broken-tshirt';
+      iconColor = '#9E9E9E';
+    } else {
+      switch (itemId) {
+        case 'clean_water': case 'dirty_water': case 'water_flask': iconName = 'water'; iconColor = '#4169E1'; break;
+        case 'iron_ore': iconName = 'diamond-stone'; iconColor = '#A9A9A9'; break;
+        case 'herb_root': iconName = 'sprout'; iconColor = '#32CD32'; break;
+        case 'wood_log': iconName = 'tree'; iconColor = '#D2691E'; break;
+        case 'stick': iconName = 'slash-forward'; iconColor = '#D2691E'; break;
+        case 'stone_block': iconName = 'cube-outline'; iconColor = '#808080'; break;
+        case 'berries': iconName = 'fruit-cherries'; iconColor = '#FF1493'; break;
+        case 'mushrooms': iconName = 'mushroom'; iconColor = '#FF6347'; break;
+        case 'salt_water': iconName = 'water-percent'; iconColor = '#4169E1'; break;
+        case 'flint': iconName = 'flare'; iconColor = '#D3D3D3'; break;
+        case 'salt': iconName = 'shaker'; iconColor = '#FFFFFF'; break;
+        case 'wheat': iconName = 'barley'; iconColor = '#DAA520'; break;
+        case 'bread': case 'stale_bread': iconName = 'baguette'; iconColor = '#D2B48C'; break;
+        case 'raw_meat': iconName = 'food-steak'; iconColor = '#CD5C5C'; break;
+        case 'roasted_meat': iconName = 'food-drumstick'; iconColor = '#8B4513'; break;
+        case 'gold_coin': case 'old_currency': iconName = 'cash'; iconColor = '#FFD700'; break;
+        case 'medicine': iconName = 'pill'; iconColor = '#FF0000'; break;
+        case 'canned_beans': case 'canned_food': case 'snacks': iconName = 'food-variant'; iconColor = '#CD5C5C'; break;
+        case 'flower': iconName = 'flower'; iconColor = '#FF69B4'; break;
+        case 'coffee_beans': iconName = 'coffee'; iconColor = '#8B4513'; break;
+        case 'book': case 'notebook': iconName = 'book'; iconColor = '#A0522D'; break;
+        case 'beer': iconName = 'glass-mug-variant'; iconColor = '#FFD700'; break;
+        case 'energy_drink': iconName = 'flash'; iconColor = '#00FFFF'; break;
+        case 'batteries': iconName = 'battery'; iconColor = '#32CD32'; break;
+        case 'backpack': iconName = 'bag-personal'; iconColor = '#8B4513'; break;
+        case 'pencil': iconName = 'pencil'; iconColor = '#FFD700'; break;
+        case 'fabric': iconName = 'tshirt-crew'; iconColor = '#00BCD4'; break;
+        case 'shirt': iconName = 'tshirt-crew'; iconColor = '#00BCD4'; break;
+        case 'pants': iconName = 'hanger'; iconColor = '#00BCD4'; break;
+        case 'broken_shirt': iconName = 'broken-tshirt'; iconColor = '#9E9E9E'; break;
+        case 'broken_pants': iconName = 'hanger'; iconColor = '#9E9E9E'; break;
+        case 'burger': iconName = 'hamburger'; iconColor = '#FFA500'; break;
+        case 'gasoline': iconName = 'gas-station'; iconColor = '#FF4500'; break;
+        default: iconName = 'package-variant'; iconColor = '#E9BC62'; break;
+      }
     }
   }
 
@@ -160,7 +225,7 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
 
   return (
     <Marker
-      key={q.id}
+      key={'marker_' + markerIndex}
       tracksViewChanges={Platform.OS === 'android'}
       coordinate={{
         latitude: qLat || (effectiveLocation.coords.latitude + 0.001),
@@ -182,11 +247,20 @@ const MemoizedQuestMarker = React.memo(({ q, qLat, qLon, effectiveLocation, onPr
         shadowOpacity: 0.5,
         shadowRadius: 2,
       }} pointerEvents="none">
-        <MaterialCommunityIcons name={iconName} size={18} color={iconColor} />
+        {iconName === 'broken-tshirt' ? (
+          <BrokenTshirtIcon size={18} color={iconColor} />
+        ) : (
+          <MaterialCommunityIcons name={iconName} size={18} color={iconColor} />
+        )}
+        {badgeIcon && (
+          <View style={{ position: 'absolute', bottom: -6, right: -6, backgroundColor: 'rgba(20,20,20,0.95)', borderRadius: 10, padding: 3, borderWidth: 1, borderColor: '#555' }}>
+            <MaterialCommunityIcons name={badgeIcon} size={14} color={badgeColor} />
+          </View>
+        )}
       </View>
       <Callout>
-        <View style={{ padding: 4, alignItems: 'center', minWidth: 140, maxWidth: 220 }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 2, textAlign: 'center' }}>{markerTitle}</Text>
+        <View style={{ padding: 4, alignItems: 'center', minWidth: 140, maxWidth: 250 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 2, textAlign: 'center' }} adjustsFontSizeToFit={true} numberOfLines={2}>{markerTitle}</Text>
           <Text style={{ fontSize: 11, color: '#444', textAlign: 'center', }}>{markerDesc}</Text>
           {q.distance_meters > 50 && (
             <Text style={{ color: '#D32F2F', fontWeight: 'bold', marginTop: 3, fontSize: 11 }}>
@@ -242,7 +316,9 @@ export default function MapScreen() {
   const [activeChest, setActiveChest] = useState(null);
   const [activeQuest, setActiveQuest] = useState(null);
   const [chestLootResult, setChestLootResult] = useState(null);
+  const [questReward, setQuestReward] = useState(null); // { xp: number, rewards: [{icon, color, label}] }
   const [dialogNode, setDialogNode] = useState('start');
+  const [showDonationModal, setShowDonationModal] = useState(false);
 
 
   const [isGatheringWater, setIsGatheringWater] = useState(false);
@@ -273,6 +349,47 @@ export default function MapScreen() {
     });
     LevelEngine.getStats().then(s => setPlayerLevel(s.level));
   }, []);
+
+  // ----- Helper: Schließt alle UI-Overlays (NPC-Dialog, Dialog-Node, Chest-Modal) -----
+  const closeAllOverlays = () => {
+    setActiveNPC(null);
+    setDialogNode('');
+    setActiveChest(null);
+  };
+
+  // ----- Helper: Quest-Reward anzeigen -----
+  // Schließt zuerst alle Overlays und wartet dann 400ms, damit iOS das Modal
+  // vollständig dismisst bevor das Reward-Modal präsentiert wird.
+  const showQuestReward = (itemRewardId, xpGained, nextNode) => {
+    closeAllOverlays();
+
+    const coins = nextNode?.rewardCoins || 10;
+    const gold  = nextNode?.rewardGold  || 0;
+
+    const rewards = [];
+    if (itemRewardId) {
+      const itemName = i18n.t(`items.${itemRewardId}`, { defaultValue: itemRewardId });
+      rewards.push({ icon: 'star', color: '#FFD700', label: `1x ${itemName}` });
+    }
+    if (coins > 0) {
+      rewards.push({ icon: 'circle-multiple', color: '#CD7F32', label: `${coins}x Kupfermünzen` });
+    }
+    if (gold > 0) {
+      rewards.push({ icon: 'gold', color: '#FFD700', label: `${gold}x Goldmünzen` });
+    }
+
+    // Ins Inventar legen
+    if (coins > 0) InventoryEngine.addItem({ id: 'copper_coins', name: 'Kupfermünzen', type: 'currency' }, coins).catch(() => {});
+    if (gold > 0)  InventoryEngine.addItem({ id: 'gold_coin',    name: 'Goldmünze',    type: 'currency' }, gold).catch(() => {});
+
+    setTimeout(() => {
+      setQuestReward({
+        xp: xpGained || 50,
+        rewards,
+      });
+    }, 400);
+  };
+
 
   const showFloatingText = (text, icon = 'check-circle', color = '#4CAF50') => {
     const id = Date.now().toString() + Math.random().toString();
@@ -325,51 +442,83 @@ export default function MapScreen() {
   const joystickActive = useRef(false);
   const joystickVector = useRef({ dx: 0, dy: 0 });
   const lastFetchRef = useRef(0);
+  const hasInitialFetched = useRef(false);
   const lastUpdateLocRef = useRef(null);
 
   const lastWaterCheckRef = useRef({ lat: 0, lon: 0 });
   const lastDrainCheckRef = useRef({ lat: 0, lon: 0 });
 
-  const checkEnvironmentInOSMBackground = async (latitude, longitude) => {
-    // Check Water
-    try {
-      const queryWater = `[out:json];(way["natural"="water"](around:50,${latitude},${longitude});relation["natural"="water"](around:50,${latitude},${longitude});way["waterway"](around:50,${latitude},${longitude});relation["waterway"](around:50,${latitude},${longitude});way["landuse"="basin"](around:50,${latitude},${longitude});way["landuse"="reservoir"](around:50,${latitude},${longitude});node["natural"="spring"](around:50,${latitude},${longitude}););out count;`;
-      const responseWater = await fetch(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(queryWater)}`);
-      const dataWater = await responseWater.json();
-      if (dataWater && dataWater.elements && dataWater.elements.length > 0 && dataWater.elements[0].tags) {
-        const counts = dataWater.elements[0].tags;
-        setIsNearWater((counts.nodes && parseInt(counts.nodes) > 0) || (counts.ways && parseInt(counts.ways) > 0) || (counts.relations && parseInt(counts.relations) > 0));
-      } else {
-        setIsNearWater(false);
-      }
+  // Exponential backoff state for Overpass (module-level refs so they survive re-renders)
+  const overpassFailCount = useRef(0);
+  const overpassNextAllowedAt = useRef(0);
 
-      // Check Well
-      const queryWell = `[out:json];(node["amenity"="drinking_water"](around:50,${latitude},${longitude});node["man_made"="water_well"](around:50,${latitude},${longitude}););out count;`;
-      const responseWell = await fetch(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(queryWell)}`);
-      const dataWell = await responseWell.json();
-      if (dataWell && dataWell.elements && dataWell.elements.length > 0 && dataWell.elements[0].tags) {
-        const counts = dataWell.elements[0].tags;
-        setIsNearWell((counts.nodes && parseInt(counts.nodes) > 0));
-      } else {
-        setIsNearWell(false);
+  // Fetches a query from Overpass, trying multiple mirrors with a 4s timeout each.
+  // On complete failure, backs off exponentially (60s → 120s → 240s → … max 15min).
+  // Returns parsed JSON or null on failure.
+  const overpassFetch = async (query) => {
+    const now = Date.now();
+    if (now < overpassNextAllowedAt.current) return null; // still in backoff
+
+    const mirrors = [
+      'https://overpass-api.de/api/interpreter',
+      'https://lz4.overpass-api.de/api/interpreter',
+      'https://z.overpass-api.de/api/interpreter',
+    ];
+    for (const base of mirrors) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 4000);
+      try {
+        const res = await fetch(`${base}?data=${encodeURIComponent(query)}`, { signal: controller.signal });
+        clearTimeout(timer);
+        if (res.ok) {
+          overpassFailCount.current = 0; // reset backoff on success
+          overpassNextAllowedAt.current = 0;
+          return await res.json();
+        }
+      } catch (_) {
+        clearTimeout(timer);
       }
-    } catch (e) {
+    }
+    // All mirrors failed — apply exponential backoff
+    overpassFailCount.current += 1;
+    const backoffMs = Math.min(60_000 * Math.pow(2, overpassFailCount.current - 1), 15 * 60_000);
+    overpassNextAllowedAt.current = Date.now() + backoffMs;
+    return null;
+  };
+
+  const checkEnvironmentInOSMBackground = async (latitude, longitude) => {
+    const queryWater  = `[out:json];(way["natural"="water"](around:50,${latitude},${longitude});relation["natural"="water"](around:50,${latitude},${longitude});way["waterway"](around:50,${latitude},${longitude});relation["waterway"](around:50,${latitude},${longitude});way["landuse"="basin"](around:50,${latitude},${longitude});way["landuse"="reservoir"](around:50,${latitude},${longitude});node["natural"="spring"](around:50,${latitude},${longitude}););out count;`;
+    const queryWell   = `[out:json];(node["amenity"="drinking_water"](around:50,${latitude},${longitude});node["man_made"="water_well"](around:50,${latitude},${longitude}););out count;`;
+    const queryForest = `[out:json];(way["landuse"="forest"](around:50,${latitude},${longitude});way["natural"="wood"](around:50,${latitude},${longitude});relation["landuse"="forest"](around:50,${latitude},${longitude});relation["natural"="wood"](around:50,${latitude},${longitude}););out count;`;
+
+    // Fire all three requests in parallel for speed
+    const [dataWater, dataWell, dataForest] = await Promise.all([
+      overpassFetch(queryWater).catch(() => null),
+      overpassFetch(queryWell).catch(() => null),
+      overpassFetch(queryForest).catch(() => null),
+    ]);
+
+    // Water
+    if (dataWater?.elements?.length > 0 && dataWater.elements[0].tags) {
+      const c = dataWater.elements[0].tags;
+      setIsNearWater((c.nodes && parseInt(c.nodes) > 0) || (c.ways && parseInt(c.ways) > 0) || (c.relations && parseInt(c.relations) > 0));
+    } else {
       setIsNearWater(false);
+    }
+
+    // Well
+    if (dataWell?.elements?.length > 0 && dataWell.elements[0].tags) {
+      const c = dataWell.elements[0].tags;
+      setIsNearWell(c.nodes && parseInt(c.nodes) > 0);
+    } else {
       setIsNearWell(false);
     }
 
-    // Check Forest
-    try {
-      const queryForest = `[out:json];(way["landuse"="forest"](around:50,${latitude},${longitude});way["natural"="wood"](around:50,${latitude},${longitude});relation["landuse"="forest"](around:50,${latitude},${longitude});relation["natural"="wood"](around:50,${latitude},${longitude}););out count;`;
-      const responseForest = await fetch(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(queryForest)}`);
-      const dataForest = await responseForest.json();
-      if (dataForest && dataForest.elements && dataForest.elements.length > 0 && dataForest.elements[0].tags) {
-        const counts = dataForest.elements[0].tags;
-        setIsNearForest((counts.nodes && parseInt(counts.nodes) > 0) || (counts.ways && parseInt(counts.ways) > 0) || (counts.relations && parseInt(counts.relations) > 0));
-      } else {
-        setIsNearForest(false);
-      }
-    } catch (e) {
+    // Forest
+    if (dataForest?.elements?.length > 0 && dataForest.elements[0].tags) {
+      const c = dataForest.elements[0].tags;
+      setIsNearForest((c.nodes && parseInt(c.nodes) > 0) || (c.ways && parseInt(c.ways) > 0) || (c.relations && parseInt(c.relations) > 0));
+    } else {
       setIsNearForest(false);
     }
   };
@@ -580,7 +729,15 @@ export default function MapScreen() {
               case 'gold_coin': iconName = 'coin'; iconColor = '#FFD700'; break;
               case 'beer': iconName = 'beer'; iconColor = '#FFC107'; break;
               case 'book': iconName = 'book-open-page-variant'; iconColor = '#795548'; break;
-              case 'fabric': iconName = 'tshirt-crew'; iconColor = '#00BCD4'; break;
+              case 'fabric': 
+                if (npc.title?.includes('Geplündertes') || npc.data?.resource?.name?.includes('Geplündertes') || npc.data?.name?.includes('Geplündertes')) {
+                  iconName = 'broken-tshirt';
+                  iconColor = '#9E9E9E';
+                } else {
+                  iconName = 'tshirt-crew'; 
+                  iconColor = '#00BCD4';
+                }
+                break;
               case 'gasoline': iconName = 'gas-station'; iconColor = '#607D8B'; break;
             }
 
@@ -650,7 +807,127 @@ export default function MapScreen() {
         }
         setDialogNode('check_quest_progress');
       } else {
-        const req = npc.data?.dialog?.accept_quest?.questRequirement;
+        // FAILSAFE: Wenn der NPC gar keine Optionen hat oder der start Node komplett fehlt, injiziere alles hier!
+        if (!npc.data?.dialog) npc.data.dialog = {};
+        if (!npc.data.dialog.start || !npc.data.dialog.start.options) {
+          if (!npc.data.dialog.start) npc.data.dialog.start = { text: npc.data.dialog.text || `npc.${npc.data.baseKey || "common"}.start` };
+
+          const exchanges = npc.data.dialogExchanges || 2;
+          const baseId = npc.data.baseKey || "common";
+          
+          npc.data.dialog.start.options = [
+            { label: `npc.${baseId}.opt_start_1`, next: (exchanges === 1) ? "offer_quest" : "explain_role_1" },
+            { label: "npc.common.opt_farewell", next: "end" }
+          ];
+          if (exchanges !== 1 && !npc.data.dialog.explain_role_1) {
+            npc.data.dialog.explain_role_1 = {
+              text: `npc.${baseId}.explain_role_1`,
+              options: [
+                { label: `npc.${baseId}.opt_explain_1_1`, next: "explain_role_2" },
+                { label: "npc.common.opt_farewell", next: "end" }
+              ]
+            };
+          }
+          if (exchanges === 3 && !npc.data.dialog.explain_role_2) {
+            npc.data.dialog.explain_role_2 = {
+              text: `npc.${baseId}.explain_role_2`,
+              options: [
+                { label: `npc.${baseId}.opt_explain_2_1`, next: "explain_role_3" },
+                { label: "npc.common.opt_farewell", next: "end" }
+              ]
+            };
+            npc.data.dialog.explain_role_3 = {
+              text: `npc.${baseId}.explain_role_3`,
+              options: [
+                { label: `npc.${baseId}.opt_explain_3_1`, next: "offer_quest" },
+                { label: "npc.common.opt_farewell", next: "end" }
+              ]
+            };
+          } else if (exchanges !== 1 && !npc.data.dialog.explain_role_2) {
+            npc.data.dialog.explain_role_2 = {
+              text: `npc.${baseId}.explain_role_2`,
+              options: [
+                { label: `npc.${baseId}.opt_explain_2_1`, next: "offer_quest" },
+                { label: "npc.common.opt_farewell", next: "end" }
+              ]
+            };
+          }
+          if (!npc.data.dialog.offer_quest) {
+            npc.data.dialog.offer_quest = {
+              text: "Gut, dass du fragst! Ich brauche dringend diese Items.",
+              action: "give_quest",
+              questTitle: "Eine helfende Hand",
+              questDesc: "Sammle Materialien, um diesem NPC zu helfen.",
+              questRequirement: (() => {
+                const base = npc.data.baseKey || "common";
+                if (base === 'miner') return { itemId: 'iron_ore', amount: 5 };
+                if (base === 'farmer') return { itemId: 'clean_water', amount: 5 };
+                if (base === 'cook') return { itemId: 'mushrooms', amount: 4 };
+                if (base === 'hunter') return { itemId: 'bandit_amulet', amount: 1 };
+                if (base === 'scout') return { itemId: 'bread', amount: 2 };
+                if (base === 'mayor') return { itemId: 'copper_coins', amount: 50 };
+                if (base === 'priest') return { itemId: 'bandit_amulet', amount: 3 };
+                if (base === 'alchemist') return { itemId: 'mushrooms', amount: 10 };
+                if (base === 'carpenter') return { itemId: 'wood_log', amount: 15 };
+                if (base === 'mason') return { itemId: 'iron_ore', amount: 10 };
+                if (base === 'merchant') return { itemId: 'copper_coins', amount: 30 };
+                if (base === 'tailor') return { itemId: 'mushrooms', amount: 5 };
+                if (base === 'bard') return { itemId: 'clean_water', amount: 3 };
+                if (base === 'trader') return { itemId: 'copper_coins', amount: 20 };
+                if (base === 'informant') return { itemId: 'copper_coins', amount: 15 };
+                if (base === 'barista') return { itemId: 'clean_water', amount: 5 };
+                if (base === 'guard_captain') return { itemId: 'sword', amount: 1 };
+                if (base === 'beggar') return { itemId: 'bread', amount: 1 };
+                return { itemId: 'wood_log', amount: 3 };
+              })(),
+              xpReward: 50,
+              rewardItem: "copper_coins",
+              options: [{ label: "Verstanden!", next: "end" }]
+            };
+          }
+          if (!npc.data.dialog.check_quest_progress) {
+            npc.data.dialog.check_quest_progress = {
+              text: "Hast du die Sachen dabei?",
+              options: [
+                { label: "map.dialogs.common.give_items", next: "complete_quest" },
+                { label: "map.dialogs.common.not_yet", next: "end" }
+              ]
+            };
+          }
+          if (!npc.data.dialog.complete_quest) {
+            npc.data.dialog.complete_quest = {
+              text: "Perfekt! Hier ist dein Lohn.",
+              action: "finish_quest",
+              questRequirement: (() => {
+                const base = npc.data.baseKey || "common";
+                if (base === 'miner') return { itemId: 'iron_ore', amount: 5 };
+                if (base === 'farmer') return { itemId: 'clean_water', amount: 5 };
+                if (base === 'cook') return { itemId: 'mushrooms', amount: 4 };
+                if (base === 'hunter') return { itemId: 'bandit_amulet', amount: 1 };
+                if (base === 'scout') return { itemId: 'bread', amount: 2 };
+                if (base === 'mayor') return { itemId: 'copper_coins', amount: 50 };
+                if (base === 'priest') return { itemId: 'bandit_amulet', amount: 3 };
+                if (base === 'alchemist') return { itemId: 'mushrooms', amount: 10 };
+                if (base === 'carpenter') return { itemId: 'wood_log', amount: 15 };
+                if (base === 'mason') return { itemId: 'iron_ore', amount: 10 };
+                if (base === 'merchant') return { itemId: 'copper_coins', amount: 30 };
+                if (base === 'tailor') return { itemId: 'mushrooms', amount: 5 };
+                if (base === 'bard') return { itemId: 'clean_water', amount: 3 };
+                if (base === 'trader') return { itemId: 'copper_coins', amount: 20 };
+                if (base === 'informant') return { itemId: 'copper_coins', amount: 15 };
+                if (base === 'barista') return { itemId: 'clean_water', amount: 5 };
+                if (base === 'guard_captain') return { itemId: 'sword', amount: 1 };
+                if (base === 'beggar') return { itemId: 'bread', amount: 1 };
+                return { itemId: 'wood_log', amount: 3 };
+              })(),
+              xpReward: 50,
+              rewardItem: "copper_coins",
+              options: [{ label: "map.dialogs.common.you_are_welcome", next: "end" }]
+            };
+          }
+        }
+
+        const req = npc.data?.dialog?.accept_quest?.questRequirement || npc.data?.dialog?.offer_quest?.questRequirement;
         if (req) {
           const inventory = await InventoryEngine.getInventory();
           const invItem = inventory.find(i => i.id === req.itemId);
@@ -662,21 +939,33 @@ export default function MapScreen() {
                 ...npc.data,
                 dialog: {
                   ...npc.data.dialog,
-                  start: {
-                    ...npc.data.dialog.start,
-                    options: [
-                      ...(npc.data.dialog.start.options || []),
-                      { label: "npc.common.already_have_items", next: "fast_complete_node" }
-                    ]
-                  },
+                  // Button erscheint bei "ask_trade" (wo der NPC erklärt was er braucht),
+                  // falls kein ask_trade-Node, dann als Fallback bei "start"
+                  ...(npc.data.dialog.ask_trade ? {
+                    ask_trade: {
+                      ...npc.data.dialog.ask_trade,
+                      options: [
+                        ...(npc.data.dialog.ask_trade.options || []),
+                        { label: "npc.common.already_have_items", next: "fast_complete_node" }
+                      ]
+                    }
+                  } : {
+                    start: {
+                      ...npc.data.dialog.start,
+                      options: [
+                        ...(npc.data.dialog.start.options || []),
+                        { label: "npc.common.already_have_items", next: "fast_complete_node" }
+                      ]
+                    }
+                  }),
                   fast_complete_node: {
                     text: npc.data.dialog.complete_quest?.text || "Perfekt! Hier ist dein Lohn.",
                     action: "fast_complete_quest",
                     questRequirement: req,
-                    xpReward: npc.data.dialog.accept_quest?.xpReward,
-                    rewardItem: npc.data.dialog.accept_quest?.rewardItem,
-                    questTitle: npc.data.dialog.accept_quest?.questTitle,
-                    questDesc: npc.data.dialog.accept_quest?.questDesc,
+                    xpReward: npc.data.dialog.accept_quest?.xpReward || npc.data.dialog.offer_quest?.xpReward,
+                    rewardItem: npc.data.dialog.accept_quest?.rewardItem || npc.data.dialog.offer_quest?.rewardItem,
+                    questTitle: npc.data.dialog.accept_quest?.questTitle || npc.data.dialog.offer_quest?.questTitle,
+                    questDesc: npc.data.dialog.accept_quest?.questDesc || npc.data.dialog.offer_quest?.questDesc,
                     options: [{ label: "npc.common.you_are_welcome", next: "end" }]
                   }
                 }
@@ -790,6 +1079,43 @@ export default function MapScreen() {
       return;
     }
 
+    if (option.action === 'rob_player') {
+      const inv = await InventoryEngine.getInventory();
+      // Filter out quest items so they can't be stolen
+      const stealable = inv.filter(i => i.amount > 0 && i.type !== 'quest_item');
+      
+      if (stealable.length === 0) {
+        setDialogNode('robbed_empty');
+        await NodeStateEngine.completeQuest(npcTarget.id);
+        setQuests(prev => prev.filter(q => q.id !== npcTarget.id));
+        return;
+      }
+      
+      const randomItem = stealable[Math.floor(Math.random() * stealable.length)];
+      await InventoryEngine.removeItem(randomItem.id, 1);
+      
+      Alert.alert('Ausgeraubt!', `Der Dieb hat dir 1x ${i18n.t('items.' + randomItem.id, {defaultValue: randomItem.id})} gestohlen!`);
+      
+      setDialogNode('robbed_success');
+      
+      // Remove thief from map completely
+      await NodeStateEngine.completeQuest(npcTarget.id);
+      setQuests(prev => prev.filter(q => q.id !== npcTarget.id));
+      
+      return;
+    }
+    
+    if (option.action === 'open_merchant_shop') {
+      setActiveNPC(null);
+      navigation.navigate('Shop', { isMerchant: true, merchantId: npcTarget.id });
+      return;
+    }
+    
+    if (option.action === 'open_donation_modal') {
+      setShowDonationModal(true);
+      return;
+    }
+
     if (option.action === 'trade_bread') {
       const hasBread = await InventoryEngine.hasItem('bread', 1);
       const hasSalt = await InventoryEngine.hasItem('salt', 1);
@@ -827,6 +1153,8 @@ export default function MapScreen() {
           requirement: nextNode?.questRequirement,
           rewardXP: nextNode?.xpReward || 50,
           rewardItem: nextNode?.rewardItem,
+          rewardCoins: nextNode?.rewardCoins,
+          rewardGold: nextNode?.rewardGold,
           npcLocation: { lat: nLat, lon: nLon }
         });
         if (added) {
@@ -855,6 +1183,8 @@ export default function MapScreen() {
           requirement: nextNode?.questRequirement,
           rewardXP: nextNode?.xpReward || 50,
           rewardItem: nextNode?.rewardItem,
+          rewardCoins: nextNode?.rewardCoins,
+          rewardGold: nextNode?.rewardGold,
           npcLocation: { lat: nLat, lon: nLon }
         });
 
@@ -869,14 +1199,8 @@ export default function MapScreen() {
         await InventoryEngine.addItem({ id: itemRewardId, name: itemRewardId, type: 'quest_reward' }, 1);
         await QuestLogEngine.completeQuest(questId);
         handleGainXP(xpGained, 'quest');
-        
-        const translatedRewardName = i18n.t(`items.${itemRewardId}`, { defaultValue: itemRewardId });
-        setChestLootResult({
-          amount: 1,
-          name: translatedRewardName,
-          icon: 'star',
-          color: '#FFD700'
-        });
+        showQuestReward(itemRewardId, xpGained, nextNode);
+        return;
       } else if (nextNode?.action === 'finish_quest') {
         const questId = `quest_${npcTarget?.id}`;
         const allQuests = await QuestLogEngine.getQuests();
@@ -950,20 +1274,14 @@ export default function MapScreen() {
           await InventoryEngine.addItem({ id: itemRewardId, name: itemRewardId, type: 'quest_reward' }, 1);
           await QuestLogEngine.completeQuest(questId);
           handleGainXP(xpGained, 'quest');
-          
-          const translatedRewardName = i18n.t(`items.${itemRewardId}`, { defaultValue: itemRewardId });
-          setChestLootResult({
-            amount: 1,
-            name: translatedRewardName,
-            icon: 'star',
-            color: '#FFD700'
-          });
+          showQuestReward(itemRewardId, xpGained, nextNode);
+          return;
         }
       }
     }
 
     if (option.next === 'end') {
-      setActiveNPC(null);
+      closeAllOverlays();
     } else {
       setDialogNode(option.next);
     }
@@ -990,7 +1308,14 @@ export default function MapScreen() {
             setQuests(prev => {
               const map = new Map();
               prev.forEach(p => {
-                if (p.distance_meters === undefined || p.distance_meters < 1500 || p.id === pinnedQuestId || activeQuestIds.includes(p.id)) {
+                let pLoc = p.location;
+                if (typeof pLoc === 'string') {
+                  try { pLoc = JSON.parse(pLoc); } catch (e) {}
+                }
+                if (pLoc?.coordinates) {
+                  p.distance_meters = getDistance(latitude, longitude, pLoc.coordinates[1], pLoc.coordinates[0]);
+                }
+                if (p.distance_meters === undefined || p.distance_meters < 500 || p.id === pinnedQuestId || activeQuestIds.includes(p.id)) {
                   map.set(p.id, p);
                 }
               });
@@ -1028,7 +1353,7 @@ export default function MapScreen() {
         const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         const distance = R * c;
-        if (distance > 20) shouldUpdate = true;
+        if (distance > 10) shouldUpdate = true;
       }
 
       if (shouldUpdate) {
@@ -1040,7 +1365,8 @@ export default function MapScreen() {
       }
 
       // Update distances locally every 400ms, but only fetch from backend if we moved > 20m
-      console.log(`[MapScreen] useEffect triggered. shouldUpdate: ${shouldUpdate}`); if (shouldUpdate || quests.length === 0) {
+      console.log(`[MapScreen] useEffect triggered. shouldUpdate: ${shouldUpdate}`); if (shouldUpdate || !hasInitialFetched.current) {
+        hasInitialFetched.current = true;
         lastFetchRef.current = now;
         QuestEngine.checkNearbyQuests(longitude, latitude)
           .then(async nearbyQuests => {
@@ -1049,7 +1375,14 @@ export default function MapScreen() {
               setQuests(prev => {
                 const map = new Map();
                 prev.forEach(p => {
-                  if (p.distance_meters === undefined || p.distance_meters < 1500 || p.id === pinnedQuestId || activeQuestIds.includes(p.id)) {
+                  let pLoc = p.location;
+                  if (typeof pLoc === 'string') {
+                    try { pLoc = JSON.parse(pLoc); } catch (e) {}
+                  }
+                  if (pLoc?.coordinates) {
+                    p.distance_meters = getDistance(latitude, longitude, pLoc.coordinates[1], pLoc.coordinates[0]);
+                  }
+                  if (p.distance_meters === undefined || p.distance_meters < 500 || p.id === pinnedQuestId || activeQuestIds.includes(p.id)) {
                     map.set(p.id, p);
                   }
                 });
@@ -1082,7 +1415,7 @@ export default function MapScreen() {
 
       // Background Check für Umgebung (nur alle ~100m Bewegung scannen)
       const distFromLastWaterCheck = Math.abs(lastWaterCheckRef.current.lat - latitude) + Math.abs(lastWaterCheckRef.current.lon - longitude);
-      if (distFromLastWaterCheck > 0.001 || lastWaterCheckRef.current.lat === 0) {
+      if (distFromLastWaterCheck > 0.005 || lastWaterCheckRef.current.lat === 0) {
         lastWaterCheckRef.current = { lat: latitude, lon: longitude };
 
         // Random Beggar Encounter (2% chance every ~100m)
@@ -1250,8 +1583,10 @@ export default function MapScreen() {
         }}
       >
 
-        {/* Player Avatar */}
+        {[
+        /* Player Avatar */
         <Marker
+          key="player_marker"
           coordinate={{
             latitude: effectiveLocation.coords.latitude,
             longitude: effectiveLocation.coords.longitude
@@ -1274,9 +1609,8 @@ export default function MapScreen() {
           }} pointerEvents="none">
             <Feather name="navigation" size={18} color="#B8860B" />
           </View>
-        </Marker>
-
-        {quests.map((q) => {
+        </Marker>,
+        ...quests.filter(q => q && q.id).map((q, index) => {
           let qLoc = q.location;
           if (typeof qLoc === 'string') {
             try { qLoc = JSON.parse(qLoc); } catch (e) { }
@@ -1286,7 +1620,8 @@ export default function MapScreen() {
 
           return (
             <MemoizedQuestMarker
-              key={q.id}
+              key={'quest_' + index}
+              markerIndex={index}
               q={q}
               qLat={qLat}
               qLon={qLon}
@@ -1304,7 +1639,8 @@ export default function MapScreen() {
               }}
             />
           );
-        })}
+        })]
+      }
       </MapView>
 
       {/* Off-screen Edge Indicator for Pinned Quest */}
@@ -1423,7 +1759,7 @@ export default function MapScreen() {
         </View>
       </Modal>
 
-      {/* Loot Result Modal */}
+      {/* Chest Loot Result Modal (bleibt für Truhen) */}
       <Modal
         visible={!!chestLootResult}
         transparent={true}
@@ -1441,6 +1777,46 @@ export default function MapScreen() {
               onPress={() => setChestLootResult(null)}
             >
               <Text style={styles.dialogButtonText}>{i18n.t('map.collect', { defaultValue: 'Einsammeln' })}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Quest Reward Modal */}
+      <Modal
+        visible={!!questReward}
+        transparent={true}
+        animationType="fade"
+      >
+        <View style={styles.modalOverlay}>
+          <View style={[styles.dialogBox, { alignItems: 'center' }]}>
+            {/* Header */}
+            <Text style={[styles.dialogTitle, { marginBottom: 4, color: '#3E2723' }]}>⚔️ Quest abgeschlossen!</Text>
+            <View style={styles.dialogLine} />
+
+            {/* XP */}
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16, backgroundColor: 'rgba(255,215,0,0.12)', borderRadius: 8, paddingVertical: 8, paddingHorizontal: 20, borderWidth: 1, borderColor: '#FFD700' }}>
+              <MaterialCommunityIcons name="star-four-points" size={22} color="#FFD700" />
+              <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#FFD700', marginLeft: 8 }}>
+                +{questReward?.xp} Erfahrungspunkte
+              </Text>
+            </View>
+
+            {/* Belohnungen */}
+            <Text style={{ color: '#8B4513', fontSize: 13, fontWeight: '600', marginBottom: 8, alignSelf: 'flex-start' }}>BELOHNUNGEN:</Text>
+            {questReward?.rewards?.map((r, idx) => (
+              <View key={idx} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, alignSelf: 'flex-start' }}>
+                <MaterialCommunityIcons name={r.icon || 'gift'} size={20} color={r.color || '#FFD700'} />
+                <Text style={{ fontSize: 17, color: '#3E2723', fontWeight: 'bold', marginLeft: 8 }}>{r.label}</Text>
+              </View>
+            ))}
+
+            <View style={{ height: 12 }} />
+            <TouchableOpacity
+              style={[styles.dialogButton, { width: '100%', alignItems: 'center' }]}
+              onPress={() => setQuestReward(null)}
+            >
+              <Text style={styles.dialogButtonText}>✓ Belohnung einsammeln</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -1489,7 +1865,16 @@ export default function MapScreen() {
             </ScrollView>
 
             <View style={styles.dialogOptions}>
-              {activeNPC?.data?.dialog?.[dialogNode]?.options?.map((opt, idx) => (
+              {(activeNPC?.data?.dialog?.[dialogNode]?.options?.length > 0 
+                ? activeNPC.data.dialog[dialogNode].options 
+                : (dialogNode === 'start' 
+                    ? [
+                        { label: "Was genau machst du hier?", next: "explain_role" },
+                        { label: "Kann ich dir bei etwas helfen?", next: "offer_quest" },
+                        { label: "Auf Wiedersehen.", next: "end" }
+                      ]
+                    : [{ label: "Auf Wiedersehen.", next: "end" }])
+              ).map((opt, idx) => (
                 <TouchableOpacity key={idx} style={styles.dialogButton} onPress={() => handleDialogOption(opt)}>
                   <Text style={styles.dialogButtonText}>&gt; {i18n.t(opt.label, { defaultValue: opt.label })}</Text>
                 </TouchableOpacity>

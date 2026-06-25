@@ -11,7 +11,11 @@
   },
   "natural=wood": {
     "type": "resource",
-    "itemId": "wood_log",
+    "itemId": [
+      "wood_log",
+      "wood_log",
+      "stick"
+    ],
     "name": "Totholz",
     "amount": [
       2,
@@ -30,14 +34,9 @@
     "spawnChance": 0.6
   },
   "shop=supermarket": {
-    "type": "resource",
-    "itemId": "canned_beans",
-    "name": "Supermarkt",
-    "amount": [
-      2,
-      4
-    ],
-    "spawnChance": 0.8
+    "type": "shop",
+    "title": "map.markers.shop",
+    "spawnChance": 1
   },
   "historic=monument": {
     "type": "quest",
@@ -55,7 +54,7 @@
     "xpReward": 20,
     "title": "map.quests.rest_stop",
     "desc": "map.quests.rest_stop_desc",
-    "spawnChance": 0.15
+    "spawnChance": 0.02
   },
   "leisure=park": {
     "type": "resource",
@@ -166,14 +165,9 @@
     "spawnChance": 0.6
   },
   "shop=convenience": {
-    "type": "chest",
-    "lootPool": [
-      "energy_drink",
-      "snacks",
-      "batteries"
-    ],
-    "isLocked": false,
-    "spawnChance": 0.25
+    "type": "shop",
+    "title": "map.markers.shop",
+    "spawnChance": 1
   },
   "amenity=atm": {
     "type": "resource",
@@ -261,5 +255,137 @@
       3
     ],
     "spawnChance": 0.4
+  },
+  "landuse=farmland": {
+    "type": "resource",
+    "itemId": "wheat",
+    "name": "Weizenfeld",
+    "amount": [
+      2,
+      5
+    ],
+    "spawnChance": 0.6
+  },
+  "crop=wheat": {
+    "type": "resource",
+    "itemId": "wheat",
+    "name": "Weizenfeld",
+    "amount": [
+      3,
+      6
+    ],
+    "spawnChance": 0.8
+  },
+  "shop=hardware": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "craft=carpenter": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "craft=blacksmith": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "building=garages": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "building=industrial": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "man_made=works": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "abandoned:shop=clothes": {
+    "type": "resource",
+    "itemId": [
+      "fabric",
+      "broken_shirt",
+      "broken_pants"
+    ],
+    "name": "Geplündertes Bekleidungsgeschäft",
+    "amount": [
+      1,
+      2
+    ],
+    "spawnChance": 1
+  },
+  "amenity=car_wash": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "shop=car_repair": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "shop=doityourself": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "building=commercial": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "building=shed": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "building=barn": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "building=warehouse": {
+    "type": "workbench",
+    "title": "map.markers.workbench",
+    "spawnChance": 1
+  },
+  "shop=kiosk": {
+    "type": "shop",
+    "title": "map.markers.shop",
+    "spawnChance": 1
+  },
+  "shop=general": {
+    "type": "shop",
+    "title": "map.markers.shop",
+    "spawnChance": 1
+  },
+  "shop=mall": {
+    "type": "shop",
+    "title": "map.markers.shop",
+    "spawnChance": 1
+  },
+  "shop=department_store": {
+    "type": "shop",
+    "title": "map.markers.shop",
+    "spawnChance": 1
+  },
+  "abandoned:shop=convenience": {
+    "type": "resource",
+    "itemId": [
+      "stale_bread",
+      "dirty_water"
+    ],
+    "name": "Geplünderter Kiosk",
+    "amount": [
+      1,
+      2
+    ],
+    "spawnChance": 1
   }
 }

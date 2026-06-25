@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase, QuestResponse } from '../lib/supabaseClient';
 import osmMapping from '../config/osm_mapping.json';
 import { NPCS } from '../config/NPCData';
@@ -9398,6 +9399,26 @@ let generatedChests: any[] = [];
 let lastChestGenTime = 0;
 
 export class QuestEngine {
+
+  static async getScannedAreas(): Promise<{lat: number, lon: number}[]> {
+    try {
+      const data = await AsyncStorage.getItem('SCANNED_AREAS');
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  static async addScannedArea(lat: number, lon: number) {
+    try {
+      const areas = await this.getScannedAreas();
+      areas.push({ lat, lon });
+      // Keep only last 50 to prevent infinite growth
+      if (areas.length > 50) areas.shift();
+      await AsyncStorage.setItem('SCANNED_AREAS', JSON.stringify(areas));
+    } catch (e) {}
+  }
+
   static generateRandomChests(lat: number, lon: number) {
     const now = Date.now();
     // Only regenerate every 10 minutes (600,000 ms) or if empty
@@ -9566,11 +9587,15 @@ export class QuestEngine {
 
         let formattedData: any = { ...matchedMapping };
         if (matchedMapping.type === 'resource') {
+          const isArray = Array.isArray(matchedMapping.itemId);
+          const itemRandom = isArray ? Math.abs(Math.imul(31, hash + 1)) / 2147483647 : 0;
+          const selectedItemId = isArray ? matchedMapping.itemId[Math.floor(itemRandom * matchedMapping.itemId.length)] : matchedMapping.itemId;
+          
           formattedData = {
             resource: {
-              itemId: matchedMapping.itemId,
+              itemId: selectedItemId,
               name: matchedMapping.title || matchedMapping.name,
-              type: ['clean_water', 'dirty_water', 'bread', 'stale_bread', 'moldy_bread', 'canned_food', 'berries', 'mushrooms', 'medicine', 'burger', 'canned_beans', 'beer'].includes(matchedMapping.itemId) ? 'consumable' : 'material',
+              type: ['clean_water', 'dirty_water', 'bread', 'stale_bread', 'moldy_bread', 'canned_food', 'berries', 'mushrooms', 'medicine', 'burger', 'canned_beans', 'beer'].includes(selectedItemId) ? 'consumable' : 'material',
               minAmount: matchedMapping.amount?.[0] || 1,
               maxAmount: matchedMapping.amount?.[1] || 3,
               maxGathers: 5
@@ -9582,14 +9607,16 @@ export class QuestEngine {
           let questRequirement = { itemId: 'copper_coins', amount: 15 };
           let xpReward = 50;
           let rewardItem = null;
+          let rewardCoins = 10;  // Kupfermünzen
+          let rewardGold = 0;    // Goldmünzen
 
-          if (baseKey.includes('garrosh')) { questRequirement = { itemId: 'iron_ore', amount: 3 }; xpReward = 100; rewardItem = 'sword'; }
-          else if (baseKey.includes('alkuin')) { questRequirement = { itemId: 'mushrooms', amount: 3 }; xpReward = 100; rewardItem = 'healing_potion'; }
-          else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'copper_coins'; }
-          else if (baseKey.includes('beggar')) { questRequirement = { itemId: 'bread', amount: 1 }; xpReward = 50; }
-          else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 }; xpReward = 75; rewardItem = 'strong_coffee'; }
-          else if (baseKey.includes('trader')) { questRequirement = { itemId: 'copper_coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
-          else if (baseKey.includes('informant')) { questRequirement = { itemId: 'copper_coins', amount: 15 }; xpReward = 50; rewardItem = 'treasure_map'; }
+          if (baseKey.includes('garrosh'))      { questRequirement = { itemId: 'iron_ore', amount: 3 };      xpReward = 100; rewardItem = 'sword';          rewardCoins = 20; rewardGold = 0; }
+          else if (baseKey.includes('alkuin'))  { questRequirement = { itemId: 'mushrooms', amount: 3 };     xpReward = 100; rewardItem = 'healing_potion'; rewardCoins = 15; rewardGold = 0; }
+          else if (baseKey.includes('leif'))    { questRequirement = { itemId: 'wood_log', amount: 5 };      xpReward = 150; rewardItem = null;             rewardCoins = 30; rewardGold = 2; }
+          else if (baseKey.includes('beggar'))  { questRequirement = { itemId: 'bread', amount: 1 };         xpReward = 50;  rewardItem = null;             rewardCoins = 5;  rewardGold = 0; }
+          else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 };   xpReward = 75;  rewardItem = 'strong_coffee';  rewardCoins = 10; rewardGold = 0; }
+          else if (baseKey.includes('trader'))  { questRequirement = { itemId: 'copper_coins', amount: 10 }; xpReward = 50;  rewardItem = null;             rewardCoins = 20; rewardGold = 0; }
+          else if (baseKey.includes('informant')) { questRequirement = { itemId: 'copper_coins', amount: 15 }; xpReward = 75; rewardItem = 'treasure_map';   rewardCoins = 10; rewardGold = 0; }
 
           formattedData = {
             dialog: {
@@ -9613,6 +9640,8 @@ export class QuestEngine {
                 questRequirement,
                 xpReward,
                 rewardItem,
+                rewardCoins,
+                rewardGold,
                 questTitle: `${baseKey}.quest_title`,
                 questDesc: `${baseKey}.quest_desc`,
                 options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
@@ -9630,6 +9659,8 @@ export class QuestEngine {
                 questRequirement,
                 xpReward,
                 rewardItem,
+                rewardCoins,
+                rewardGold,
                 options: [{ label: "map.dialogs.common.you_are_welcome", next: "end" }]
               },
               quest_already_completed: {
@@ -9683,23 +9714,48 @@ export class QuestEngine {
             start: {
               text: dialogStart,
               options: [
-                { label: "Was genau machst du hier?", next: "explain_role" },
-                { label: "Kann ich dir bei etwas helfen?", next: "offer_quest" },
-                { label: "Auf Wiedersehen.", next: "end" }
+                { label: `npc.${randomNpcDef.id}.opt_start_1`, next: (randomNpcDef.dialogExchanges === 1) ? "offer_quest" : "explain_role_1" },
+                { label: "npc.common.opt_farewell", next: "end" }
               ]
             },
-            explain_role: {
-              text: `npc.${randomNpcDef.id}.explain_role`,
-              options: [
-                { label: "Verstehe. Brauchst du dabei Hilfe?", next: "offer_quest" },
-                { label: "Interessant. Bis bald!", next: "end" }
-              ]
-            },
+            ...((randomNpcDef.dialogExchanges !== 1) ? {
+              explain_role_1: {
+                text: `npc.${randomNpcDef.id}.explain_role_1`,
+                options: [
+                  { label: `npc.${randomNpcDef.id}.opt_explain_1_1`, next: "explain_role_2" },
+                  { label: "npc.common.opt_farewell", next: "end" }
+                ]
+              }
+            } : {}),
+            ...((randomNpcDef.dialogExchanges === 3) ? {
+              explain_role_2: {
+                text: `npc.${randomNpcDef.id}.explain_role_2`,
+                options: [
+                  { label: `npc.${randomNpcDef.id}.opt_explain_2_1`, next: "explain_role_3" },
+                  { label: "npc.common.opt_farewell", next: "end" }
+                ]
+              },
+              explain_role_3: {
+                text: `npc.${randomNpcDef.id}.explain_role_3`,
+                options: [
+                  { label: `npc.${randomNpcDef.id}.opt_explain_3_1`, next: "offer_quest" },
+                  { label: "npc.common.opt_farewell", next: "end" }
+                ]
+              }
+            } : ((randomNpcDef.dialogExchanges !== 1) ? {
+              explain_role_2: {
+                text: `npc.${randomNpcDef.id}.explain_role_2`,
+                options: [
+                  { label: `npc.${randomNpcDef.id}.opt_explain_2_1`, next: "offer_quest" },
+                  { label: "npc.common.opt_farewell", next: "end" }
+                ]
+              }
+            } : {})),
             offer_quest: {
               text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich angemessen entlohnen.",
               action: "give_quest",
-              questTitle: `quest.title.${randomQuest.questId}`,
-              questDesc: `quest.desc.${randomQuest.questId}`,
+              questTitle: `npc.${randomNpcDef.id}.quest_title`,
+              questDesc: `npc.${randomNpcDef.id}.quest_desc`,
               questRequirement: randomQuest.requirement,
               xpReward: randomQuest.xpReward,
               rewardItem: randomQuest.rewardItem,
@@ -9782,7 +9838,7 @@ export class QuestEngine {
     const nodes = [];
     const now = Date.now();
     // Generiere 30 zufällige Nodes in der Nähe
-    const types = ['tree', 'rock', 'water', 'npc', 'campfire'];
+    const types = ['rock', 'water', 'npc', 'campfire'];
     for (let i = 0; i < 30; i++) {
       const offsetLat = (Math.random() - 0.5) * 0.008; // ca. 400m
       const offsetLon = (Math.random() - 0.5) * 0.008;
@@ -9792,8 +9848,7 @@ export class QuestEngine {
       let title = "Ressource";
       let itemId = "wood_log";
 
-      if (t === 'tree') { title = "Baum"; itemId = "wood_log"; }
-      else if (t === 'rock') { title = "Fels"; itemId = "stone_block"; }
+      if (t === 'rock') { title = "Fels"; itemId = "stone_block"; }
       else if (t === 'water') { title = "Wasserquelle"; itemId = "clean_water"; }
       else if (t === 'npc') { qType = 'npc'; title = "Einsamer Wanderer"; }
       else if (t === 'campfire') { qType = 'cold_campfire'; title = "map.markers.campfire"; }
@@ -9817,6 +9872,7 @@ export class QuestEngine {
               options: [
                 { label: "Was genau machst du hier?", next: "explain_role" },
                 { label: "Kann ich dir bei etwas helfen?", next: "offer_quest" },
+                ...(randomNpcDef.id === 'beggar' ? [{ label: "npc.beggar.opt_give_food", action: "open_donation_modal" }] : []),
                 { label: "Auf Wiedersehen.", next: "end" }
               ]
             },
@@ -9830,8 +9886,8 @@ export class QuestEngine {
             offer_quest: {
               text: "Gut, dass du fragst! Ich brauche dringend diese Items. Besorge sie mir und ich werde dich angemessen entlohnen.",
               action: "give_quest",
-              questTitle: `quest.title.${randomQuest.questId}`,
-              questDesc: `quest.desc.${randomQuest.questId}`,
+              questTitle: `npc.${randomNpcDef.id}.quest_title`,
+              questDesc: `npc.${randomNpcDef.id}.quest_desc`,
               questRequirement: randomQuest.requirement,
               xpReward: randomQuest.xpReward,
               rewardItem: randomQuest.rewardItem,
@@ -9970,7 +10026,7 @@ export class QuestEngine {
       const { data, error } = await supabase.rpc('get_nearby_quests', {
         p_longitude: longitude,
         p_latitude: latitude,
-        p_radius_meters: 1200
+        p_radius_meters: 500
       });
 
       if (error) {
@@ -10006,8 +10062,15 @@ export class QuestEngine {
         return dist < 800;
       }).length : 0;
 
-      // If local area is empty or barely populated, procedurally fetch from OSM to seed the DB
-      if (!data || localNodesCount < 10) {
+      
+      // Check if we are near a previously scanned area (within 400m)
+      const scannedAreas = await this.getScannedAreas();
+      const isAlreadyScanned = scannedAreas.some(area => getDistance(latitude, longitude, area.lat, area.lon) < 400);
+
+      // If local area is empty or barely populated AND we haven't scanned it yet, fetch from OSM
+      if (!isAlreadyScanned && (!data || localNodesCount < 10)) {
+        await this.addScannedArea(latitude, longitude);
+
         console.log(`[QuestEngine] Only ${localNodesCount} quests found in DB within 800m. Triggering fetchAndSeedOSM...`);
         let osmGenerated = await this.fetchAndSeedOSM(longitude, latitude);
 
@@ -10057,14 +10120,16 @@ export class QuestEngine {
               let questRequirement = { itemId: 'copper_coins', amount: 15 };
               let xpReward = 50;
               let rewardItem = null;
+              let rewardCoins = 10;
+              let rewardGold = 0;
 
-              if (baseKey.includes('garrosh')) { questRequirement = { itemId: 'iron_ore', amount: 3 }; xpReward = 100; rewardItem = 'sword'; }
-              else if (baseKey.includes('alkuin')) { questRequirement = { itemId: 'mushrooms', amount: 3 }; xpReward = 100; rewardItem = 'healing_potion'; }
-              else if (baseKey.includes('leif')) { questRequirement = { itemId: 'wood_log', amount: 5 }; xpReward = 150; rewardItem = 'copper_coins'; }
-              else if (baseKey.includes('beggar')) { questRequirement = { itemId: 'bread', amount: 1 }; xpReward = 50; }
-              else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 }; xpReward = 75; rewardItem = 'strong_coffee'; }
-              else if (baseKey.includes('trader')) { questRequirement = { itemId: 'copper_coins', amount: 10 }; xpReward = 50; rewardItem = 'tool'; }
-              else if (baseKey.includes('informant')) { questRequirement = { itemId: 'copper_coins', amount: 15 }; xpReward = 50; rewardItem = 'treasure_map'; }
+              if (baseKey.includes('garrosh'))      { questRequirement = { itemId: 'iron_ore', amount: 3 };      xpReward = 100; rewardItem = 'sword';          rewardCoins = 20; rewardGold = 0; }
+              else if (baseKey.includes('alkuin'))  { questRequirement = { itemId: 'mushrooms', amount: 3 };     xpReward = 100; rewardItem = 'healing_potion'; rewardCoins = 15; rewardGold = 0; }
+              else if (baseKey.includes('leif'))    { questRequirement = { itemId: 'wood_log', amount: 5 };      xpReward = 150; rewardItem = null;             rewardCoins = 30; rewardGold = 2; }
+              else if (baseKey.includes('beggar'))  { questRequirement = { itemId: 'bread', amount: 1 };         xpReward = 50;  rewardItem = null;             rewardCoins = 5;  rewardGold = 0; }
+              else if (baseKey.includes('barista')) { questRequirement = { itemId: 'clean_water', amount: 1 };   xpReward = 75;  rewardItem = 'strong_coffee';  rewardCoins = 10; rewardGold = 0; }
+              else if (baseKey.includes('trader'))  { questRequirement = { itemId: 'copper_coins', amount: 10 }; xpReward = 50;  rewardItem = null;             rewardCoins = 20; rewardGold = 0; }
+              else if (baseKey.includes('informant')) { questRequirement = { itemId: 'copper_coins', amount: 15 }; xpReward = 75; rewardItem = 'treasure_map';   rewardCoins = 10; rewardGold = 0; }
 
               injectedQ.data.dialog = {
                 start: {
@@ -10087,6 +10152,8 @@ export class QuestEngine {
                   questRequirement,
                   xpReward,
                   rewardItem,
+                  rewardCoins,
+                  rewardGold,
                   options: [{ label: `${baseKey}.opt_farewell`, next: "end" }]
                 },
                 check_quest_progress: {
@@ -10102,6 +10169,8 @@ export class QuestEngine {
                   questRequirement,
                   xpReward,
                   rewardItem,
+                  rewardCoins,
+                  rewardGold,
                   options: [{ label: "map.dialogs.common.you_are_welcome", next: "end" }]
                 },
                 quest_already_completed: {

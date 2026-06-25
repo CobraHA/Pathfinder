@@ -16,6 +16,8 @@ export interface Quest {
   turnedInAmount?: number;
   rewardItem?: string;
   rewardXP?: number;
+  rewardCoins?: number;      // Kupfermünzen-Belohnung
+  rewardGold?: number;       // Goldmünzen-Belohnung (für schwierigere Quests)
   npcLocation?: { lat: number; lon: number };
   pigeonStatus?: 'idle' | 'flying';
   pigeonDispatchTime?: number;
@@ -33,6 +35,18 @@ export class QuestLogEngine {
           if (q.requirement && q.requirement.itemId === 'coins') {
             q.requirement.itemId = 'copper_coins';
           }
+          
+          // Migrate missing dynamic titles
+          if (q.titleKey && q.titleKey.startsWith('quest.title.')) {
+            const parts = q.titleKey.split('.');
+            if (parts.length >= 3) {
+              const questIdFull = parts[2]; // e.g. informant_q1
+              const npcId = questIdFull.split('_')[0]; // informant
+              q.titleKey = `npc.${npcId}.quest_title`;
+              q.descKey = `npc.${npcId}.quest_desc`;
+            }
+          }
+
           // Fix broken generic NPC quests
           if (q.titleKey && q.titleKey.startsWith('Auftrag von npc.')) {
             const parts = q.titleKey.split('.');
@@ -43,22 +57,39 @@ export class QuestLogEngine {
             }
           }
 
-          if ((q.titleKey && q.titleKey.startsWith('quest_title_')) || (q.descKey && q.descKey.startsWith('quest_desc_'))) {
+          // Force migration for generic/mock keys
+          if (q.titleKey && (q.titleKey.includes('.generic.') || q.titleKey.includes('.mock1.') || q.titleKey.includes('.mock2.') || q.titleKey.includes('.mock3.'))) {
+            q.titleKey = 'quest_title_broken';
+          }
+          if ((q.titleKey && q.titleKey.startsWith('quest_title_')) || (q.descKey && q.descKey.startsWith('quest_desc_')) || q.titleKey === 'quest.title.generic') {
             const req = q.requirement?.itemId;
-            if (req === 'iron_ore') { q.titleKey = 'map.dialogs.garrosh.quest_title'; q.descKey = 'map.dialogs.garrosh.quest_desc'; }
-            else if (req === 'mushrooms') { q.titleKey = 'map.dialogs.alkuin.quest_title'; q.descKey = 'map.dialogs.alkuin.quest_desc'; }
-            else if (req === 'wood_log') { q.titleKey = 'map.dialogs.leif.quest_title'; q.descKey = 'map.dialogs.leif.quest_desc'; }
-            else if (req === 'bread') { q.titleKey = 'map.dialogs.beggar.quest_title'; q.descKey = 'map.dialogs.beggar.quest_desc'; }
-            else if (req === 'clean_water') { q.titleKey = 'map.dialogs.barista.quest_title'; q.descKey = 'map.dialogs.barista.quest_desc'; }
+            if (req === 'iron_ore') { q.titleKey = 'npc.miner.quest_title'; q.descKey = 'npc.miner.quest_desc'; }
+            else if (req === 'mushrooms') { q.titleKey = 'npc.alchemist.quest_title'; q.descKey = 'npc.alchemist.quest_desc'; }
+            else if (req === 'wood_log') { q.titleKey = 'npc.carpenter.quest_title'; q.descKey = 'npc.carpenter.quest_desc'; }
+            else if (req === 'bread') { q.titleKey = 'npc.cook.quest_title'; q.descKey = 'npc.cook.quest_desc'; }
+            else if (req === 'clean_water') { q.titleKey = 'npc.barista.quest_title'; q.descKey = 'npc.barista.quest_desc'; }
+            else if (req === 'bandit_amulet') { q.titleKey = 'npc.guard_captain.quest_title'; q.descKey = 'npc.guard_captain.quest_desc'; }
+            else if (req === 'berries') { q.titleKey = 'npc.hunter.quest_title'; q.descKey = 'npc.hunter.quest_desc'; }
             else if (req === 'copper_coins') { 
               // Either trader (10) or informant (15 or historically 5). 
               // We'll guess based on amount if possible, but fallback to informant.
-              if (q.requirement?.amount === 10) {
-                q.titleKey = 'map.dialogs.trader.quest_title'; q.descKey = 'map.dialogs.trader.quest_desc';
+              if (q.requirement?.amount === 30) {
+                q.titleKey = 'npc.merchant.quest_title'; q.descKey = 'npc.merchant.quest_desc';
+              } else if (q.requirement?.amount === 50) {
+                q.titleKey = 'npc.mayor.quest_title'; q.descKey = 'npc.mayor.quest_desc';
+              } else if (q.requirement?.amount === 10) {
+                q.titleKey = 'npc.trader.quest_title'; q.descKey = 'npc.trader.quest_desc';
               } else {
-                q.titleKey = 'map.dialogs.informant.quest_title'; q.descKey = 'map.dialogs.informant.quest_desc';
+                q.titleKey = 'npc.informant.quest_title'; q.descKey = 'npc.informant.quest_desc';
               }
+            } else {
+              q.titleKey = 'npc.merchant.quest_title'; q.descKey = 'npc.merchant.quest_desc';
             }
+          }
+          // Force sync descKey with titleKey
+          if (q.titleKey && q.titleKey.startsWith('npc.') && q.titleKey.endsWith('.quest_title')) {
+            const npcId = q.titleKey.split('.')[1];
+            q.descKey = `npc.${npcId}.quest_desc`;
           }
           return q;
         });
@@ -150,7 +181,12 @@ export class QuestLogEngine {
         found = true;
         return { ...q, status: 'completed' as const };
       }
-      return q;
+      // Force sync descKey with titleKey
+          if (q.titleKey && q.titleKey.startsWith('npc.') && q.titleKey.endsWith('.quest_title')) {
+            const npcId = q.titleKey.split('.')[1];
+            q.descKey = `npc.${npcId}.quest_desc`;
+          }
+          return q;
     });
 
     if (found) {
@@ -169,7 +205,12 @@ export class QuestLogEngine {
         const current = q.turnedInAmount || 0;
         return { ...q, turnedInAmount: current + amount };
       }
-      return q;
+      // Force sync descKey with titleKey
+          if (q.titleKey && q.titleKey.startsWith('npc.') && q.titleKey.endsWith('.quest_title')) {
+            const npcId = q.titleKey.split('.')[1];
+            q.descKey = `npc.${npcId}.quest_desc`;
+          }
+          return q;
     });
 
     if (found) {

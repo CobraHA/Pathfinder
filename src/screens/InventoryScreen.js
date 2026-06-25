@@ -36,11 +36,12 @@ export default function InventoryScreen() {
       case 'iron_ore': return 'diamond-stone';
       case 'herb_root': return 'sprout';
       case 'wood_log': return 'tree';
+      case 'stick': return 'slash-forward';
       case 'stone_block': return 'cube';
       case 'healing_potion': return 'bottle-tonic-plus';
       case 'iron_ingot': return 'gold';
       case 'wooden_board': return 'tools';
-      case 'iron_sword': 
+      case 'sword': 
       case 'sword': return 'sword';
       case 'stone_axe': return 'axe';
       case 'bandit_amulet': return 'necklace';
@@ -73,6 +74,10 @@ export default function InventoryScreen() {
       case 'beer': return 'beer';
       case 'book': return 'book-open-page-variant';
       case 'fabric': return 'tshirt-crew';
+      case 'shirt': return 'tshirt-crew';
+      case 'pants': return 'hanger';
+      case 'broken_shirt': return 'tshirt-crew-outline';
+      case 'broken_pants': return 'hanger';
       case 'gasoline': return 'gas-station';
       default: return 'bag-personal';
     }

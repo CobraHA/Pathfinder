@@ -9,10 +9,23 @@ export interface NPCDefinition {
   id: string;
   nameKey: string;
   dialogStartKey: string;
+  dialogExchanges?: number;
   quests: QuestDefinition[];
 }
 
 export const NPCS: NPCDefinition[] = [
+  {
+    id: "drunkard_hostile",
+    nameKey: "npc.drunkard_hostile.name",
+    dialogStartKey: "npc.drunkard_hostile.start",
+    quests: [{ questId: "dummy", requirement: { itemId: "dummy", amount: 1 }, xpReward: 0 }]
+  },
+  {
+    id: "thief",
+    nameKey: "npc.thief.name",
+    dialogStartKey: "npc.thief.start",
+    quests: [{ questId: "dummy", requirement: { itemId: "dummy", amount: 1 }, xpReward: 0 }]
+  },
   {
     id: "blacksmith",
     nameKey: "npc.blacksmith.name",
@@ -46,6 +59,7 @@ export const NPCS: NPCDefinition[] = [
   {
     id: "beggar",
     nameKey: "npc.beggar.name",
+    dialogExchanges: 1,
     dialogStartKey: "npc.beggar.start",
     quests: [
       { questId: "beggar_q1", requirement: { itemId: "bread", amount: 1 }, xpReward: 50, rewardItem: "copper_coins" },
@@ -86,6 +100,7 @@ export const NPCS: NPCDefinition[] = [
   {
     id: "guard_captain",
     nameKey: "npc.guard_captain.name",
+    dialogExchanges: 3,
     dialogStartKey: "npc.guard_captain.start",
     quests: [
       { questId: "guard_captain_q1", requirement: { itemId: "bandit_amulet", amount: 2 }, xpReward: 300, rewardItem: "copper_coins" },

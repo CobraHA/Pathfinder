@@ -71,7 +71,7 @@ export default function QuestLogScreen() {
     const isCompleted = quest.status === 'completed';
     let progressText = null;
     let isGoalMet = false;
-    
+
     // Fallback for old quests accepted before the update
     let req = quest.requirement;
     if (!req) {
@@ -84,7 +84,7 @@ export default function QuestLogScreen() {
       const inventoryAmount = invItem ? invItem.quantity : 0;
       const turnedIn = quest.turnedInAmount || 0;
       const totalAmount = inventoryAmount + turnedIn;
-      
+
       isGoalMet = totalAmount >= req.amount;
       const itemName = i18n.t(`items.${req.itemId}`, { defaultValue: req.itemId });
       progressText = `${itemName}: ${totalAmount} / ${req.amount}`;
@@ -99,7 +99,7 @@ export default function QuestLogScreen() {
           </Text>
           {!isCompleted && (
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <TouchableOpacity 
+              <TouchableOpacity
                 onPress={() => {
                   const isPinned = pinnedNodeId === quest.npcId;
                   const newId = isPinned ? null : quest.npcId;
@@ -121,8 +121,8 @@ export default function QuestLogScreen() {
                     "Bist du sicher, dass du diese Aufgabe abbrechen möchtest? Du kannst sie später wieder annehmen.",
                     [
                       { text: "Nein", style: "cancel" },
-                      { 
-                        text: "Ja", 
+                      {
+                        text: "Ja",
                         style: "destructive",
                         onPress: async () => {
                           if (pinnedNodeId === quest.npcId || pinnedNodeId === quest.id.replace('quest_', '')) {
@@ -146,13 +146,52 @@ export default function QuestLogScreen() {
           <Text style={[styles.questDesc, isCompleted && styles.textCompleted]}>
             {i18n.t(quest.descKey, { defaultValue: '...' })}
           </Text>
-          
+
           {progressText && (
             <View style={styles.progressContainer}>
               <Text style={[styles.progressText, isGoalMet ? styles.progressMet : styles.progressNotMet]}>
                 {progressText}
               </Text>
               {isGoalMet && <Feather name="check" size={16} color="#4CAF50" style={{ marginLeft: 5 }} />}
+            </View>
+          )}
+
+          {/* Belohnungen */}
+          {(quest.rewardXP || quest.rewardItem) && (
+            <View style={styles.rewardContainer}>
+              <Text style={styles.rewardLabel}>{isCompleted ? '✓ Erhalten:' : 'Belohnung:'}</Text>
+              <View style={styles.rewardRow}>
+                {quest.rewardXP > 0 && (
+                  <View style={styles.rewardBadge}>
+                    <MaterialCommunityIcons name="star-four-points" size={13} color="#FFD700" />
+                    <Text style={styles.rewardBadgeText}>+{quest.rewardXP} XP</Text>
+                  </View>
+                )}
+                {quest.rewardItem && (
+                  <View style={[styles.rewardBadge, { borderColor: '#8B4513' }]}>
+                    <MaterialCommunityIcons name="gift" size={13} color="#E9BC62" />
+                    <Text style={[styles.rewardBadgeText, { color: '#E9BC62' }]}>
+                      1x {i18n.t(`items.${quest.rewardItem}`, { defaultValue: quest.rewardItem })}
+                    </Text>
+                  </View>
+                )}
+                {(quest.rewardCoins > 0 || !quest.rewardCoins) && (
+                  <View style={[styles.rewardBadge, { borderColor: '#6B4A1A' }]}>
+                    <MaterialCommunityIcons name="circle-multiple" size={13} color="#CD7F32" />
+                    <Text style={[styles.rewardBadgeText, { color: '#CD7F32' }]}>
+                      {quest.rewardCoins ?? 10}x Kupfermünzen
+                    </Text>
+                  </View>
+                )}
+                {quest.rewardGold > 0 && (
+                  <View style={[styles.rewardBadge, { borderColor: '#B8860B', backgroundColor: 'rgba(255,215,0,0.1)' }]}>
+                    <MaterialCommunityIcons name="gold" size={13} color="#FFD700" />
+                    <Text style={[styles.rewardBadgeText, { color: '#FFD700' }]}>
+                      {quest.rewardGold}x Goldmünzen
+                    </Text>
+                  </View>
+                )}
+              </View>
             </View>
           )}
 
@@ -168,24 +207,24 @@ export default function QuestLogScreen() {
                 const timePassed = currentTime - quest.pigeonDispatchTime;
                 let progress = timePassed / totalFlightTime;
                 let remainingSecs = Math.ceil((quest.pigeonArrivalTime - currentTime) / 1000);
-                
+
                 if (progress >= 1) {
                   progress = 1;
                   remainingSecs = 0;
                   // Auto-complete if time is up and not yet processed
                   QuestLogEngine.completePigeonFlight(quest.id).then((success) => {
                     if (success) {
-                       if (quest.rewardItem) InventoryEngine.addItem({ id: quest.rewardItem, name: quest.rewardItem, type: 'quest_reward' }, 1);
-                       Alert.alert("Brieftaube angekommen!", "Die Quest wurde erfolgreich abgeschlossen!");
-                       loadQuests();
+                      if (quest.rewardItem) InventoryEngine.addItem({ id: quest.rewardItem, name: quest.rewardItem, type: 'quest_reward' }, 1);
+                      Alert.alert("Brieftaube angekommen!", "Die Quest wurde erfolgreich abgeschlossen!");
+                      loadQuests();
                     }
                   });
                 }
-                
+
                 return (
                   <View style={{ width: 120, alignItems: 'center' }}>
                     <View style={{ width: '100%', height: 4, backgroundColor: '#333', borderRadius: 2, overflow: 'hidden', marginTop: 18, marginBottom: 4 }}>
-                       <View style={{ width: `${progress * 100}%`, height: '100%', backgroundColor: '#4CAF50' }} />
+                      <View style={{ width: `${progress * 100}%`, height: '100%', backgroundColor: '#4CAF50' }} />
                     </View>
                     <MaterialCommunityIcons name="bird" size={18} color="#4CAF50" style={{ position: 'absolute', left: `${Math.max(0, progress * 100 - 15)}%`, top: 0 }} />
                     <Text style={{ fontSize: 10, color: '#A0A0A0' }}>${remainingSecs}s verbleibend</Text>
@@ -202,10 +241,10 @@ export default function QuestLogScreen() {
                   const flyingPigeons = quests.filter(q => q.pigeonStatus === 'flying').length;
                   const maxPigeons = Math.min(3, 1 + (inventory.find(i => i.id === 'carrier_pigeon_upgrade')?.quantity || 0));
                   const availablePigeons = maxPigeons - flyingPigeons;
-                  
+
                   // Deterministic flight time
                   let flightSecs = 20 + (quest.id.length % 31);
-                  
+
                   return (
                     <View style={{ alignItems: 'flex-end' }}>
                       <Text style={{ fontSize: 10, color: '#A0A0A0', marginBottom: 2 }}>Tauben: {availablePigeons}/{maxPigeons}</Text>
@@ -216,12 +255,14 @@ export default function QuestLogScreen() {
                           if (availablePigeons <= 0) return;
                           Alert.alert("Brieftaube senden?", `Willst du die Items per Brieftaube schicken? Die Reise dauert ca. ${flightSecs} Sekunden.`, [
                             { text: "Abbrechen", style: "cancel" },
-                            { text: "Senden", onPress: async () => {
-                              const arrivalTime = Date.now() + flightSecs * 1000;
-                              await InventoryEngine.removeItem(quest.requirement.itemId, quest.requirement.amount);
-                              await QuestLogEngine.sendPigeon(quest.id, arrivalTime);
-                              loadQuests();
-                            }}
+                            {
+                              text: "Senden", onPress: async () => {
+                                const arrivalTime = Date.now() + flightSecs * 1000;
+                                await InventoryEngine.removeItem(quest.requirement.itemId, quest.requirement.amount);
+                                await QuestLogEngine.sendPigeon(quest.id, arrivalTime);
+                                loadQuests();
+                              }
+                            }
                           ]);
                         }}
                       >
@@ -252,7 +293,7 @@ export default function QuestLogScreen() {
         </View>
 
         <View style={styles.tabs}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.tab, activeTab === 'active' && styles.activeTab]}
             onPress={() => setActiveTab('active')}
           >
@@ -260,7 +301,7 @@ export default function QuestLogScreen() {
               {i18n.t('questlog.tab_active', { defaultValue: 'Aktiv' })}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.tab, activeTab === 'completed' && styles.activeTab]}
             onPress={() => setActiveTab('completed')}
           >
@@ -290,7 +331,7 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)', 
+    backgroundColor: 'rgba(0,0,0,0.6)',
   },
   header: {
     flexDirection: 'row',
@@ -414,5 +455,41 @@ const styles = StyleSheet.create({
   },
   progressNotMet: {
     color: '#E9BC62',
-  }
+  },
+  rewardContainer: {
+    marginTop: 8,
+    marginBottom: 4,
+  },
+  rewardLabel: {
+    fontSize: 11,
+    color: '#888',
+    fontFamily: 'Courier',
+    fontWeight: '600',
+    marginBottom: 5,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  rewardRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+  },
+  rewardBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,215,0,0.08)',
+    borderWidth: 1,
+    borderColor: '#FFD700',
+    borderRadius: 5,
+    paddingHorizontal: 7,
+    paddingVertical: 3,
+    gap: 4,
+  },
+  rewardBadgeText: {
+    fontSize: 12,
+    color: '#FFD700',
+    fontFamily: 'Courier',
+    fontWeight: 'bold',
+  },
+
 });

@@ -15,7 +15,7 @@ export default function CraftingScreen() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const loadData = async () => {
-    setRecipes(CraftingEngine.getRecipes());
+    setRecipes(await CraftingEngine.getAvailableRecipes());
     const inv = await InventoryEngine.getInventory();
     setInventory(inv);
   };
@@ -35,7 +35,7 @@ export default function CraftingScreen() {
       case 'wood_log': return 'align-justify';
       case 'wooden_board': return 'layout';
       case 'stone_block': return 'box';
-      case 'iron_sword': return 'crosshair';
+      case 'sword': return 'crosshair';
       case 'stone_axe': return 'scissors';
       case 'bandit_amulet': return 'sun';
       case 'campfire': return 'thermometer';
@@ -45,6 +45,8 @@ export default function CraftingScreen() {
       case 'raw_meat': return 'github';
       case 'roasted_meat': return 'gitlab';
       case 'salt': return 'sun';
+      case 'wheat': return 'wind';
+      case 'bread': return 'disc';
       default: return 'package';
     }
   };
